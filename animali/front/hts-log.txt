@@ -1,0 +1,16 @@
+HTTrack3.49-2+htsswf+htsjava launched on Thu, 15 Apr 2021 14:57:57 at http://slidesigma.com/themes/html/petitudio/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://slidesigma.com/themes/html/petitudio/ -O1 "D:\My Web Sites\AAAA" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+14:57:58	Warning: 	Note: due to slidesigma.com remote robots.txt rules, links beginning with these path will be forbidden: /cgi-bin, /wp-admin$, /wp-admin*/, /wp-includes$, /author/admin$, /author/admin/, /archives$, /archives/, /category/uncategorized$, /category/uncategorized/, /tag$, /tag/, /comments/feed, /comments/feed/, /xmlrpc.php$, */trackback/, /print$, /print/, /search$, /search/, /wp-admin/ (see in the options to disable this)
+15:06:03	Warning: 	Retry after error -4 (Incorrect length (434902 Bytes, 527826 expected)) at link slidesigma.com/themes/html/petitudio/assets/img/bg.png (from slidesigma.com/themes/html/petitudio/assets/css/style.css)
+15:06:04	Warning: 	Retry after error -4 (Incorrect length (622175 Bytes, 735056 expected)) at link slidesigma.com/themes/html/petitudio/assets/img/banner/1.jpg (from slidesigma.com/themes/html/petitudio/home-v3.html)
+15:06:10	Warning: 	Retry after error -4 (Incorrect length (351428 Bytes, 444943 expected)) at link slidesigma.com/themes/html/petitudio/assets/img/banner/2.jpg (from slidesigma.com/themes/html/petitudio/home-v3.html)
+15:06:18	Warning: 	Retry after error -4 (Incorrect length (359935 Bytes, 505740 expected)) at link slidesigma.com/themes/html/petitudio/assets/img/blog/1-lg.jpg (from slidesigma.com/themes/html/petitudio/post-single.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 8 minutes 42 seconds : 144 links scanned, 139 files written (15052151 bytes overall) [14193980 bytes received at 27191 bytes/sec], 1153789 bytes transferred using HTTP compression in 23 files, ratio 22%
+(No errors, 5 warnings, 0 messages)
