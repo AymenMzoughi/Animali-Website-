@@ -1,6 +1,10 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
     require_once '../Controller/ReclamationC.php';
     require_once '../Entities/Reclamation.php';
+	require_once "PHPMailer/PHPMailer.php";
+require_once "PHPMailer/SMTP.php";
+require_once "PHPMailer/Exception.php";
     if (isset($_GET['id'])){
         $reclamationC=new reclamationC();
          $result=$reclamationC-> recupererReclamation($_GET['id']);
@@ -368,6 +372,29 @@
 	if(isset($_POST['modifier'])){
 		$reclamation= new reclamation($_POST['probleme'],$_POST['date'],$_POST['etat'],$_POST['sujet'],$_POST['idclient']);
 		$reclamationC->Modifierreclamation($reclamation,$_POST['id_ini']);
+		if($_POST['etat']=="A traiter")
+		{
+			$mail=new PHPMailer();
+			$mail->IsSMTP();
+			$mail -> Host="smtp.gmail.com";
+			$mail ->SMTPAuth=true;
+			$mail ->Username="animalitn2021@gmail.com";
+			$mail ->Password='animali123';
+			$mail ->Port=465;
+			$mail ->SMTPSecure='ssl';
+			$mail->isHTML(true);
+			$mail ->setFrom('animalitn2021@gmail.com');
+			$mail->addAddress("zeinebmb19@gmail.com");
+			$mail->Subject = " Reclamation a traiter ";
+			$mail->Body = "Bonjour , Vous avez une reclamation num ".$_POST['id_ini']." a traiter . ";
+			if($mail->send())
+				{
+				   echo " oui";	}
+				else
+				{
+					echo $mail->ErrorInfo;
+				}
+		}
 		?> 
 		<script>
 				document.location.replace("AfficherReclamation.php") ;

@@ -10,6 +10,7 @@
 		   $message=$row['message'];
 		   $nom=$row['nom'];
 		   $prenom=$row['prenom'];
+		   $email=$row['email'];
 		   $note=$row['note'];
 		 
 		
@@ -348,6 +349,10 @@
 											<label class="form-label"> Nom  </label>
 											<input type="text" class="form-control" id="nom" value="<?PHP echo $nom ?>" name="nom">
 										</div>
+										<div class="form-group">
+											<label class="form-label"> Email  </label>
+											<input type="email" class="form-control" id="email" value="<?PHP echo $email ?>" name="email">
+										</div>
 											<div class="form-group col-md-4">
 											<label for="inputState"> Note </label>
 											<input type="text" class="form-control" id="note" value="<?PHP echo $note ?>" name="note">
@@ -361,7 +366,7 @@
 									<?php
 									}}
 	if(isset($_POST['modifier'])){
-		$avis= new avis($_POST['message'],$_POST['nom'],$_POST['prenom'],$_POST['note']);
+		$avis= new avis($_POST['message'],$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['note']);
 		$avisC->Modifieravis($avis,$_POST['id_ini']);
 		?> 
 		<script>

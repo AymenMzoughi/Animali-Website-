@@ -5,18 +5,24 @@ class Avis
 	private $nom;
 	private $prenom;
 	private $note;
-	function __construct($message,$nom,$prenom,$note)
+	private $email;
+	function __construct($message,$nom,$prenom,$email,$note)
 	{
 		$this->message=$message;
 		$this->nom=$nom;
         $this->prenom=$prenom;
 		$this->note=$note;
+		$this->email=$email;
 		
 	}
 	
 	function getmessage()
 	{
 		return $this->message;
+	}
+	function getemail()
+	{
+		return $this->email;
 	}
 	function getid()
 	{
@@ -58,7 +64,10 @@ class Avis
 	{
 		$this->note=$note;
 	}
-	
+	function setmail($mail)
+	{
+		$this->email=$mail;
+	}
 	
 }
 

@@ -27,10 +27,7 @@ function test()
         alert('veuillez remplir le champ etat ');
         
     }
-    f(etat=="Select")   
-     {  
-        alert('veuillez remplir le champ etat ');
-           } 
+
 
    
 

@@ -27,8 +27,8 @@
         }	
     
         public function ajouteravis($avis) {
-            $sql=" INSERT INTO avis (message,nom,prenom,note) 
-            VALUES (:message, :nom,:prenom,:note)";
+            $sql=" INSERT INTO avis (message,nom,prenom,email,note) 
+            VALUES (:message, :nom,:prenom,:email,:note)";
             $db = config::getConnexion();
     try{
     
@@ -37,11 +37,12 @@
             $nom=$avis->getnom();
             $prenom=$avis->getprenom();
             $note=$avis->getnote();
+            $email=$avis->getemail();
             $req->bindValue(':message',$message);
             $req->bindValue(':nom',$nom);
             $req->bindValue(':prenom',$prenom);
             $req->bindValue(':note',$note);
-           
+            $req->bindValue(':email',$email);
            
             
             
@@ -56,7 +57,7 @@
 
 
         public function Modifieravis($avis,$id) {
-            $sql="UPDATE  avis SET message=:message, nom=:nom, prenom=:prenom,  note=:note WHERE id=:id";
+            $sql="UPDATE  avis SET message=:message, nom=:nom, prenom=:prenom,  note=:note , email=:email WHERE id=:id";
             $db = config::getConnexion();
     try{
     
@@ -65,12 +66,13 @@
             $nom=$avis->getnom();
             $prenom=$avis->getprenom();
             $note=$avis->getnote();
+            $email=$avis->getemail();
             $req->bindValue(':id',$id);
             $req->bindValue(':message',$message);
             $req->bindValue(':nom',$nom);
             $req->bindValue(':prenom',$prenom);
             $req->bindValue(':note',$note);
-           
+            $req->bindValue(':email',$email);
            
             
             

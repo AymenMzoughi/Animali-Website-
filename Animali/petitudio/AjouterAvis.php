@@ -1,20 +1,47 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
 include_once '../Entities/Avis.php';
 include_once '../Controller/AvisC.php';
+require_once "PHPMailer/PHPMailer.php";
+require_once "PHPMailer/SMTP.php";
+require_once "PHPMailer/Exception.php";
 if (
 isset($_POST["nom"]) &&
 isset($_POST["prenom"]) &&
 isset($_POST["note"])
-&&isset($_POST["message"])) 
+&&isset($_POST["message"])&&
+isset($_POST["email"])) 
   { 
   if(!empty($_POST["nom"]) &&
   !empty($_POST["prenom"]) &&
+  !empty($_POST["email"])&&
   !empty($_POST["note"])
   &&!empty($_POST["message"])&&($_POST["note"]!="Select")) 
   {$avis = null;
   $avisC = new AvisC();
-$avis= new Avis($_POST['message'],$_POST['nom'],$_POST['prenom'],$_POST['note']);
+$avis= new Avis($_POST['message'],$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['note']);
 $avisC->ajouteravis($avis);
+
+$mail=new PHPMailer();
+$mail->IsSMTP();
+$mail -> Host="smtp.gmail.com";
+$mail ->SMTPAuth=true;
+$mail ->Username="animalitn2021@gmail.com";
+$mail ->Password='animali123';
+$mail ->Port=465;
+$mail ->SMTPSecure='ssl';
+$mail->isHTML(true);
+$mail ->setFrom('animalitn2021@gmail.com');
+$mail->addAddress($_POST["email"]);
+$mail->Subject = " A propos votre Avis sur notre site Animali.tn ";
+$mail->Body = "Bonjour ";
+if($mail->send())
+	{
+	   echo " oui";	}
+	else
+	{
+		echo $mail->ErrorInfo;
+	}
   }}
 
  
@@ -1684,6 +1711,9 @@ $avisC->ajouteravis($avis);
               </div>
               <div class="form-group col-lg-6">
                 <input type="text" placeholder="Nom" class="form-control" name="nom" id="nom" >
+              </div>
+              <div class="form-group col-lg-6">
+                <input type="email" placeholder="Email" class="form-control" name="email" id="email" >
               </div>
               <div class="form-group col-lg-12">
                 <textarea name="message" class="form-control" placeholder="Type your message"  id="message" rows="8"></textarea>

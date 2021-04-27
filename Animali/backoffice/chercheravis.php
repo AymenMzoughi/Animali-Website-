@@ -338,6 +338,7 @@ $listeUsers=$AvisC->rechercherprenom($_POST["Search"]);
 											<th style="width:70%"> Message </th>
 											<th class="d-none d-md-table-cell" style="width:25%"> Nom </th>
 											<th style="width:25%"> Prenom</th>
+											<th style="width:70%"> Email </th>
 											<th style="width:25%"> note </th>
 											<th style="width:70%"> Supprimer </th>
 											<th style="width:70%"> Modifier </th>
@@ -353,6 +354,7 @@ foreach($listeUsers as $user){
 <td><?PHP echo $user['message']; ?></td>
 <td><?PHP echo $user['nom']; ?></td>
 <td><?PHP echo $user['prenom']; ?></td>
+<td><?PHP echo $user['email']; ?></td>
 <td><?PHP echo $user['note']; ?></td>
 <td>
 <form>

@@ -7,19 +7,18 @@ $list=$reclamationC->afficheridclient();
 if (
 isset($_POST["sujet"]) &&
 isset($_POST["probleme"]) &&
-isset($_POST["etat"])
-&&isset($_POST["date"])
-&&isset($_POST["idclient"])
+isset($_POST["date"])&&
+isset($_POST["idclient"])
  ) 
   {
   if(!empty($_POST["sujet"]) &&
-  !empty($_POST["probleme"]) &&
-  !empty($_POST["etat"])
+  !empty($_POST["probleme"]) 
   &&!empty($_POST["date"])
   &&!empty($_POST["idclient"]))
   {
-$reclamation= new reclamation($_POST['probleme'],$_POST['date'],$_POST['etat'],$_POST['sujet'],$_POST['idclient']);
+$reclamation= new reclamation($_POST['probleme'],$_POST['date'],"non traitee",$_POST['sujet'],$_POST['idclient']);
 $reclamationC->ajouterrelcamation($reclamation);
+
 
 }}
  
@@ -539,15 +538,6 @@ $reclamationC->ajouterrelcamation($reclamation);
             <div class="form-group">
             <label> Date  <span class="text-danger">*</span></label>
               <input type="date" class="form-control" placeholder="date" name="date" id="date">
-            </div>
-
-            <div class="form-group">
-            <label> Etat du produit  <span class="text-danger">*</span></label>
-              <select class="form-control"  placeholder="etat" name="etat" id="etat" >
-              <option>Select</option>
-              <option>Bon</option>
-              <option>Mauvais</option>
-              </select>
             </div>
             <div class="form-group">
             <label>  id client <span class="text-danger">*</span></label>
