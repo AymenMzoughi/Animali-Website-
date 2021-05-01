@@ -38,9 +38,31 @@
             catch (Exception $e){
                 die('Erreur: '.$e->getMessage());
             }
+        }
+        function afficherprenomclient(){
+          
+            $sql="SELECT * from client  ";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
         }	
 
-
+        function recupererid($id){
+            $sql="SELECT * from reclamation where id=$id";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
 
         function recupereridclient($id){
             $sql="SELECT * from reclamation where idclient=$id";

@@ -21,7 +21,8 @@ isset($_POST["email"]))
   $avisC = new AvisC();
 $avis= new Avis($_POST['message'],$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['note']);
 $avisC->ajouteravis($avis);
-
+$nom=$_POST["nom"];
+$prenom=$_POST["prenom"];
 $mail=new PHPMailer();
 $mail->IsSMTP();
 $mail -> Host="smtp.gmail.com";
@@ -31,10 +32,10 @@ $mail ->Password='animali123';
 $mail ->Port=465;
 $mail ->SMTPSecure='ssl';
 $mail->isHTML(true);
-$mail ->setFrom('animalitn2021@gmail.com');
+$mail ->setFrom('animalitn2021@gmail.com','Animali.tn');
 $mail->addAddress($_POST["email"]);
 $mail->Subject = " A propos votre Avis sur notre site Animali.tn ";
-$mail->Body = "Bonjour ";
+$mail->Body = "Bonjour Madame/Monsieur " .$prenom." ".$nom."  Animali a bien  reçu votre avis pour le ". date("Y/m/d"). "  merci pour votre fidélité et votre confiance . ";
 if($mail->send())
 	{
 	   echo " oui";	}

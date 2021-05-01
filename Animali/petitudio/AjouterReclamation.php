@@ -3,7 +3,7 @@ include_once '../Entities/Reclamation.php';
 include_once '../Controller/ReclamationC.php';
 $reclamation = null;
   $reclamationC = new reclamationC();
-$list=$reclamationC->afficheridclient();
+$list=$reclamationC->afficherprenomclient();
 if (
 isset($_POST["sujet"]) &&
 isset($_POST["probleme"]) &&
@@ -16,6 +16,7 @@ isset($_POST["idclient"])
   &&!empty($_POST["date"])
   &&!empty($_POST["idclient"]))
   {
+
 $reclamation= new reclamation($_POST['probleme'],$_POST['date'],"non traitee",$_POST['sujet'],$_POST['idclient']);
 $reclamationC->ajouterrelcamation($reclamation);
 
@@ -540,24 +541,19 @@ $reclamationC->ajouterrelcamation($reclamation);
               <input type="date" class="form-control" placeholder="date" name="date" id="date">
             </div>
             <div class="form-group">
-            <label>  id client <span class="text-danger">*</span></label>
-
+            <label>  Nom  client <span class="text-danger">*</span></label>
             <select class="form-control"  placeholder="idclient"  id="idclient" name="idclient" >
             <?php
             foreach( $list as $usr)
             {
             ?>
-             <option><?= $usr['id'] ?><option>
+             <option value="<?= $usr['id'] ?>"><?= $usr['prenom'] ?> <?= $usr['nom'] ?><option>
               <?php 
             }
               ?>
                 </select> 
             </div>
-            <button type="submit" class="andro_btn-custom primary" onclick=test() > Ajouter </button> 
-           
-
-            
-
+            <button type="submit" class="andro_btn-custom primary" onclick="test()==true;"> Ajouter </button> 
           </form>
         </div>
 

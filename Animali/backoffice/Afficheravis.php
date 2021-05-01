@@ -333,8 +333,8 @@ $listeUsers=$avisC->afficherAvis();
 											<th style="width:25%"> Prenom</th>
 											<th style="width:70%"> Email </th>
 											<th style="width:25%"> note </th>
-											<th style="width:70%"> Supprimer </th>
-											<th style="width:70%"> Modifier </th>
+											<th style="width:50%"> Action </th>
+										
 										
 										</tr>
 									</thead>
@@ -352,15 +352,15 @@ foreach($listeUsers as $user){
 <td>
 <form>
 <div >
-<a type="button" class="btn btn-outline-primary" href = "supprimerAvis.php?id=<?= $user['id'] ?>">Supprimer</a>
+<td class="table-action">
+<a href= "supprimerAvis.php?id=<?= $user['id'] ?>"><i class="align-middle" data-feather="trash"></i></a>
+<a href= "modifieravis.php?id=<?= $user['id'] ?>"><i class="align-middle" data-feather="edit-2"></i></a>										
 </div>	
 </td>
-<td>
-<div >
-<a type="button" class="btn btn-outline-primary" href = "modifieravis.php?id=<?= $user['id'] ?>">Modifier</a>
-</div>	
+
+
 <form>
-</td>
+
 </tr>
 
 <?PHP
