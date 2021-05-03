@@ -32,22 +32,14 @@
         </a>
 
                 <ul class="sidebar-nav">
-                    <li class="sidebar-header">
-                        Pages
-                    </li>
+                   
 
-                    <li class="sidebar-item">
-                        
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-            </a>
-                    
-                    </li>
+                   
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Gestion des clients </a>
                         <ul class="sub-menu children dropdown-menu">
                         <li class="sidebar-item"><a class="sidebar-link" href="../View/ajouterclient.php">Ajouter</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/modifierclient.php">Modifier</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="../View/supprimerclient.php">Supprimer</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/afficherclient.php">Afficher</a></li>
 							
                         </ul>
@@ -57,7 +49,6 @@
                         <ul class="sub-menu children dropdown-menu">
                         <li class="sidebar-item"><a class="sidebar-link" href="../View/ajoutercartefid.php">Ajouter</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/modifiercartefid.php">Modifier</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="../View/supprimercartefid.php">Supprimer</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/affichercartefid.php">Afficher</a></li>
 							
                         </ul>
@@ -244,77 +235,55 @@
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3">Afficher liste Carte Fidelité </h1>
+                <h1 class="h3 mb-3">Afficher liste Carte Fidelité </h1>
 
-                    <div class="row">
-                        <div class="col-12 col-xl-15">
-                            <div class="card">
-                                
-                            <table border=1 align = 'left'>
-                            <tr>
-                <th>ID Carte Fidelite</th>
-                <th>Date de creation</th>
-                <th>Date d'expiration</th>
-                <th>Nombre de points de fidelité</th>
-                <th>CIN Client</th>
-            </tr>
+<div class="row">
+        <div class="col-12 col-xl-15">
+            <div class="card">
+                
+            <table class="table table-bordered">
+<tr>
+<th style="width:14.28%;">ID Carte Fidelite</th>
+<th style="width:14.28%;">Date de creation</th>
+<th style="width:14.28%;">Date d'expiration</th>
+<th style="width:14.28%;">Nombre de points de fidelité</th>
+<th style="width:14.28%;">CIN Client</th>
+<th style="width:14.28%;">Action</th>
+</tr>
 
-            <?PHP
-                foreach($listecartefid as $cartefidC){
-            ?>
-                <tr>
-                    <td><?PHP echo $cartefidC['IDC']; ?></td>
-                    <td><?PHP echo $cartefidC['DATEC']; ?></td>
-                    <td><?PHP echo $cartefidC['DATEX']; ?></td>
-                    <td><?PHP echo $cartefidC['NbP']; ?></td>
-                    <td><?PHP echo $cartefidC['CINC']; ?></td>
-                        
-                        </form>
-                </tr>
-            <?PHP
-                }
-            ?>
-        </table>
-                            </div>
-                        </div>
+<?PHP
+foreach($listecartefid as $cartefidC){
+?>
+<tr>
+<td><?PHP echo $cartefidC['IDC']; ?></td>
+<td><?PHP echo $cartefidC['DATEC']; ?></td>
+<td><?PHP echo $cartefidC['DATEX']; ?></td>
+<td><?PHP echo $cartefidC['NbP']; ?></td>
+<td><?PHP echo $cartefidC['CINC']; ?></td>
+<td class="table-action">
+<a href="ajoutercartefid.php"><i class="align-middle" data-feather="user-plus"></i></a>	
+    <a href="modifiercartefid.php"><i class="align-middle" data-feather="edit-2"></i></a>							
+    <a href="supp-cartefid.php?IDC=<?= $cartefidC['IDC'] ?>"><i class="align-middle" data-feather="trash"></i></a>
+                            </td>
 
-                        
-                        
-                                                        <div class="card-footer">
-                                                        <form method="POST" action="ajoutercartefid.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="ajouter" value="ajouter">
-                                                            <i "fa fa-dot-circle-o"></i>Ajouter
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                                                    
-                                                        <div class="card-footer">
-                                                        <form method="POST" action="modifiercartefid.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="modifier" value="modifier">
-                                                        
-                                                            <i "fa fa-dot-circle-o"></i>Modifier
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                                <div class="card-footer">
-                                                        <form method="POST" action="supprimercartefid.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="supprimer" value="supprimer">
-                                                        
-                                                            <i "fa fa-dot-circle-o"></i>Supprimer
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                        
-
-            </main>
-
-            
+                            </tr>
+<?PHP
+}
+?>
+</table>
+            </div>
         </div>
-    </div>
 
-    <script src="js/vendor.js"></script>
-    <script src="js/app.js"></script>
+        
+
+</main>
+
+
+</div>
+</div>
+
+<script src="js/vendor.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 

@@ -18,6 +18,16 @@
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
     <title>Tables | AdminKit Demo</title>
+    <script>
+     function supp()
+{    
+    var CIN =document.getElementById("CIN").value;
+
+    if(CIN.length==0)   
+     {  
+    alert('CIN Vide');} 
+     }
+    </script>
 
     <link href="../examples/css/app.css" rel="stylesheet">
 </head>
@@ -45,7 +55,6 @@
                         <ul class="sub-menu children dropdown-menu">
                         <li class="sidebar-item"><a class="sidebar-link" href="../View/ajouterclient.php">Ajouter</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/modifierclient.php">Modifier</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="../View/supprimerclient.php">Supprimer</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/afficherclient.php">Afficher</a></li>
 							
                         </ul>
@@ -55,7 +64,6 @@
                         <ul class="sub-menu children dropdown-menu">
                         <li class="sidebar-item"><a class="sidebar-link" href="../View/ajoutercartefid.php">Ajouter</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/modifiercartefid.php">Modifier</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="../View/supprimercartefid.php">Supprimer</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/affichercartefid.php">Afficher</a></li>
 							
                         </ul>
@@ -245,28 +253,31 @@
 
                     <h1 class="h3 mb-3">Supprimer un Client </h1>
 
-                    <div class="row">
-                        <div class="col-12 col-xl-6">
+                    <div class="card"  style="width:100%">
+                        <div class="col-12 col-xl-20" >
                             <div class="card">
                                 
-                            <table border=1 align = 'center'>
-                            <div class="card-body card-block">
+                                <table>
+                                <div class="card-body card-block">
                                             
                                               <div class="row form-group">
-                                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">CIN</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" name="CIN" id="CIN" class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <span id='missPrenom'></span><br>
+                                                     <div class="col col-md-1"><label for="text-input" class=" form-control-label">CIN</label>
+                                                    </div>
+                                                     <div class="col-12 col-md-3"><input type="text" name="CIN" id="CIN" class="form-control"><small class="form-text text-muted"></small>
+                                                    </div>
+                                                     
 
                                                  </div>
                                              
                                                 
                                                      <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="supprimer" value="supprimer"
-                                                       >
-                                                            <i "fa fa-dot-circle-o"></i>Supprimer
-                                                        </button>
-                                                    </div>
-                                        </div>
+                                                     <button type="submit" class="btn btn-primary btn-sm" onclick="supp()==true"></i> Supprimer </button>
+                                                    </div>   
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
                    
 
         <main class="content">
@@ -278,65 +289,55 @@
                         <div class="col-12 col-xl-15">
                             <div class="card">
                                 
-                            <table border=1 align = 'left'>
-                            <tr>
-                <th>CIN</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>NumTel</th>
-                <th>Adr</th>
-                <th>DNS</th>
-            </tr>
+                            <table class="table table-bordered">
+        <tr>
+        <th style="width:10%;">CIN</th>
+                                            <th style="width:10%;">Sexe</th>
+											<th style="width:10%">Nom</th>
+                                            <th style="width:10%">Prenom</th>
+                                            <th style="width:12.5%">NumTel</th>
+                                            <th style="width:15%">Email</th>
+                                            <th style="width:12.5%">Adr</th>
+                        <th class="d-none d-md-table-cell" style="width:12.5%">Date de naissance</th>
+                        <th>Actions</th>
 
-            <?PHP
-                foreach($listeclient as $clientC){
-            ?>
-                <tr>
-                    <td><?PHP echo $clientC['CIN']; ?></td>
-                    <td><?PHP echo $clientC['Nom']; ?></td>
-                    <td><?PHP echo $clientC['Prenom']; ?></td>
-                    <td><?PHP echo $clientC['NumTel']; ?></td>
-                    <td><?PHP echo $clientC['Adr']; ?></td>
-                    <td><?PHP echo $clientC['DNS']; ?></td>
-                        
-                        </form>
-                </tr>
-            <?PHP
-                }
-            ?>
-        </table>
-                            </div>
-                        </div>
+</tr>
 
-                        
-                        
-                                                        <div class="card-footer">
-                                                        <form method="POST" action="ajouterclient.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="supprimer" value="supprimer">
-                                                            <i "fa fa-dot-circle-o"></i>Ajouter
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                                                    
-                                                        <div class="card-footer">
-                                                        <form method="POST" action="modifierclient.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="modifier" value="modifier">
-                                                        
-                                                            <i "fa fa-dot-circle-o"></i>Modifier
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                                                </form>
-                        
-
-            </main>
-
-            
+<?PHP
+foreach($listeclient as $clientC){
+?>
+<tr>
+<td><?PHP echo $clientC['CIN']; ?></td>
+<td><?PHP echo $clientC['Sexe']; ?></td>
+<td><?PHP echo $clientC['Nom']; ?></td>
+<td><?PHP echo $clientC['Prenom']; ?></td>
+<td><?PHP echo $clientC['NumTel']; ?></td>
+<td><?PHP echo $clientC['Email']; ?></td>
+<td><?PHP echo $clientC['Adr']; ?></td>
+<td><?PHP echo $clientC['DNS']; ?></td>
+<td class="table-action">
+<a href="ajouterclient.php"><i class="align-middle" data-feather="user-plus"></i></a>						
+<a href="supp-client.php?CIN=<?= $clientC['CIN'] ?>"><i class="align-middle" data-feather="trash"></i></a>
+                        </td>
+    
+</tr>
+<?PHP
+}
+?>
+</table>
         </div>
     </div>
+    
+    
 
-    <script src="js/vendor.js"></script>
-    <script src="js/app.js"></script>
+</main>
+
+
+</div>
+</div>
+
+<script src="js/vendor.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 

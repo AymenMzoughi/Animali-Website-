@@ -1,10 +1,37 @@
 <?php
-    require_once '../Controller/clientC.php';
-
-    $clientC =  new clientC();
-    $listeclient = $clientC->afficherclient();
+    include "../Controller/clientC.php";
     
+    $clientC =  new clientC();
+    $liste=$clientC->afficherclient();
+
+$Sexe1="Homme";
+$Sexe2="Femme";
+$nsexe1=$clientC->calculerClient($Sexe1);   
+$nsexe2=$clientC->calculerClient($Sexe2);
+
+if (isset($_POST["Search"]))
+{ 
+  if($_POST["choix"]=='CIN')
+{$clientC=new clientC();
+$liste=$clientC->recupCIN($_POST["Search"]);
+}
+if($_POST["choix"]=='Nom')
+{$clientC=new clientC();
+$liste=$clientC->recupNom($_POST["Search"]);
+}
+if($_POST["choix"]=='NumTel')
+{$clientC=new clientC();
+$liste=$clientC->recupNumTel($_POST["Search"]);
+}
+}
+/*if($_POST["tri"]=='CIN')
+{$clientC=new clientC();
+$result=$clientC->triCIN();
+}*/
+
 ?>
+    
+
 
 <html>
 
@@ -46,7 +73,6 @@
                         <ul class="sub-menu children dropdown-menu">
                         <li class="sidebar-item"><a class="sidebar-link" href="../View/ajouterclient.php">Ajouter</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/modifierclient.php">Modifier</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="../View/supprimerclient.php">Supprimer</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/afficherclient.php">Afficher</a></li>
 							
                         </ul>
@@ -56,7 +82,6 @@
                         <ul class="sub-menu children dropdown-menu">
                         <li class="sidebar-item"><a class="sidebar-link" href="../View/ajoutercartefid.php">Ajouter</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/modifiercartefid.php">Modifier</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="../View/supprimercartefid.php">Supprimer</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/affichercartefid.php">Afficher</a></li>
 							
                         </ul>
@@ -239,84 +264,131 @@
                     </ul>
                 </div>
             </nav>
-
             <main class="content">
                 <div class="container-fluid p-0">
+                <div class="text-center">
+                            <form method="POST">
+                            <div class="col-12 col-md-3"><select class="form-control"  placeholder="Choix" name="choix" id="choix" ></div>
+            <option>Choisir :</option>
+              <option>CIN </option>
+              <option>Nom</option>
+              <option> NumTel</option>
+              </select>
+<input type="text"  name="Search" name="Search" class="form-control" placeholder="Ecrire Ici">
+<select class="form-control"  placeholder="tri" name="tri" id="tri" >
+<option>Choisir :</option>
+<option>CIN</option>
+</select>
+<button class="btn btn-primary">Trier</button>
 
+<button class="btn btn-primary">Rechercher</button>
+<button onclick="window.print()" class="btn btn-primary">Print</button>
+</div>
+
+
+	
+     
+</form>	
                     <h1 class="h3 mb-3">Afficher liste Client </h1>
 
                     <div class="row">
                         <div class="col-12 col-xl-15">
                             <div class="card">
                                 
-                            <table border=1 align = 'left'>
-                            <tr>
-                <th>CIN</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>NumTel</th>
-                <th>Adr</th>
-                <th>DNS</th>
-            </tr>
+                            <table class="table table-bordered">
+        <tr>
+                                            <th style="width:10%;">CIN</th>
+                                            <th style="width:10%;">Sexe</th>
+											<th style="width:10%">Nom</th>
+                                            <th style="width:10%">Prenom</th>
+                                            <th style="width:12.5%">NumTel</th>
+                                            <th style="width:15%">Email</th>
+                                            <th style="width:12.5%">Adresse</th>
+                        <th class="d-none d-md-table-cell" style="width:12.5%">Date de naissance</th>
+                        <th>Actions</th>
 
-            <?PHP
-                foreach($listeclient as $clientC){
-            ?>
-                <tr>
-                    <td><?PHP echo $clientC['CIN']; ?></td>
-                    <td><?PHP echo $clientC['Nom']; ?></td>
-                    <td><?PHP echo $clientC['Prenom']; ?></td>
-                    <td><?PHP echo $clientC['NumTel']; ?></td>
-                    <td><?PHP echo $clientC['Adr']; ?></td>
-                    <td><?PHP echo $clientC['DNS']; ?></td>
-                        
-                        </form>
-                </tr>
-            <?PHP
-                }
-            ?>
-        </table>
-                            </div>
-                        </div>
+</tr>
 
-                        
-                        
-                                                        <div class="card-footer">
-                                                        <form method="POST" action="ajouterclient.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="ajouter" value="ajouter">
-                                                            <i "fa fa-dot-circle-o"></i>Ajouter
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                                                    
-                                                        <div class="card-footer">
-                                                        <form method="POST" action="modifierclient.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="modifier" value="modifier">
-                                                        
-                                                            <i "fa fa-dot-circle-o"></i>Modifier
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                                <div class="card-footer">
-                                                        <form method="POST" action="supprimerclient.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="supprimer" value="supprimer">
-                                                        
-                                                            <i "fa fa-dot-circle-o"></i>Supprimer
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                        
+<?PHP
 
-            </main>
+foreach($liste as $clientC){
+?>
+<tr>
+<td><?PHP echo $clientC['CIN']; ?></td>
+<td><?PHP echo $clientC['Sexe']; ?></td>
+<td><?PHP echo $clientC['Nom']; ?></td>
+<td><?PHP echo $clientC['Prenom']; ?></td>
+<td><?PHP echo $clientC['NumTel']; ?></td>
+<td><?PHP echo $clientC['Email']; ?></td>
+<td><?PHP echo $clientC['ADR']; ?></td>
+<td><?PHP echo $clientC['DNS']; ?></td>
+<td class="table-action">
+<a href="ajouterclient.php"><i class="align-middle" data-feather="user-plus"></i></a>
+<a href="modifierclient.php?CIN=<?= $clientC['CIN'] ?>"><i class="align-middle" data-feather="edit-2"></i></a>							
+<a href="supp-client.php?CIN=<?= $clientC['CIN'] ?>"><i class="align-middle" data-feather="trash"></i></a>
+<a href="Mail.php?CIN=<?= $clientC['CIN'] ?>"><i class="align-middle" data-feather="mail"></i></a>
+                        </td>
+    
+</tr>
 
-            
+<?PHP
+}
+?>
+</table>
         </div>
     </div>
 
-    <script src="js/vendor.js"></script>
-    <script src="js/app.js"></script>
+    
+    <div class="col-12 col-lg-6">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title"> Statistiques du Sexe: </h5>
+								</div>
+								<div class="card-body">
+									<div class="chart chart-sm">
+										<canvas id="chartjs-doughnut"></canvas>
+                                        
+									</div>
+								</div>
+							</div>
+						</div>
+                        
+</main>
 
+
+</div>
+</div>
+
+<script src="js/vendor.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+		$(function() {
+			// Doughnut chart
+			new Chart(document.getElementById("chartjs-doughnut"), {
+				type: "doughnut",
+				data: {
+					labels: ["Homme", "Femme"],
+					datasets: [{
+						data: [<?php echo $nsexe1; ?>, <?php echo $nsexe2;?>],
+						backgroundColor: [
+							window.theme.warning,
+						],
+						borderColor: "transparent"
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					cutoutPercentage: 70,
+					legend: {
+						display: true
+                        
+					}
+                    
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>

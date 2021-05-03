@@ -45,7 +45,6 @@
                         <ul class="sub-menu children dropdown-menu">
                         <li class="sidebar-item"><a class="sidebar-link" href="../View/ajouterclient.php">Ajouter</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/modifierclient.php">Modifier</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="../View/supprimerclient.php">Supprimer</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/afficherclient.php">Afficher</a></li>
 							
                         </ul>
@@ -55,7 +54,6 @@
                         <ul class="sub-menu children dropdown-menu">
                         <li class="sidebar-item"><a class="sidebar-link" href="../View/ajoutercartefid.php">Ajouter</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/modifiercartefid.php">Modifier</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="../View/supprimercartefid.php">Supprimer</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/affichercartefid.php">Afficher</a></li>
 							
                         </ul>
@@ -244,78 +242,72 @@
 
                     <h1 class="h3 mb-3">Modifier Carte Fidelité </h1>
 
-                    <div class="row">
-                        <div class="col-12 col-xl-6">
+                    <div class="card"  style="width:100%">
+                        <div class="col-12 col-xl-20" >
                             <div class="card">
                                 
-                            <table border=2 align = 'left'>
+                            <table>
                             <div class="card-body card-block">
                                             
-                                             <div class="row form-group">
-                                                     <div class="col col-md-3"><label class=" form-control-label">ID Carte Fidelité</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="IDC" name="IDC"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
+                                            <div class="row form-group">
+                                                     <div class="col col-md-3"><label class=" form-control-label">ID Carte Fidelité</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="IDC" name="IDC"  class="form-control"><small class="form-text text-muted"></small></div>
+                                                     
+                                            </div>    
 
-                                                       
-                                                     </div>
-                                                 </div>    
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Date de Creation</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="date" id="DATEC" name="DATEC"  class="form-control"><small class="form-text text-muted"></small></div>
 
-                                                <div class="row form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">Date de Creation</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="DATEC" name="DATEC"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
+                                            </div>
+                                                 
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Date d'expiration</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="date" id="DATEX" name="DATEX"  class="form-control"><small class="form-text text-muted"></small></div>
+                                                
 
+                                            </div>
 
-                                                 </div>
-                                                 <div class="row form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">Date d'expiration</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="DATEX" name="DATEX"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
-
-
-                                                 </div>
-
-                                                 <div class="row form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">Nombre de points de fidelité</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="NbP" name="NbP"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
-
-
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Nombre de points de fidelité</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="NbP" name="NbP"  class="form-control"><small class="form-text text-muted"></small></div>
+                                            
                                                  </div>
 
-                                                 <div class="row form-group">
-                                                 <div class="col col-md-5"><label class=" form-control-label">CIN du client</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="CINC" name="CINC"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
+                                            <div class="row form-group">
+                                                 <div class="col col-md-3"><label class=" form-control-label">CIN du client</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="CINC" name="CINC"  class="form-control"><small class="form-text text-muted"></small></div>
 
-
-                                                     </div>
+                                            </div>
                                                 
                                                      <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="modifier" value="modifier"
-                                                       >
-                                                            <i "fa fa-dot-circle-o"></i> Modifier
-                                                        </button>
+                                                        <button type="submit" class="btn btn-primary btn-sm" onclick="Carte()==true"></i> Modifier </button>
                                                     </div>
-                                        </div>
+                                                    <div class="col col-md-4"><label class=" form-control-label"><span class="text-danger">* </span>Cette case est obligatoire</label></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
                    
         </table>
+        </form>
         <main class="content">
                 <div class="container-fluid p-0">
 
                 <h1 class="h3 mb-3">Afficher liste Carte Fidelité </h1>
 
-<div class="row">
-    <div class="col-12 col-xl-15">
-        <div class="card">
-            
-        <table border=1 align = 'left'>
+                <div class="row">
+                        <div class="col-12 col-xl-15">
+                            <div class="card">
+                                
+                            <table class="table table-bordered">
         <tr>
-<th>ID Carte Fidelite</th>
-<th>Date de creation</th>
-<th>Date d'expiration</th>
-<th>Nombre de points de fidelité</th>
-<th>CIN Client</th>
+        <th style="width:14.28%;">ID Carte Fidelite</th>
+        <th style="width:14.28%;">Date de creation</th>
+        <th style="width:14.28%;">Date d'expiration</th>
+        <th style="width:14.28%;">Nombre de points de fidelité</th>
+        <th style="width:14.28%;">CIN Client</th>
+        <th style="width:14.28%;">Action</th>
 </tr>
 
 <?PHP
@@ -327,41 +319,26 @@ foreach($listecartefid as $cartefidC){
 <td><?PHP echo $cartefidC['DATEX']; ?></td>
 <td><?PHP echo $cartefidC['NbP']; ?></td>
 <td><?PHP echo $cartefidC['CINC']; ?></td>
+<td class="table-action">
+					<a href="ajoutercartefid.php"><i class="align-middle" data-feather="user-plus"></i></a>							
+                    <a href="supp-cartefid.php?IDC=<?= $cartefidC['IDC'] ?>"><i class="align-middle" data-feather="trash"></i></a>
+											</td>
     
-    </form>
-</tr>
-<?PHP
-}
-?>
-</table>
+                                            </tr>
+            <?PHP
+                }
+            ?>
+        </table>
+                            </div>
+                        </div>
+
+                        
+
+            </main>
+
+            
         </div>
     </div>
-
-    
-    
-                                    <div class="card-footer">
-                                    <form method="POST" action="ajoutercartefid.php">
-                                    <button type="submit" class="btn btn-primary btn-sm" id="ajouter" value="ajouter">
-                                        <i "fa fa-dot-circle-o"></i>Ajouter
-                                        </form>
-                                    </button>
-                                </div>
-                               
-                            <div class="card-footer">
-                                    <form method="POST" action="supprimercartefid.php">
-                                    <button type="submit" class="btn btn-primary btn-sm" id="supprimer" value="supprimer">
-                                    
-                                        <i "fa fa-dot-circle-o"></i>Supprimer
-                                        </form>
-                                    </button>
-                                </div>
-    
-
-</main>
-
-
-</div>
-</div>
 
     <script src="js/vendor.js"></script>
     <script src="js/app.js"></script>

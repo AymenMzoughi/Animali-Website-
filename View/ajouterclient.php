@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
     <title>Tables | AdminKit Demo</title>
-
+    <script src="js/client.js"></script>
     <link href="../examples/css/app.css" rel="stylesheet">
 </head>
 
@@ -45,7 +45,6 @@
                         <ul class="sub-menu children dropdown-menu">
                         <li class="sidebar-item"><a class="sidebar-link" href="../View/ajouterclient.php">Ajouter</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/modifierclient.php">Modifier</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="../View/supprimerclient.php">Supprimer</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/afficherclient.php">Afficher</a></li>
 							
                         </ul>
@@ -55,7 +54,6 @@
                         <ul class="sub-menu children dropdown-menu">
                         <li class="sidebar-item"><a class="sidebar-link" href="../View/ajoutercartefid.php">Ajouter</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/modifiercartefid.php">Modifier</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="../View/supprimercartefid.php">Supprimer</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="../View/affichercartefid.php">Afficher</a></li>
 							
                         </ul>
@@ -245,135 +243,131 @@
 
                     <h1 class="h3 mb-3">Ajouter un Client </h1>
 
-                    <div class="row">
-                        <div class="col-12 col-xl-6">
+                    <div class="card"  style="width:100%">
+                        <div class="col-12 col-xl-20" >
                             <div class="card">
                                 
-                            <table border=1 align = 'center'>
+                            <table>
                             <div class="card-body card-block">
                                             
                                               <div class="row form-group">
-                                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">CIN</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" name="CIN" id="CIN" class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <span id='missPrenom'></span><br>
+                                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">CIN</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" name="CIN" id="CIN" class="form-control"><small class="form-text text-muted"></small></div>
+                                                </div>
+                                                
+                                                <div class="row form-group">
+                                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Sexe</label><span class="text-danger">*</span></div>
+                                                <div class="col-12 col-md-3"><select class="form-control"  placeholder="Sexe" name="Sexe" id="Sexe" >
+                                                        <option>Choix du Sexe:</option>
+                                                        <option>Homme</option>
+                                                        <option>Femme</option>
+                                                    </select></div>
+                                                </div>
 
-                                                 </div>
+
                                              <div class="row form-group">
-                                                     <div class="col col-md-3"><label class=" form-control-label">Nom</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="Nom" name="Nom"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
-
-                                                       
-                                                     </div>
-                                                 </div>    
+                                                     <div class="col col-md-3"><label class=" form-control-label">Nom</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="Nom" name="Nom"  class="form-control"><small class="form-text text-muted"></small></div>
+                                                     </div>       
+                                                 
 
                                                 <div class="row form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">Prenom</label></div>
-                                                     <div class="col-12 col-md-9"><input type="Prenom" id="descP" name="Prenom"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
-
-
-                                                 </div>
-                                                 <div class="row form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">Numero Telephone</label></div>
-                                                     <div class="col-12 col-md-9"><input type="Prenom" id="NumTel" name="NumTel"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
-
-
-                                                 </div>
-
-                                                 <div class="row form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">Adresse</label></div>
-                                                     <div class="col-12 col-md-9"><input type="Prenom" id="ADR" name="ADR"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
-
-
-                                                 </div>
-
-                                                 <div class="row form-group">
-                                                 <div class="col col-md-3"><label class=" form-control-label">Date de naissance</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="DNS" name="DNS"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
-
-
+                                                <div class="col col-md-3"><label class=" form-control-label">Prenom</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="Prenom" name="Prenom"  class="form-control"><small class="form-text text-muted"></small></div>
                                                      </div>
-                                                
-                                                     <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="ajouter" value="ajouter"
-                                                       >
-                                                            <i "fa fa-dot-circle-o"></i> Ajouter
-                                                        </button>
+
+                                                 <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Numero Telephone</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="NumTel" name="NumTel"  class="form-control"><small class="form-text text-muted"></small></div>
+                                                     </div>
+
+                                                     <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Adresse Email</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="Email" name="Email"  class="form-control"><small class="form-text text-muted"></small></div>
+                                                     </div>
+
+                                                 <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Adresse</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="ADR" name="ADR"  class="form-control"><small class="form-text text-muted"></small></div>
                                                     </div>
+
+                                                 <div class="row form-group">
+                                                 <div class="col col-md-3"><label class=" form-control-label">Date de naissance</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="date" id="DNS" name="DNS"  class="form-control"><small class="form-text text-muted"></small></div>
+                                                     </div>
+                                                     <div class="card-footer">
+                                                        <button type="submit" class="btn btn-primary btn-sm" onclick="Client()==true"></i> Ajouter </button>
+                                                    </div>
+                                                    <div class="col col-md-4"><label class=" form-control-label"><span class="text-danger">* </span>Cette case est obligatoire</label></div>
                                         </div>
-                   
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        
         </table>
+</form>
+
         <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3">Afficher liste Client </h1>
+                <h1 class="h3 mb-3">Afficher liste Client </h1>
 
-                    <div class="row">
-                        <div class="col-12 col-xl-15">
-                            <div class="card">
-                                
-                            <table border=1 align = 'left'>
-                            <tr>
-                <th>CIN</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>NumTel</th>
-                <th>Adr</th>
-                <th>DNS</th>
-            </tr>
-
-            <?PHP
-                foreach($listeclient as $clientC){
-            ?>
-                <tr>
-                    <td><?PHP echo $clientC['CIN']; ?></td>
-                    <td><?PHP echo $clientC['Nom']; ?></td>
-                    <td><?PHP echo $clientC['Prenom']; ?></td>
-                    <td><?PHP echo $clientC['NumTel']; ?></td>
-                    <td><?PHP echo $clientC['Adr']; ?></td>
-                    <td><?PHP echo $clientC['DNS']; ?></td>
-                        
-                        </form>
-                </tr>
-            <?PHP
-                }
-            ?>
-        </table>
-                            </div>
-                        </div>
-
-                        
-                        
-                                                        <div class="card-footer">
-                                                        <form method="POST" action="modifierclient.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="modifier" value="modifier">
-                                                            <i "fa fa-dot-circle-o"></i>Modifier
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                                <div class="card-footer">
-                                                        <form method="POST" action="supprimerclient.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="supprimer" value="supprimer">
-                                                        
-                                                            <i "fa fa-dot-circle-o"></i>Supprimer
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                        
-
-            </main>
-
+<div class="row">
+    <div class="col-12 col-xl-15">
+        <div class="card">
             
+        <table class="table table-bordered">
+        <tr>
+        <th style="width:12.5%;">CIN</th>
+        
+                                            <th style="width:10%;">Sexe</th>
+											<th style="width:10%">Nom</th>
+                                            <th style="width:10%">Prenom</th>
+                                            <th style="width:12.5%">NumTel</th>
+                                            <th style="width:15%">Email</th>
+                                            <th style="width:12.5%">Adresse</th>
+                        <th class="d-none d-md-table-cell" style="width:12.5%">Date de naissance</th>
+                        <th>Actions</th>
+
+</tr>
+
+<?PHP
+foreach($listeclient as $clientC){
+?>
+<tr>
+<td><?PHP echo $clientC['CIN']; ?></td>
+<td><?PHP echo $clientC['Sexe']; ?></td>
+<td><?PHP echo $clientC['Nom']; ?></td>
+<td><?PHP echo $clientC['Prenom']; ?></td>
+<td><?PHP echo $clientC['NumTel']; ?></td>
+<td><?PHP echo $clientC['Email']; ?></td>
+<td><?PHP echo $clientC['ADR']; ?></td>
+<td><?PHP echo $clientC['DNS']; ?></td>
+<td class="table-action">
+<a href="modifierclient.php"><i class="align-middle" data-feather="edit-2"></i></a>						
+<a href="supp-client.php?CIN=<?= $clientC['CIN'] ?>"><i class="align-middle" data-feather="trash"></i></a>
+<a href="Mail.php?CIN=<?= $clientC['CIN'] ?>"><i class="align-middle" data-feather="mail"></i></a>
+                        </td>
+    
+</tr>
+<?PHP
+}
+?>
+</table>
         </div>
     </div>
+    
+    
 
-    <script src="js/vendor.js"></script>
-    <script src="js/app.js"></script>
+</main>
+
+
+</div>
+</div>
+
+<script src="js/vendor.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 
