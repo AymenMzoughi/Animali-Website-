@@ -19,7 +19,7 @@
 
     <title>Tables | AdminKit Demo</title>
     <script src="js/client.js"></script>
-    <link href="../examples/css/app.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
 </head>
 
 <body>

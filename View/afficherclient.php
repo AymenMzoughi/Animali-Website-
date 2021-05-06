@@ -47,7 +47,7 @@ $result=$clientC->triCIN();
 
     <title>Tables | AdminKit Demo</title>
 
-    <link href="../examples/css/app.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
 </head>
 
 <body>
