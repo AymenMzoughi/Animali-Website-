@@ -2,6 +2,14 @@
 include "../Controller/produitC.php";
 include "../Controller/lignecommandeC.php";
 include "../Controller/veterinaireC.php";
+session_start();
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+	echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
+   }
+
 $produitC=new produitC();
 $lcC=new LignecommandeC();
 $vetoC=new veterinaireC();

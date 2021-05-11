@@ -1,22 +1,23 @@
 <?php
-    require_once '../Controller/AvisC.php';
-    require_once '../Entities/Avis.php';
-    if (isset($_GET['id'])){
-        $avisC=new AvisC();
-         $result=$avisC-> recupereravis($_GET['id']);
-       foreach($result as $row)
-	   {
-		   $id=$row['id'];
-		   $message=$row['message'];
-		   $nom=$row['nom'];
-		   $prenom=$row['prenom'];
-		   $email=$row['email'];
-		   $note=$row['note'];
-		 
-		
-	
-?>
+    require_once '../Controller/cartefidC.php';
+    require_once '../Entites/cartefid.php';
+    $cartefidC =  new cartefidC();
+    $listecartefid = $cartefidC->affichercartefid();
 
+    if (isset($_GET['IDC'])){
+        $listecartefid = $cartefidC->recupIDC($_GET['IDC']);
+        foreach($listecartefid as $row)
+           {
+               $IDC=$row['IDC'];
+               $DATEC=$row['DATEC'];
+               $DATEX=$row['DATEX'];
+               $NbP=$row['NbP'];
+               $CINC=$row['CINC'];
+    
+?>
+<html>
+
+<html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,7 @@
 	<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
 
 	<title>Tables | AdminKit Demo</title>
-
+	<script src="js/carte.js"></script>
 	<link href="css/app.css" rel="stylesheet">
 </head>
 
@@ -59,10 +60,17 @@
             </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherclients.php">
-              <i class="align-middle"  data-feather="users"></i> <span class="align-middle">Gestion des clients </span>
+					<li class="sidebar-item " >
+						<a href="#ui" data-toggle="collapse" class="sidebar-link">
+                        <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestion des clients</span>
             </a>
+            <ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
+							<li class="sidebar-item "><a class="sidebar-link" href="afficherclient.php">Afficher liste des Client </a></li>
+							<li class="sidebar-item "><a class="sidebar-link" href="ajouterclient.php">Ajouter des clients</a></li>
+							<li class="sidebar-item active "><a class="sidebar-link" href="affichercartefid.php">Afficher liste des Carte fidelité</a></li>
+							<li class="sidebar-item "><a class="sidebar-link" href="ajoutercartefid.php">Ajouter une Carte fidelité</a></li>
+						</ul>
+
 					</li>
 
 					<li class="sidebar-item">
@@ -81,16 +89,11 @@
               <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestions des veterinaires </span>
             </a>
 					</li>
-                    <li class="sidebar-item active">
-						<a href="#ui" data-toggle="collapse" class="sidebar-link">
-              <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle"> Gestion des SAV </span>
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="affichersav.php">
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
-						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
-							<li class="sidebar-item  "><a class="sidebar-link" href="AfficherReclamation.php">Reclamations </a></li>
-							<li class="sidebar-item  "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
-							<li class="sidebar-item active "><a class="sidebar-link" href="Modiferavis.php"> Modifier Avis </a></li>
-							
-						</ul>
+						
 					</li>
                     <li class="sidebar-item">
 						<a class="sidebar-link" href="Afficherlivraison.php">
@@ -427,81 +430,79 @@
 					</ul>
 				</div>
 			</nav>
+            <main class="content">
+            <form  method="POST">
+                <div class="container-fluid p-0">
 
-			<main class="content">
-		 <a href="AfficherReclamation.php" >Retour à la liste</a></button>
-			<form method="POST">
-				<div class="container-fluid p-0">
-				<div class="mb-3">
-									
-									</div>
-					<h1 class="h3 mb-3">Modifier un avis  </h1>
-                    
-					<div class="row">
-						<div class="col-12 col-xl-6">
-							<div class="card">
-								
-								<div class="card-body">
-									<form>
-										<div class="form-group">
-											<label class="form-label"> id Avis </label>
-											<input type="text"  name="id" id="id" class="form-control"  value="<?PHP echo $id ?>" disabled  >
-										</div>
-										<div class="form-group">
-											<label class="form-label w-100">  message  </label>
-											<input type="text" class="form-control" id="message" value="<?PHP echo $message ?>" name="message">
-											
-										</div>
-										<div class="form-group">
-											<label class="form-label"> Prenom  </label>
-											<input type="text" class="form-control"  id="prenom"value="<?PHP echo $prenom ?>" name="prenom">
-										</div>
-                                        <div class="form-group">
-											<label class="form-label"> Nom  </label>
-											<input type="text" class="form-control" id="nom" value="<?PHP echo $nom ?>" name="nom">
-										</div>
-										<div class="form-group">
-											<label class="form-label"> Email  </label>
-											<input type="email" class="form-control" id="email" value="<?PHP echo $email ?>" name="email">
-										</div>
-											<div class="form-group col-md-4">
-											<label for="inputState"> Note </label>
-											<input type="text" class="form-control" id="note" value="<?PHP echo $note ?>" name="note">
+                    <h1 class="h3 mb-3">Modifier Carte Fidelité </h1>
+
+                    <div class="card"  style="width:100%">
+                        <div class="col-12 col-xl-20" >
+                            <div class="card">
+                                
+                            <table>
+                            <div class="card-body card-block">
+                                            
+                                            <div class="row form-group">
+                                                     <div class="col col-md-3"><label class=" form-control-label">ID Carte Fidelité</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="IDC" name="IDC"  class="form-control" value="<?PHP echo $IDC; ?>" disabled><small class="form-text text-muted"></small></div>
+                                                     
+                                            </div>    
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Date de Creation</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="date" id="DATEC" name="DATEC"  class="form-control" value="<?PHP echo $DATEC; ?>"><small class="form-text text-muted"></small></div>
+
                                             </div>
-										<div class="mb-3">
-										<input type="submit"  class="btn btn-outline-secondary" name="modifier" value="modifier" > 
-										<input type="hidden"   name="id_ini" value="<?PHP echo $_GET['id'];?>">
-										</div>
-										<?php>
+                                                 
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Date d'expiration</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="date" id="DATEX" name="DATEX"  class="form-control" value="<?PHP echo $DATEX; ?>"><small class="form-text text-muted"></small></div>
+                                                
 
-									
-									}}
-	if(isset($_POST['modifier'])&& !empty($_POST["nom"]) &&
-	!empty($_POST["prenom"]) &&
-	!empty($_POST["email"])&&
-	!empty($_POST["note"])
-	&&!empty($_POST["message"])){
-		$avis= new avis($_POST['message'],$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['note']);
-		$avisC->Modifieravis($avis,$_POST['id_ini']);
-		?> 
-		<script>
-				document.location.replace("afficheravis.php") ;
-			</script>
-	<?php		
-	}
-	?>  
-								</div>
-							</div>
-						</div>
-						
+                                            </div>
 
-				</div>
-			</main>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Nombre de points de fidelité</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="NbP" name="NbP"  class="form-control" value="<?PHP echo $NbP; ?>"><small class="form-text text-muted"></small></div>
+                                            
+                                                 </div>
 
-			
+                                            <div class="row form-group">
+                                                 <div class="col col-md-3"><label class=" form-control-label">CIN du client</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="CINC" name="CINC"  class="form-control" value="<?PHP echo $CINC; ?>"><small class="form-text text-muted"></small></div>
 
-	<script src="js/vendor.js"></script>
-	<script src="js/app.js"></script>
+                                            </div>
+                                                
+                                                     <div class="card-footer">
+                                                        <button type="submit" class="btn btn-primary btn-sm" name="modifier" value="modifier">Modifier </button>
+                                                        <input type="hidden"   name="IDC_ini" value="<?PHP echo $_GET['IDC'];?>">
+                                                    </div>
+                                                    <div class="col col-md-4"><label class=" form-control-label"><span class="text-danger">* </span>Cette case est obligatoire</label></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                   
+        </table>
+        <?PHP
+             }}
+                if(isset($_POST['modifier'])){
+                    $cartefid = new cartefid($_POST['IDC_ini'], $_POST['DATEC'], $_POST['DATEX'], $_POST['NbP'],$_POST['CINC']);
+                    $cartefidC->modifiercartefid($cartefid,$_POST['IDC_ini']);
+                    ?>
+                    <script>
+				document.location.replace("affichercartefid.php") ;
+			</script> 
+            <?PHP
+                }
+                ?>
+
+
+        
+
+    <script src="js/vendor.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 

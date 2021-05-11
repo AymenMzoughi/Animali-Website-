@@ -1,26 +1,27 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-    require_once '../Controller/ReclamationC.php';
-    require_once '../Entities/Reclamation.php';
-	require_once "PHPMailer/PHPMailer.php";
-require_once "PHPMailer/SMTP.php";
-require_once "PHPMailer/Exception.php";
-    if (isset($_GET['id'])){
-        $reclamationC=new reclamationC();
-         $result=$reclamationC-> recupererReclamation($_GET['id']);
-       foreach($result as $row)
-	   {
-		   $id=$row['id'];
-		   $probleme=$row['probleme'];
-		   $date=$row['date'];
-		   $etat=$row['etat'];
-		   $sujet=$row['sujet'];
-		   $idclient=$row['idclient'];
-		
-	
+    require_once '../Controller/clientC.php';
+    require_once '../Entities/client.php';
+    $clientC =  new clientC();
+    $listeclient = $clientC->afficherclient();
+
+
+    if (isset($_GET['CIN'])){
+        $listeprod = $clientC->recupCIN($_GET['CIN']);
+        foreach($listeprod as $row)
+           {
+               $CIN=$row['CIN'];
+               $Sexe=$row['Sexe'];
+               $Nom=$row['Nom'];
+               $Prenom=$row['Prenom'];
+               $NumTel=$row['NumTel'];
+               $Email=$row['Email'];
+               $ADR=$row['ADR'];
+               $DNS=$row['DNS'];
+           
+           
+    
 ?>
-
-
+    <html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,10 +64,17 @@ require_once "PHPMailer/Exception.php";
             </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherclients.php">
-              <i class="align-middle"  data-feather="users"></i> <span class="align-middle">Gestion des clients </span>
+					<li class="sidebar-item active" >
+						<a href="#ui" data-toggle="collapse" class="sidebar-link">
+                        <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestion des clients</span>
             </a>
+            <ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
+							<li class="sidebar-item active"><a class="sidebar-link" href="afficherclient.php">Afficher liste des Client </a></li>
+							<li class="sidebar-item "><a class="sidebar-link" href="ajouterclient.php">Ajouter des clients</a></li>
+							<li class="sidebar-item "><a class="sidebar-link" href="affichercartefid.php">Afficher liste des Carte fidelité</a></li>
+							<li class="sidebar-item "><a class="sidebar-link" href="ajoutercartefid.php">Ajouter une Carte fidelité</a></li>
+						</ul>
+
 					</li>
 
 					<li class="sidebar-item">
@@ -85,16 +93,11 @@ require_once "PHPMailer/Exception.php";
               <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestions des veterinaires </span>
             </a>
 					</li>
-                    <li class="sidebar-item active">
-						<a href="#ui" data-toggle="collapse" class="sidebar-link">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle"> Gestion des SAV </span>
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="affichersav.php">
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
-						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
-							<li class="sidebar-item active"><a class="sidebar-link" href="modifierReclamation.php"> cherhcher Reclamations </a></li>
-							<li class="sidebar-item  "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="Afficheravis.php">Avis </a></li>
-							
-						</ul>
+						
 					</li>
                     <li class="sidebar-item">
 						<a class="sidebar-link" href="Afficherlivraison.php">
@@ -107,8 +110,7 @@ require_once "PHPMailer/Exception.php";
 				
 			</div>
 		</nav>
-
-		<div class="main">
+        <div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle d-flex">
           <i class="hamburger align-self-center"></i>
@@ -280,103 +282,93 @@ require_once "PHPMailer/Exception.php";
 					</ul>
 				</div>
 			</nav>
-			<main class="content">
-		 <a href="AfficherReclamation.php" >Retour à la liste</a> 
-			<form method="POST">
-				<div class="container-fluid p-0">
-				<div class="mb-3">
-									
-									</div>
-					<h1 class="h3 mb-3">Modifier une reclamation </h1>
-                    
-					<div class="row">
-						<div class="col-12 col-xl-6">
-							<div class="card">
-								
-								<div class="card-body">
-									<form>
-										<div class="form-group">
-											<label class="form-label"> id reclamation</label>
-											<input type="text"  name="id" id="id" class="form-control"  value="<?PHP echo $id ?>" disabled  >
-										</div>
-										<div class="form-group">
-											<label class="form-label w-100"> sujet </label>
-											<input type="text" class="form-control" id="sujet" value="<?PHP echo $sujet ?>" name="sujet">
-											
-										</div>
-										<div class="form-group">
-											<label class="form-label">Probleme </label>
-											<input type="text" class="form-control"  id="probleme"value="<?PHP echo $probleme ?>" name="probleme">
-										</div>
-                                        <div class="form-group">
-											<label class="form-label"> date  </label>
-											<input type="date" class="form-control" id="date" value="<?PHP echo $date ?>" name="date">
-										</div>
-											<div class="form-group col-md-4">
-											<label for="inputState">Etat </label>
-											<input type="text" class="form-control" id="etat" value="<?PHP echo $etat ?>" name="etat">
-				
-					<div class="form-group">
-					<label class="form-label"> id client </label>
-					      
-									<input type="text" class="form-control" id="idclient" value="<?PHP echo $idclient ?>" name="idclient">
-										</div>
-										<div class="mb-3">
-										<input type="submit"  class="btn btn-outline-secondary" name="modifier" value="modifier" > 
-										<input type="hidden"   name="id_ini" value="<?PHP echo $_GET['id'];?>">
-										</div>
+            <main class="content">
+            <form  method="POST">
+                <div class="container-fluid p-0">
 
-									
-										<?php
-									}}
-	if(isset($_POST['modifier']) && !empty($_POST["sujet"]) &&
-	!empty($_POST["probleme"]) 
-	&&!empty($_POST["date"])
-	&&!empty($_POST["idclient"])){
-		$reclamation= new reclamation($_POST['probleme'],$_POST['date'],$_POST['etat'],$_POST['sujet'],$_POST['idclient']);
-		$reclamationC->Modifierreclamation($reclamation,$_POST['id_ini']);
-		if($_POST['etat']=="A traiter")
-		{
-			$mail=new PHPMailer();
-			$mail->IsSMTP();
-			$mail -> Host="smtp.gmail.com";
-			$mail ->SMTPAuth=true;
-			$mail ->Username="animalitn2021@gmail.com";
-			$mail ->Password='animali123';
-			$mail ->Port=465;
-			$mail ->SMTPSecure='ssl';
-			$mail->isHTML(true);
-			$mail ->setFrom('animalitn2021@gmail.com');
-			$mail->addAddress("zeinebmb19@gmail.com");
-			$mail->Subject = " Reclamation a traiter ";
-			$mail->Body = "Bonjour , Vous avez une reclamation num ".$_POST['id_ini']." a traiter . ";
-			if($mail->send())
-				{
-				   echo " oui";	}
-				else
-				{
-					echo $mail->ErrorInfo;
-				}
-		}
-		?> 
-		<script>
-				document.location.replace("AfficherReclamation.php") ;
-			</script>
-	<?php		
-	}
-	?>   
-								</div>
-							</div>
-						</div>
-						
+                    <h1 class="h3 mb-3">Modifier un client </h1>
 
-				</div>
-			</main>
+                    <div class="card"  style="width:100%">
+                        <div class="col-12 col-xl-20" >
+                            <div class="card">
+                                
+                            <table>
+                            <div class="card-body card-block">
+                                            
+                                              <div class="row form-group">
+                                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">CIN</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" name="CIN" id="CIN" class="form-control" value="<?PHP echo $CIN; ?>" disabled><small class="form-text text-muted"></small></div>
+                                                </div>
+                                                
+                                                <div class="row form-group">
+                                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Sexe</label><span class="text-danger">*</span></div>
+                                                <div class="col-12 col-md-3"><select class="form-control"  placeholder="Sexe" name="Sexe" id="Sexe" >
+                                                <option>Choix du Sexe:</option>
+                                                        <option>Homme</option>
+                                                        <option>Femme</option>
+                                                    </select></div>
+                                                </div>
 
-			
 
-	<script src="js/vendor.js"></script>
-	<script src="js/app.js"></script>
+                                             <div class="row form-group">
+                                                     <div class="col col-md-3"><label class=" form-control-label">Nom</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="Nom" name="Nom"  class="form-control" value="<?PHP echo $Nom; ?>"><small class="form-text text-muted"></small></div>
+                                                     </div>       
+                                                 
+
+                                                <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Prenom</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="Prenom" name="Prenom"  class="form-control" value="<?PHP echo $Prenom; ?>"><small class="form-text text-muted"></small></div>
+                                                     </div>
+
+                                                 <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Numero Telephone</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="NumTel" name="NumTel"  class="form-control" value="<?PHP echo $NumTel; ?>"><small class="form-text text-muted"></small></div>
+                                                     </div>
+
+                                                <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Email Adresse</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="Email" name="Email"  class="form-control" value="<?PHP echo $Email; ?>"><small class="form-text text-muted"></small></div>
+                                                     </div>
+
+                                                 <div class="row form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">Adresse</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="ADR" name="ADR"  class="form-control" value="<?PHP echo $ADR; ?>"><small class="form-text text-muted"></small></div>
+                                                    </div>
+
+                                                 <div class="row form-group">
+                                                 <div class="col col-md-3"><label class=" form-control-label">Date de naissance</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="date" id="DNS" name="DNS"  class="form-control" value="<?PHP echo $DNS; ?>"><small class="form-text text-muted"></small></div>
+                                                     </div>
+                                                     <div class="card-footer">
+                                                        <button type="submit" class="btn btn-primary btn-sm" name="modifier" value="modifier">Modifier </button>
+                                                        <input type="hidden"   name="CIN_ini" value="<?PHP echo $_GET['CIN'];?>">
+                                                    </div>
+                                                    <div class="col col-md-4"><label class=" form-control-label"><span class="text-danger">* </span>Cette case est obligatoire</label></div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        
+        </table>
+        <?PHP
+             }}
+                if(isset($_POST['modifier'])){
+                    $client = new client($_POST['CIN_ini'], $_POST['Sexe'], $_POST['Nom'], $_POST['Prenom'],$_POST['NumTel'], $_POST['Email'], $_POST['ADR'], $_POST['DNS']);
+                    $clientC->modifierClient($client,$_POST['CIN_ini']);
+                    ?>
+                    <script>
+				document.location.replace("afficherclient.php") ;
+			</script> 
+            <?PHP
+                }
+                ?>
+                     
+
+
+<script src="js/vendor.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 
