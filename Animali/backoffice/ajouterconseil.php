@@ -1,14 +1,68 @@
+<?php
+    require_once '../Controller/conseilC.php';
+    require_once '../Entities/conseil.php';
+    $error = "";
+    $errors = [];
+if(empty($_POST["idc"]))
+{
+	$errors["idc"]='vous devez remplir ce champ';
+}
+if(empty($_POST["idv"]))
+{
+	$errors["idv"]='vous devez remplir ce champ';
+}
+if(empty($_POST["description"]))
+{
+	$errors["description"]='vous devez remplir ce champ';
+}
+$servername="localhost";
+$username="root";
+$password="";
+$bdd="animali";
+$con=mysqli_connect($servername,$username,$password,$bdd);
+$idvet="SELECT * FROM veterinaire";
+$listv=mysqli_query($con,$idvet);
 
+if(empty ($errors))
+{
 
-<?PHP
-include "../Controller/ReclamationC.php";
-//first commit in master
-$reclamationC=new ReclamationC();
-$listeUsers=$reclamationC->afficherReclamation();
+	$conseilC =  new conseilC();
+	
+    if(
+        isset($_POST["idc"]) &&
+        isset($_POST["idv"]) &&
+        isset($_POST["description"]) 
+       
+    )
+    
+    {
+        if(  
+            !empty($_POST["idc"])&&
+            !empty($_POST["idv"])&&
+            !empty($_POST["description"])
+
+        ) 
+        
+        {
+            $conseil = new conseil(
+                $_POST['idc'],
+                $_POST['idv'],
+                $_POST['description']
+               
+            );
+            $conseilC->addconseil($conseil);
+            header('Location:afficherconseil.php');
+        }
+        else
+            $error = "Missing information";
+    }
+}
+ 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+ <html lang = fr>
+ 
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,80 +71,122 @@ $listeUsers=$reclamationC->afficherReclamation();
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, web ui kit, dashboard template, admin template">
 
-	<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>Tables | AdminKit Demo</title>
+	<title>Form Layouts | AdminKit Demo</title>
 
-	<link href="css/app.css" rel="stylesheet">
+	<link href="../css/app.css" rel="stylesheet">
 </head>
 
 <body>
 	<div class="wrapper">
-	<nav id="sidebar" class="sidebar">
+		<nav id="sidebar" class="sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.php">
-          <span class="align-middle">Animali Backoffice</span>
+				<a class="sidebar-brand" href="index.html">
+          <span class="align-middle">AdminKit</span>
         </a>
 
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">
-						
+						Pages
 					</li>
 
-					<li class="sidebar-item ">
-						<a class="sidebar-link" href="index.php">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle"> accueil </span>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="index.html">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Admins.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
+						<a class="sidebar-link" href="pages-profile.html">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherclients.php">
-              <i class="align-middle"  data-feather="users"></i> <span class="align-middle">Gestion des clients </span>
+						<a class="sidebar-link" href="pages-settings.html">
+              <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="afficherprod.php">
-              <i class="align-middle" data-feather="box"></i> <span class="align-middle">Gestion des Produits </span>
-            </a>
-					</li>
-                    <li class="sidebar-item">
-						<a class="sidebar-link" href="afficherlignecommande.php">
-              <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Gestion des commandes </span>
+						<a class="sidebar-link" href="pages-invoice.html">
+              <i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Invoice</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="afficherveto.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestions des veterinaires </span>
+						<a class="sidebar-link" href="pages-blank.html">
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
             </a>
 					</li>
-                    <li class="sidebar-item active">
-						<a href="#ui" data-toggle="collapse" class="sidebar-link">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle"> Gestion des SAV </span>
+
+					<li class="sidebar-header">
+						Tools & Components
+					</li>
+					<li class="sidebar-item">
+						<a href="#ui" data-toggle="collapse" class="sidebar-link collapsed">
+              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">UI Elements</span>
             </a>
-						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
-							<li class="sidebar-item active"><a class="sidebar-link" href="AfficherReclamation.php">Reclamations </a></li>
-							<li class="sidebar-item  "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="Afficheravis.php">Avis </a></li>
-							
+						<ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+							<li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">Alerts</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="ui-buttons.html">Buttons</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="ui-cards.html">Cards</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="ui-general.html">General</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="ui-grid.html">Grid</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="ui-modals.html">Modals</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="ui-typography.html">Typography</a></li>
 						</ul>
 					</li>
-                    <li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherlivraison.php">
-              <i class="align-middle" data-feather="truck"></i> <span class="align-middle"> Gestion des livraisons </span>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="icons-feather.html">
+              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
             </a>
 					</li>
 
-					
+					<li class="sidebar-item active">
+						<a href="#forms" data-toggle="collapse" class="sidebar-link">
+              <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Forms</span>
+            </a>
+						<ul id="forms" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
+							<li class="sidebar-item active"><a class="sidebar-link" href="forms-layouts.html">Form Layouts</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="forms-basic-inputs.html">Basic Inputs</a></li>
+						</ul>
+					</li>
 
-				
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="tables-bootstrap.html">
+              <i class="align-middle" data-feather="list"></i> <span class="align-middle">Tables</span>
+            </a>
+					</li>
+
+					<li class="sidebar-header">
+						Plugins & Addons
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="charts-chartjs.html">
+              <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="maps-google.html">
+              <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
+            </a>
+					</li>
+				</ul>
+
+				<div class="sidebar-cta">
+					<div class="sidebar-cta-content">
+						<strong class="d-inline-block mb-2">Upgrade to Pro</strong>
+						<div class="mb-3 text-sm">
+							Are you looking for more components?
+						</div>
+						<a href="https://adminkit.io/pricing" target="_blank" class="btn btn-outline-primary btn-block">Upgrade</a>
+					</div>
+				</div>
 			</div>
 		</nav>
 
@@ -194,7 +290,7 @@ $listeUsers=$reclamationC->afficherReclamation();
 									<a href="#" class="list-group-item">
 										<div class="row no-gutters align-items-center">
 											<div class="col-2">
-												<img src="../img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
+												<img src="img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
 											</div>
 											<div class="col-10 pl-2">
 												<div class="text-dark">Vanessa Tucker</div>
@@ -230,7 +326,7 @@ $listeUsers=$reclamationC->afficherReclamation();
 									<a href="#" class="list-group-item">
 										<div class="row no-gutters align-items-center">
 											<div class="col-2">
-												<img src="img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
+												<img src="../img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
 											</div>
 											<div class="col-10 pl-2">
 												<div class="text-dark">Sharon Lessman</div>
@@ -251,7 +347,7 @@ $listeUsers=$reclamationC->afficherReclamation();
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+                <img src="../img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-right">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle mr-1" data-feather="user"></i> Profile</a>
@@ -266,88 +362,82 @@ $listeUsers=$reclamationC->afficherReclamation();
 					</ul>
 				</div>
 			</nav>
+       
+        <hr>
 
-			<main class="content">							
-		
-				<div class="container-fluid p-0">
-				<div class="card-body text-center">
-									<div class="mb-3">		
-	<table>
-	<form method="POST" action="chercherreclamation.php">
-	<select class="form-control"  placeholder="sujet" name="choix" id="choix" >
-            <option>Select</option>
-              <option>id </option>
-              <option>etat</option>
-              <option> id client</option>
-              </select>
-    <input type="text"  name="Search" name="Search" class="form-control" placeholder="Search">
-	
-     <input type="submit" class="btn btn-outline-primary" ></i>
-</form>	
-</table>
-</div>
-</div>
-							
-					<h1 class="h3 mb-3"> Gestion des reclamations </h1>
-                     
-					<div class="row">
-						<div class="col-12 col-xl-6">
-							<div class="card">
-								<table class="table">
-									<thead>
-										<tr>
-											<th style="width:25%;"> Id relamation</th>
-											<th style="width:25%"> probleme</th>
-											<th class="d-none d-md-table-cell" style="width:25%">Date </th>
-											<th style="width:25%"> etat</th>
-											<th style="width:25%"> sujet </th>
-											<th style="width:70%"> idclient </th>
-											<th style="width:70%"> Supprimer </th>
-											<th > Modifier </th>
-										
-										</tr>
-									</thead>
-									<tbody>
-									<?PHP
-foreach($listeUsers as $user){
-?>
-<tr>
-<td><?PHP echo $user['id']; ?></td>
-<td><?PHP echo $user['probleme']; ?></td>
-<td><?PHP echo $user['date']; ?></td>
-<td><?PHP echo $user['etat']; ?></td>
-<td><?PHP echo $user['sujet']; ?></td>
-<td><?PHP echo $user['idclient']; ?></td>
-<td>
-<form>
-<div >
-<a type="button" class="btn btn-outline-primary" href = "supprimerReclamation.php?id=<?= $user['id'] ?>">Supprimer</a>
-</div>	
-</td>
-<td>
-<div >
-<a type="button" class="btn btn-outline-primary" href = "modifierreclamation.php?id=<?= $user['id'] ?>">Modifier</a>
-</div>	
-<form>
-</td>
-</tr>
+        <div id = "error">
+            <?php echo $error; ?>
+        </div>
+        <form action = "" method = "POST">
+            <table align = "center">
+            <tr>
+                    <td rowspan='3' colspan='1'></td>
+                    <td>
+                        <label for="idc">Idc:
+                        </label>
+                    </td>
+                    <td>
+					<?php if(isset($errors["idc"])):?>
+					<p>
+                       <?= $errors["idc"] ?>
+					</p>
+                    <?php endif ?>
+					<input type="text" name="idc" id="idc" maxlength="20" value="<?= $_POST["idc"] ?? '' ?>"></td>
+                </tr>
 
-<?PHP
-}
-                    ?>
-							</tbody>
-							</table>
-</div>
-</main>
-			
+				<tr>
+                    <td>
+                        <label for="idv">Nom_veto:
+                        </label>
+                    </td>
+                    <td>
+					<?php if(isset($errors["idv"])):?>
+					<p>
+                       <?= $errors["idv"] ?>
+					</p>
+                    <?php endif ?>
+                        <select name="idv" id="idv">
+						<option value="">Faites votre choix </option>
+						
+						<?php while($row=mysqli_fetch_array($listv)):?>
+					
+						<option value="<?php echo $row[0];?>" > <?php echo $row[1];?></option>";
+						<?php endwhile; ?>
+					
+					
+						</select>
+                    </td>
+                </tr>
 
-	<script src="js/vendor.js"></script>
-	<script src="js/app.js"></script>
+                <tr>
+                    <td>
+                        <label for="description"> Description:
+                        </label>
+                    </td>
+                    <td>
+					<?php if(isset($errors["description"])):?>
+					<p>
+                       <?= $errors["description"] ?>
+					</p>
+                    <?php endif ?>
+					<input type="text" name="description" id="description" maxlength="100"  value="<?= $_POST["description"] ?? '' ?>"></td>
+                </tr>
 
-
-	
-
-</body>
-
-</html>
-
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Envoyer"> 
+                    </td>
+                    <td>
+                        <input type="reset" value="Annuler" >
+                    </td>
+                </tr>
+                    
+            </table>
+        </form>
+		</div>
+		</div>
+		<script src="../js/vendor.js"></script>
+	<script src="../js/app.js"></script>
+    </body>
+</html> 
