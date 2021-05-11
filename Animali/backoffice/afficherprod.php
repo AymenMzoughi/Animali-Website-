@@ -70,9 +70,10 @@
             </a>
 						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
 							<li class="sidebar-item "><a class="sidebar-link" href="affichercat.php">categories </a></li>
+                            <li class="sidebar-item   "><a class="sidebar-link" href="ajoutercat.php"> Ajouter categories </a></li>
 							<li class="sidebar-item active  "><a class="sidebar-link" href="afficherprod.php"> Produits  </a></li>
-							
-							
+							<li class="sidebar-item   "><a class="sidebar-link" href="ajouterprod.php"> Ajouter  Produit  </a></li>
+                            <li class="sidebar-item   "><a class="sidebar-link" href="chercherprod.php">  chercher Produits  </a></li>
 						</ul>
 					</li>
                     <li class="sidebar-item">
@@ -88,7 +89,7 @@
 					</li>
                     <li class="sidebar-item">
 						<a class="sidebar-link" href="AfficherReclamation.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestions des SAV </span>
+              <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle"> Gestions des SAV </span>
             </a>
 					</li>
                     

@@ -69,14 +69,15 @@
             </a>
 						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
 							<li class="sidebar-item "><a class="sidebar-link" href="afficherveto.php"> veterinaires </a></li>
-							<li class="sidebar-item  active"><a class="sidebar-link" href="afficherconseil.php">  conseils </a></li>
-							
+							<li class="sidebar-item  "><a class="sidebar-link" href="ajouterveto.php"> Ajouter  veterinaire </a></li>
+							<li class="sidebar-item  active"><a class="sidebar-link" href="afficherconseil.php"> Afficher  conseils </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href="ajouterconseil.php"> Ajouter  conseil </a></li>
 							
 						</ul>
 					</li>
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="AfficherReclamation.php">
-              <i class="align-middle" data-feather="truck"></i> <span class="align-middle"> Gestion des SAV </span>
+              <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
 					</li>
                     <li class="sidebar-item">

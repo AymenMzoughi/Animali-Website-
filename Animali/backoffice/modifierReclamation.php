@@ -20,9 +20,9 @@ require_once "PHPMailer/Exception.php";
 	
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,117 +33,78 @@ require_once "PHPMailer/Exception.php";
 
 	<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
 
-	<title>Form Layouts | AdminKit Demo</title>
+	<title>Tables | AdminKit Demo</title>
 
 	<link href="css/app.css" rel="stylesheet">
 </head>
 
 <body>
 	<div class="wrapper">
-		<nav id="sidebar" class="sidebar">
+	<nav id="sidebar" class="sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
-          <span class="align-middle">AdminKit</span>
+				<a class="sidebar-brand" href="index.php">
+          <span class="align-middle">Animali Backoffice</span>
         </a>
-               
+
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">
-						Pages
+						
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="index.html">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+					<li class="sidebar-item ">
+						<a class="sidebar-link" href="index.php">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle"> accueil </span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-profile.html">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+						<a class="sidebar-link" href="Admins.php">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-settings.html">
-              <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
+						<a class="sidebar-link" href="Afficherclients.php">
+              <i class="align-middle"  data-feather="users"></i> <span class="align-middle">Gestion des clients </span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-invoice.html">
-              <i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Invoice</span>
+						<a class="sidebar-link" href="afficherprod.php">
+              <i class="align-middle" data-feather="box"></i> <span class="align-middle">Gestion des Produits </span>
+            </a>
+					</li>
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="afficherlignecommande.php">
+              <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Gestion des commandes </span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-blank.html">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
+						<a class="sidebar-link" href="afficherveto.php">
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestions des veterinaires </span>
             </a>
-					</li>
-
-					<li class="sidebar-header">
-						Tools & Components
 					</li>
                     <li class="sidebar-item active">
 						<a href="#ui" data-toggle="collapse" class="sidebar-link">
               <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
 						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
-							<li class="sidebar-item active"><a class="sidebar-link" href="vues/AfficherReclamation.php">Reclamations - Modification  </a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="vues/">Avis </a></li>
+							<li class="sidebar-item active"><a class="sidebar-link" href="modifierReclamation.php"> cherhcher Reclamations </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="Afficheravis.php">Avis </a></li>
 							
 						</ul>
 					</li>
-
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="icons-feather.html">
-              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="Afficherlivraison.php">
+              <i class="align-middle" data-feather="truck"></i> <span class="align-middle"> Gestion des livraisons </span>
             </a>
 					</li>
 
-					<li class="sidebar-item ">
-						<a href="#forms" data-toggle="collapse" class="sidebar-link">
-              <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Forms</span>
-            </a>
-						<ul id="forms" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
-							<li class="sidebar-item "><a class="sidebar-link" href="forms-layouts.html">Form Layouts</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-basic-inputs.html">Basic Inputs</a></li>
-						</ul>
-					</li>
+					
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="tables-bootstrap.html">
-              <i class="align-middle" data-feather="list"></i> <span class="align-middle">Tables</span>
-            </a>
-					</li>
-
-					<li class="sidebar-header">
-						Plugins & Addons
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="charts-chartjs.html">
-              <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="maps-google.html">
-              <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
-            </a>
-					</li>
-				</ul>
-
-				<div class="sidebar-cta">
-					<div class="sidebar-cta-content">
-						<strong class="d-inline-block mb-2">Upgrade to Pro</strong>
-						<div class="mb-3 text-sm">
-							Are you looking for more components?
-						</div>
-						<a href="https://adminkit.io/pricing" target="_blank" class="btn btn-outline-primary btn-block">Upgrade</a>
-					</div>
-				</div>
+				
 			</div>
 		</nav>
 
@@ -247,7 +208,7 @@ require_once "PHPMailer/Exception.php";
 									<a href="#" class="list-group-item">
 										<div class="row no-gutters align-items-center">
 											<div class="col-2">
-												<img src="img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
+												<img src="../img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
 											</div>
 											<div class="col-10 pl-2">
 												<div class="text-dark">Vanessa Tucker</div>
@@ -259,7 +220,7 @@ require_once "PHPMailer/Exception.php";
 									<a href="#" class="list-group-item">
 										<div class="row no-gutters align-items-center">
 											<div class="col-2">
-												<img src="img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="William Harris">
+												<img src="../img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="William Harris">
 											</div>
 											<div class="col-10 pl-2">
 												<div class="text-dark">William Harris</div>
@@ -271,7 +232,7 @@ require_once "PHPMailer/Exception.php";
 									<a href="#" class="list-group-item">
 										<div class="row no-gutters align-items-center">
 											<div class="col-2">
-												<img src="img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Christina Mason">
+												<img src="../img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Christina Mason">
 											</div>
 											<div class="col-10 pl-2">
 												<div class="text-dark">Christina Mason</div>
@@ -319,7 +280,6 @@ require_once "PHPMailer/Exception.php";
 					</ul>
 				</div>
 			</nav>
-
 			<main class="content">
 		 <a href="AfficherReclamation.php" >Retour à la liste</a> 
 			<form method="POST">
