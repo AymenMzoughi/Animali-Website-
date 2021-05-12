@@ -37,6 +37,18 @@
 				die('Erreur: '.$e->getMessage());
 			}	
 		}
+		function afficherimage($login){
+			
+			$sql="SELECT * From Utilisateur  WHERE Login = '$login' ";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }	
+		}
 
 		function supprimerUtilisateur($id){
 			$sql="DELETE FROM Utilisateur WHERE id= :id";
@@ -105,8 +117,8 @@
 			}
 		}
 
-		function connexionUser($email,$password){
-            $sql="SELECT * FROM Utilisateur WHERE Email='" . $email . "' and Password = '". $password."'";
+		function connexionUser($login,$password){
+            $sql="SELECT * FROM Utilisateur WHERE Login='" . $login . "' and Password = '". $password."'";
             $db =config::getConnexion();
             try{
                 $query=$db->prepare($sql);
@@ -116,13 +128,13 @@
                     $message = "pseudo ou le mot de passe est incorrect";
                 } else {
                     $x=$query->fetch();
-                    $message = $x['role'];
+                  
                 }
             }
             catch (Exception $e){
                     $message= " ".$e->getMessage();
             }
-          return $message;
+         
         }
 
 	}

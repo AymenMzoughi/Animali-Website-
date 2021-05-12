@@ -4,15 +4,25 @@ include_once '../Entities/Utilisateur.php';
 include_once '../Controller/UtilisateurC.php';
 $message="";
 $userC = new UtilisateurC();
-if (isset($_POST["email"]) &&
+
+if (isset($_POST["login"]) &&
     isset($_POST["password"])) {
-    if (!empty($_POST["email"]) &&
+    if (!empty($_POST["login"]) &&
         !empty($_POST["password"]))
-    {   $message=$userC->connexionUser($_POST["email"],$_POST["password"]);
-         $_SESSION['e'] = $_POST["email"];// on stocke dans le tableau une colonne ayant comme nom "e",
-        //  avec l'email à l'intérieur
+    {   $message=$userC->connexionUser($_POST["login"],$_POST["password"]);
+		$images=$userC->afficherimage($_POST["login"]);
+		foreach($images as $image){
+          $iusr= $image["image"];
+		
+		 
+		}
+		echo $aaa;
+		$_SESSION['e'] = $_POST["login"];
+		$_SESSION['i']=$iusr;
         if($message!='pseudo ou le mot de passe est incorrect'){
-           header('Location:index.php');}
+           header('Location:index.php');
+		}
+
         else{
             $message='pseudo ou le mot de passe est incorrect';
         }}
@@ -62,18 +72,18 @@ if (isset($_POST["email"]) &&
 												
 													<div class="col-md-8">
 														<div class="form-group">
-															<label for="inputUsername">Email</label>
-															<input type="text" class="form-control" id="email"  name ="email"placeholder="Username">
+															<label for="inputUsername">Login</label>
+															<input type="text" class="form-control" id="login"  name ="login"placeholder="login">
 														</div>
 														<div class="form-group">
 															<label for="inputUsername">Password</label>
-															<textarea rows="2" class="form-control" id="password" name="password" placeholder="Tell something about yourself"></textarea>
+															<textarea rows="2" class="form-control" id="password" name="password"  id="password" placeholder="password" ></textarea>
 														</div>
 													</div>
 													
 										
                                                 
-												<button nput type="submit" name="submit" value="Submit" class="btnSubmit">Login</button>
+												<button nput type="submit" name="submit" value="Submit" class="btn btn-primary">Login</button>
 											</form>
                                          
 										</div>
