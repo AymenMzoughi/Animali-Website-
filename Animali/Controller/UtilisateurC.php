@@ -4,42 +4,41 @@
 
 	class UtilisateurC {
 
-        function ajouterUtilisateur($Utilisateur){
-            $sql="INSERT INTO Utilisateur (nom, prenom, email, login, password) 
-			VALUES (:nom,:prenom,:email, :login, :password)";
-            $db =config::getConnexion();
-            try{
-                $query = $db->prepare($sql);
+		function ajouterUtilisateur($utilisateur){
+            $sql="INSERT INTO utilisateur (id, nom, prenom, role, login, password,image) VALUES (:id, :nom, :prenom, :role, :login, :password, :image)";
+				$connexion=config::getConnexion();
+				$rep=$connexion->prepare($sql);
+				$rep->bindValue(":id",$utilisateur->getid());
+				$rep->bindValue(":nom",$utilisateur->getnom());
+				$rep->bindValue(":prenom",$utilisateur->getprenom());
+				$rep->bindValue(":role",$utilisateur->getrole());
+                $rep->bindValue(":login",$utilisateur->getlogin());
+				$rep->bindValue(":password",$utilisateur->getpassword());
+                $rep->bindValue(":image",$utilisateur->getimage());
 
-                $query->execute([
-                    'nom' => $Utilisateur->getNom(),
-                    'prenom' => $Utilisateur->getPrenom(),
-                    'email' => $Utilisateur->getEmail(),
-                    'login' => $Utilisateur->getLogin(),
-                    'password' => $Utilisateur->getPassword()
-                ]);
-            }
-            catch (Exception $e){
-                echo 'Erreur: '.$e->getMessage();
-            }
+				
+				$rep->execute();
+
         }
 
 
         function afficherUtilisateurs(){
 			
-			$sql="SELECT * FROM Utilisateur";
-			$db =config::getConnexion();
-			try{
-				$liste = $db->query($sql);
-				return $liste;
-			}
-			catch (Exception $e){
-				die('Erreur: '.$e->getMessage());
-			}	
+			try {
+                $pdo = config::getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM utilisateur'
+                );
+                $query->execute();
+                return $query->fetchAll();
+            } 
+			catch (PDOException $e) {
+                $e->getMessage();
+            }
 		}
 		function afficherimage($login){
 			
-			$sql="SELECT * From Utilisateur  WHERE Login = '$login' ";
+			$sql="SELECT * From utilisateur  WHERE login = '$login' ";
             $db = config::getConnexion();
             try{
             $liste=$db->query($sql);
@@ -51,8 +50,8 @@
 		}
 
 		function supprimerUtilisateur($id){
-			$sql="DELETE FROM Utilisateur WHERE id= :id";
-			$db =getConnexion();
+			$sql="DELETE FROM utilisateur WHERE id= :id";
+			$db =config::getConnexion();
 			$req=$db->prepare($sql);
 			$req->bindValue(':id',$id);
 			try{
@@ -62,34 +61,10 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
-		function modifierUtilisateur($Utilisateur, $id){
-			try {
-				$db =config::getConnexion();
-				$query = $db->prepare(
-					'UPDATE Utilisateur SET 
-						nom = :nom, 
-						prenom = :prenom,
-						email = :email,
-						login = :login,
-						password = :password
-					WHERE id = :id'
-				);
-				$query->execute([
-					'nom' => $Utilisateur->getNom(),
-					'prenom' => $Utilisateur->getPrenom(),
-					'email' => $Utilisateur->getEmail(),
-					'login' => $Utilisateur->getLogin(),
-					'password' => $Utilisateur->getPassword(),
-					'id' => $id
-				]);
-				echo $query->rowCount() . " records UPDATED successfully <br>";
-			} catch (PDOException $e) {
-				$e->getMessage();
-			}
-		}
+		
 		function recupererUtilisateur($id){
-			$sql="SELECT * from Utilisateur where id=$id";
-			$db =getConnexion();
+			$sql="SELECT * from utilisateur where id=$id";
+			$db =config::getConnexion();
 			try{
 				$query=$db->prepare($sql);
 				$query->execute();
@@ -103,7 +78,7 @@
 		}
 
 		function recupererUtilisateur1($id){
-			$sql="SELECT * from Utilisateur where id=$id";
+			$sql="SELECT * from utilisateur where id=$id";
 			$db =config::getConnexion();
 			try{
 				$query=$db->prepare($sql);
@@ -133,8 +108,9 @@
             }
             catch (Exception $e){
                     $message= " ".$e->getMessage();
+					
             }
-         
+			return  $message;
         }
 
 	}

@@ -50,7 +50,7 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Admins.php">
+						<a class="sidebar-link" href="ajouteradmine.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
             </a>
 					</li>

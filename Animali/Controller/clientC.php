@@ -20,6 +20,7 @@
 
 				
 			}
+			
 
 		public function afficherclient()
 			{
@@ -60,6 +61,7 @@
 				}
 			}	
 	
+			
 
 	function calculerClient($Sexe)
 	{

@@ -1,56 +1,46 @@
 <?PHP
-	class Utilisateur{
-		private ?int $id = null;
-		private ?string $nom = null;
-		private ?string $prenom = null;
-		private ?string $email = null;
-		private ?string $login = null;
-		private ?string $password = null;
+	class utilisateur{
+		private $id;
+		private $nom;
+		private $prenom;
+		private $role;
+		private $login;
+		private $password;
+		private $image;
 
 
-		function __construct(string $nom, string $prenom, string $email, string $login, string $password){
+		function __construct( $nom, $prenom, $role, $login, $password, $image){
 			
 			$this->nom=$nom;
 			$this->prenom=$prenom;
-			$this->email=$email;
+			$this->role=$role;
 			$this->login=$login;
 			$this->password=$password;
+			$this->image=$image;
 
 		}
 
-		function getId(): int{
-			return $this->id;
-		}
-		function getNom(): string{
-			return $this->nom;
-		}
-		function getPrenom(): string{
-			return $this->prenom;
-		}
-		function getLogin(): string{
-			return $this->login;
-		}
-		function getEmail(): string{
-			return $this->email;
-		}
-		function getPassword(): string{
-			return $this->password;
-		}
-        function setNom(string $nom): void{
-			$this->nom=$nom;
-		}
-		function setPrenom(string $prenom): void{
-			$this->prenom;
-		}
-		function setLogin(string $login): void{
-			$this->login=$login;
-		}
-		function setEmail(string $email): void{
-			$this->email=$email;
-		}
-		function setPassword(string $password): void{
-			$this->password=$password;
-		}
+		public function getid (){
+            return $this->id ;
+        }
+		public function getnom (){
+            return $this->nom ;
+        }
+		public function getprenom (){
+            return $this->prenom ;
+        }
+		public function getrole (){
+            return $this->role ;
+        }
+		public function getlogin (){
+            return $this->login ;
+        }
+		public function getpassword (){
+            return $this->password ;
+        }
+		public function getimage (){
+            return $this->image ;
+        }
 
 	}
 ?>

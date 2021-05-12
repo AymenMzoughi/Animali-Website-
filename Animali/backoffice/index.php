@@ -12,9 +12,11 @@ if(empty($_SESSION['e']))
 $produitC=new produitC();
 $lcC=new LignecommandeC();
 $vetoC=new veterinaireC();
+
 $nproduit=$produitC->calculerProduits();
 $ncommande=$lcC->calculecommande();
 $nveto=$vetoC->calculeveto();
+
 
 
 
@@ -54,7 +56,7 @@ $nveto=$vetoC->calculeveto();
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Admins.php">
+						<a class="sidebar-link" href="ajouteradmine.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
             </a>
 					</li>
@@ -186,7 +188,7 @@ $nveto=$vetoC->calculeveto();
 										<div class="card">
 											<div class="card-body">
 												<h5 class="card-title mb-4"> Nombre des Clients</h5>
-												<h1 class="display-5 mt-1 mb-3"></h1>
+												<h1 class="display-5 mt-1 mb-3"> <?php echo $nveto; ?></h1>
 												
 											</div>
 										</div>
@@ -199,13 +201,7 @@ $nveto=$vetoC->calculeveto();
 												
 											</div>
 										</div>
-										<div class="card">
-											<div class="card-body">
-												<h5 class="card-title mb-4"> Nombre des veterinaires </h5>
-												<h1 class="display-5 mt-1 mb-3"><?php echo $nveto; ?></h1>
-												
-											</div>
-										</div>
+									
 									</div>
 								</div>
 							</div>

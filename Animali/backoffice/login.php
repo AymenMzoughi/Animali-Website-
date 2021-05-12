@@ -13,14 +13,13 @@ if (isset($_POST["login"]) &&
 		$images=$userC->afficherimage($_POST["login"]);
 		foreach($images as $image){
           $iusr= $image["image"];
-		
+		  $_SESSION['i']=$iusr;
 		 
 		}
-		echo $aaa;
 		$_SESSION['e'] = $_POST["login"];
-		$_SESSION['i']=$iusr;
+	
         if($message!='pseudo ou le mot de passe est incorrect'){
-           header('Location:index.php');
+           header('Location:profil.php');
 		}
 
         else{

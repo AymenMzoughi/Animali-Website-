@@ -52,7 +52,7 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Admins.php">
+						<a class="sidebar-link" href="ajouteradmine.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
             </a>
 					</li>
@@ -170,7 +170,7 @@
 					</ul>
 				</div>
                 </nav>
-            <main class="content">
+                <main class="content">
                 <div class="container-fluid p-0">
 
                     <h1 class="h3 mb-3">Afficher liste categories </h1>
@@ -183,7 +183,8 @@
                             <tr>
                 <th>ID categorie</th>
                 <th>nom categorie</th>
-                
+                <th>supprimer</th>
+                <th>modifier</th>
             </tr>
 
             <?PHP
@@ -192,7 +193,15 @@
                 <tr>
                     <td><?PHP echo $categorieC['idcat']; ?></td>
                     <td><?PHP echo $categorieC['nomcat']; ?></td>
-                    
+                    <td>
+                        <form method="POST" action="supprimercat.php">
+                        <input type="submit" name="supprimer" value="supprimer">
+                        <input type="hidden" value=<?PHP echo $categorieC['idcat']; ?> name="idcat">
+                        </form>
+                    </td>
+                    <td>
+                        <a href="modifiercat.php?idcat=<?PHP echo $categorieC['idcat']; ?>"> Modifier </a>
+                    </td>
                         
                         </form>
                 </tr>
@@ -202,41 +211,13 @@
         </table>
                             </div>
                         </div>
-
-                        
-                        
-                                                        <div class="card-footer">
-                                                        <form method="POST" action="ajoutercat.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="ajouter" value="ajouter">
-                                                            <i "fa fa-dot-circle-o"></i>Ajouter
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                                                    
-                                                        <div class="card-footer">
-                                                        <form method="POST" action="modifiercat.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="modifier" value="modifier">
-                                                        
-                                                            <i "fa fa-dot-circle-o"></i>Modifier
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                                <div class="card-footer">
-                                                        <form method="POST" action="supprimercat.php">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="supprimer" value="supprimer">
-                                                        
-                                                            <i "fa fa-dot-circle-o"></i>Supprimer
-                                                            </form>
-                                                        </button>
-                                                    </div>
-                        
-
             </main>
 
             
         </div>
     </div>
+
+      
 
     <script src="js/vendor.js"></script>
     <script src="js/app.js"></script>

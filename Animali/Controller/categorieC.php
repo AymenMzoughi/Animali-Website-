@@ -1,5 +1,6 @@
 <?php 
 	include "../config.php";
+	require_once "../Entities/categorie.php";
 	class categorieC
 	{
 		public function ajouterCategorie($categorie)
@@ -21,17 +22,34 @@
 				$rep=$connexion->query($sql);
 				return $rep;
 			}
-		public function modifierCategorie()
+		public function modifierCategorie($categorie,$idcat)
     		{
       			
-       			$sql="UPDATE `categories` SET `idcat`=:idcat,`nomcat`=:nomcat WHERE idcat=:idcat);";
+       			$sql="UPDATE `categories` SET `nomcat`=:nomcat WHERE idcat=:idcat";
        			$connexion=config::getConnexion();
+				   try{
 				$rep=$connexion->prepare($sql);
-                $rep->bindValue(":idcat",$cartefid->getidcat());
-				$rep->bindValue(":nomcat",$cartefid->getnomcat());
+                $rep->bindValue(":idcat",$categorie->getidcat());
+				$rep->bindValue(":nomcat",$categorie->getnomcat());
+				$s=$rep->execute();
+                   }
+                   catch (Exception $e){
+                    echo " Erreur ! ".$e->getMessage();
+                }
 				
-				$rep->execute();
     		}
+
+			function recupererCategorie($idcat){
+				$sql="SELECT * from categories where idcat=$idcat";
+				$db =config::getConnexion();
+				try{
+				$liste=$db->query($sql);
+				return $liste;
+				}
+				catch (Exception $e){
+					die('Erreur: '.$e->getMessage());
+				}
+			}
 	
 
 	public function supprimerCategorie($idcat)

@@ -76,7 +76,7 @@ $liste=$clientC->recupNumTel($_POST["Search"]);
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Admins.php">
+						<a class="sidebar-link" href="ajouteradmine.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
             </a>
 					</li>
@@ -111,7 +111,7 @@ $liste=$clientC->recupNumTel($_POST["Search"]);
             </a>
 					</li>
                     <li class="sidebar-item">
-						<a class="sidebar-link" href="affichersav.php">
+						<a class="sidebar-link" href="AfficherReclamation.php">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
 						

@@ -7,8 +7,14 @@
         // Si inexistante ou nulle, on redirige vers le formulaire de login
         echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
        }
-    $categorieC =  new categorieC();
-    $listecat = $categorieC->afficherCategorie();
+       $categorieC =  new categorieC();
+
+       if (isset($_GET['idcat'])){
+       $listecat = $categorieC->recupererCategorie($_GET['idcat']);
+       foreach($listecat as $row)
+        {
+          $idcat=$row['idcat'];
+          $nomcat=$row['nomcat'];
     
 ?>
 <html>
@@ -166,98 +172,60 @@
 				</div>
 			</nav>
 	
-            <main class="content">
-            <form  method="POST" action="modif-cat.php"   id="modifiercategorie" name="modifcat">
+      <main class="content">
+            <form  method="POST">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3">Modifier categorie </h1>
+                    <h1 class="h3 mb-3">Modifier une categorie </h1>
 
                     <div class="row">
                         <div class="col-12 col-xl-6">
                             <div class="card">
                                 
-                            <table border=2 align = 'left'>
+                            <form>
                             <div class="card-body card-block">
                                             
+                                              <div class="row form-group">
+                                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">id categorie</label></div>
+                                                     <div class="col-12 col-md-9"><input type="text" name="idcat" id="idcat" class="form-control" value="<?PHP echo $idcat; ?>" disabled></div>
+                                                     <span id='missPrenom'></span><br>
+
+                                                 </div>
                                              <div class="row form-group">
-                                                     <div class="col col-md-3"><label class=" form-control-label">ID categorie</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="idcat" name="idcat"  class="form-control"><small class="form-text text-muted"></small></div>
+                                                     <div class="col col-md-3"><label class=" form-control-label">nom categorie</label></div>
+                                                     <div class="col-12 col-md-9"><input type="text" id="nomcat" name="nomcat"  class="form-control" value="<?PHP echo $nomcat; ?>"></div>
                                                      <div class="col-12 col-md-9">
 
                                                        
                                                      </div>
                                                  </div>    
-                                                                                                
-                                                 <div class="row form-group">
-                                                 <div class="col col-md-5"><label class=" form-control-label">nom categorie</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="nomcat" name="nomcat"  class="form-control"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
-
-
-                                                     </div>
-                                                
+                                  
                                                      <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary btn-sm" id="modifier" value="modifier"
-                                                       >
-                                                            <i "fa fa-dot-circle-o"></i> Modifier
-                                                        </button>
+                                                     <input type="submit"  class="btn btn-outline-secondary" name="modifier" value="modifier" > 
+										<input type="hidden"   name="idcat_ini" value="<?PHP echo $_GET['idcat'];?>">
                                                     </div>
                                         </div>
                    
-        </table>
-        <main class="content">
-                <div class="container-fluid p-0">
-
-                <h1 class="h3 mb-3">Afficher liste categories </h1>
-
-<div class="row">
-    <div class="col-12 col-xl-15">
-        <div class="card">
+</form>
+          
             
-        <table border=1 align = 'left'>
-        <tr>
-        <th>ID categorie</th>
-<th>nom categorie</th>
-
-</tr>
-
-<?PHP
-foreach($listecat as $categorieC){
-?>
-<tr>
-<td><?PHP echo $categorieC['idcat']; ?></td>
-<td><?PHP echo $categorieC['nomcat']; ?></td>
-
-    </form>
-</tr>
-<?PHP
-}
-?>
-</table>
-        </div>
-    </div>
-
-    
-    
-                                    <div class="card-footer">
-                                    <form method="POST" action="ajoutercat.php">
-                                    <button type="submit" class="btn btn-primary btn-sm" id="ajouter" value="ajouter">
-                                        <i "fa fa-dot-circle-o"></i>Ajouter
-                                        </form>
-                                    </button>
-                                </div>
-                               
-                            <div class="card-footer">
-                                    <form method="POST" action="supprimercat.php">
-                                    <button type="submit" class="btn btn-primary btn-sm" id="supprimer" value="supprimer">
-                                    
-                                        <i "fa fa-dot-circle-o"></i>Supprimer
-                                        </form>
-                                    </button>
-                                </div>
-    
-
-</main>
+                           
+                    
+            <?PHP
+                }
+            }
+                if(isset($_POST['modifier'])){
+                    $categorie = new categorie($_POST['idcat_ini'], $_POST['nomcat']);
+                    $categorieC->modifierCategorie($categorie,$_POST['idcat_ini']);
+                    ?> 
+                   
+                   <script>
+				document.location.replace("affichercat.php") ;
+			</script>          
+                   
+	<?php		
+	}
+    ?>
 
 
 </div>

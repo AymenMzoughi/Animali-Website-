@@ -21,7 +21,7 @@
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, web ui kit, dashboard template, admin template">
 
-	<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<title>Tables | AdminKit Demo</title>
 
@@ -197,7 +197,7 @@
                                         </div>
                    
         </table>
-        <main class="content">
+		<main class="content">
                 <div class="container-fluid p-0">
 
                 <h1 class="h3 mb-3">Afficher liste categorie </h1>
@@ -229,29 +229,9 @@ foreach($listecat as $categorieC){
 </table>
         </div>
     </div>
-
-    
-    
-                                    <div class="card-footer">
-                                    <form method="POST" action="modifiercat.php">
-                                    <button type="submit" class="btn btn-primary btn-sm" id="ajouter" value="ajouter">
-                                        <i "fa fa-dot-circle-o"></i>Modifier
-                                        </form>
-                                    </button>
-                                </div>
-                               
-                            <div class="card-footer">
-                                    <form method="POST" action="supprimercat.php">
-                                    <button type="submit" class="btn btn-primary btn-sm" id="supprimer" value="supprimer">
-                                    
-                                        <i "fa fa-dot-circle-o"></i>Supprimer
-                                        </form>
-                                    </button>
-                                </div>
-    
+  
 
 </main>
-
 
 </div>
 </div>
