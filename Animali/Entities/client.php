@@ -10,7 +10,8 @@ class client
 	private $Email;
 	private $ADR;
 	private $DNS;
-	public function __construct($CIN,$Sexe,$Nom,$Prenom,$NumTel,$Email,$ADR,$DNS)
+	private $MDP;
+	public function __construct($CIN,$Sexe,$Nom,$Prenom,$NumTel,$Email,$ADR,$DNS,$MDP)
 	
 	{
 		$this->CIN=$CIN;
@@ -21,6 +22,7 @@ class client
 		$this->Email=$Email;
 		$this->ADR=$ADR;
 		$this->DNS=$DNS;
+		$this->MDP=$MDP;
 	}
 	public function getCIN(){return $this->CIN;}
 	public function getSexe(){return $this->Sexe;}
@@ -30,7 +32,7 @@ class client
 	public function getEmail(){return $this->Email;}
 	public function getADR(){return $this->ADR;}
 	public function getDNS(){return $this->DNS;}
-
+	public function getMDP(){return $this->MDP;}
 	public function setCIN($CIN){$this->CIN=$CIN;}
 	public function setSexe($Sexe){$this->$Sexe;}
 	public function setNom($Nom){$this->Nom=$Nom;}
@@ -39,5 +41,6 @@ class client
 	public function setEmail($Email){$this->Email=$Email;}
 	public function setADR($ADR){$this->ADR=$ADR;}
 	public function setDNS($DNS){$this->DNS=$DNS;}
+	public function setMDP($MDP){$this->MDP=$MDP;}
 }
 ?>

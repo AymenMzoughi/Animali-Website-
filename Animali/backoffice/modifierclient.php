@@ -23,7 +23,7 @@
                $Email=$row['Email'];
                $ADR=$row['ADR'];
                $DNS=$row['DNS'];
-           
+               $MDP=$row['MDP'];
            
     
 ?>
@@ -179,7 +179,7 @@
 				</div>
 			</nav>
 	
-            <main class="content">
+      <main class="content">
             <form  method="POST">
                 <div class="container-fluid p-0">
 
@@ -237,6 +237,11 @@
                                                  <div class="col col-md-3"><label class=" form-control-label">Date de naissance</label><span class="text-danger">*</span></div>
                                                      <div class="col-12 col-md-3"><input type="date" id="DNS" name="DNS"  class="form-control" value="<?PHP echo $DNS; ?>"><small class="form-text text-muted"></small></div>
                                                      </div>
+
+													 <div class="row form-group">		
+													 <div class="col col-md-3"><label class=" form-control-label">Mot De Passe</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="MDP" name="MDP"  class="form-control" value="<?PHP echo $MDP; ?>"><small class="form-text text-muted"></small></div>
+                                                    </div>
                                                      <div class="card-footer">
                                                         <button type="submit" class="btn btn-primary btn-sm" name="modifier" value="modifier">Modifier </button>
                                                         <input type="hidden"   name="CIN_ini" value="<?PHP echo $_GET['CIN'];?>">
@@ -252,7 +257,7 @@
         <?PHP
              }}
                 if(isset($_POST['modifier'])){
-                    $client = new client($_POST['CIN_ini'], $_POST['Sexe'], $_POST['Nom'], $_POST['Prenom'],$_POST['NumTel'], $_POST['Email'], $_POST['ADR'], $_POST['DNS']);
+                    $client = new client($_POST['CIN_ini'], $_POST['Sexe'], $_POST['Nom'], $_POST['Prenom'],$_POST['NumTel'], $_POST['Email'], $_POST['ADR'], $_POST['DNS'],$_POST['MDP']);
                     $clientC->modifierClient($client,$_POST['CIN_ini']);
                     ?>
                     <script>

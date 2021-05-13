@@ -164,7 +164,7 @@
 				</div>
 			</nav>
 
-            <main class="content">
+      <main class="content">
             <form  method="POST" action="ajout-client.php"   id="ajouterclient" name="ajoutrclieent">
                 <div class="container-fluid p-0">
 
@@ -222,6 +222,12 @@
                                                  <div class="col col-md-3"><label class=" form-control-label">Date de naissance</label><span class="text-danger">*</span></div>
                                                      <div class="col-12 col-md-3"><input type="date" id="DNS" name="DNS"  class="form-control"><small class="form-text text-muted"></small></div>
                                                      </div>
+
+                                                     <div class="row form-group">
+                                                 <div class="col col-md-3"><label class=" form-control-label">Mot de Passe</label><span class="text-danger">*</span></div>
+                                                     <div class="col-12 col-md-3"><input type="text" id="MDP" name="MDP"  class="form-control"><small class="form-text text-muted"></small></div>
+                                                     </div>
+
                                                      <div class="card-footer">
                                                         <button type="submit" class="btn btn-primary btn-sm" onclick="Client()==true"></i> Ajouter </button>
                                                     </div>
@@ -246,16 +252,16 @@
             
         <table class="table table-bordered">
         <tr>
-        <th style="width:12.5%;">CIN</th>
-        
+                                            <th style="width:10%;">CIN</th>
                                             <th style="width:10%;">Sexe</th>
 											<th style="width:10%">Nom</th>
                                             <th style="width:10%">Prenom</th>
-                                            <th style="width:12.5%">NumTel</th>
-                                            <th style="width:15%">Email</th>
-                                            <th style="width:12.5%">Adresse</th>
-                        <th class="d-none d-md-table-cell" style="width:12.5%">Date de naissance</th>
-                        <th>Actions</th>
+                                            <th style="width:10%">NumTel</th>
+                                            <th style="width:10%">Email</th>
+                                            <th style="width:10%">Adresse</th>
+                        <th class="d-none d-md-table-cell" style="width:10%">Date de naissance</th>
+                                            <th style="width:10%">Mot de Passe</th>
+                                            <th style="width:10%">Actions</th>
 
 </tr>
 
@@ -271,8 +277,9 @@ foreach($listeclient as $clientC){
 <td><?PHP echo $clientC['Email']; ?></td>
 <td><?PHP echo $clientC['ADR']; ?></td>
 <td><?PHP echo $clientC['DNS']; ?></td>
+<td><?PHP echo $clientC['MDP']; ?></td>
 <td class="table-action">
-<a href="modifierclient.php"><i class="align-middle" data-feather="edit-2"></i></a>						
+<a href="modifierclient.php?CIN=<?= $clientC['CIN'] ?>"><i class="align-middle" data-feather="edit-2"></i></a>						
 <a href="supp-client.php?CIN=<?= $clientC['CIN'] ?>"><i class="align-middle" data-feather="trash"></i></a>
 <a href="Mail.php?CIN=<?= $clientC['CIN'] ?>"><i class="align-middle" data-feather="mail"></i></a>
                         </td>
@@ -284,14 +291,8 @@ foreach($listeclient as $clientC){
 </table>
         </div>
     </div>
-    
-    
-
 </main>
 
-
-</div>
-</div>
 
 <script src="js/vendor.js"></script>
 <script src="js/app.js"></script>

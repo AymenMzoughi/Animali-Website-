@@ -7,6 +7,7 @@ function Client()
     var NumTel= document.getElementById("NumTel").value;
     var ADR= document.getElementById("ADR").value;
     var DNS= document.getElementById("DNS").value;
+    var MDP= document.getElementById("MDP").value;
    if(CIN.length==0)   
      {  
     alert('CIN Vide');} 
@@ -41,6 +42,11 @@ function Client()
     if(DNS.length==0)
     {
         alert('Date De Naissance Vide');
+        
+    }
+    if(MDP.length==0)
+    {
+        alert(' Mot de passe vide');
         
     }
 

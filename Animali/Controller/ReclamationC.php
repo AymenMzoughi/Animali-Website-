@@ -110,7 +110,8 @@
                 $s=$req->execute();}
             
             catch (Exception $e){
-                echo " Erreur ! ".$e->getMessage();
+              $message=$e->getMessage();
+               return $message;
             }
                    
                 

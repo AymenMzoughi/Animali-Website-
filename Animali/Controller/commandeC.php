@@ -13,9 +13,32 @@
 				die('Erreur: '.$e->getMessage());
 			}	
         }
+        function afficherid($email){
+			
+            $sql="SELECT * From client  WHERE email= '$email' ";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }	
+        }
 
         function recuperercommande($idcommande){
             $sql="SELECT * from commande where idcommande=$idcommande";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }	
+        }
+        function recuperercommande1($id_client){
+            $sql="SELECT * from commande where id_client=$id_client";
             $db = config::getConnexion();
             try{
             $liste=$db->query($sql);

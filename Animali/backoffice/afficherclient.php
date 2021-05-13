@@ -200,11 +200,7 @@ $liste=$clientC->recupNumTel($_POST["Search"]);
               <option> NumTel</option>
               </select>
 <input type="text"  name="Search" name="Search" class="form-control" placeholder="Ecrire Ici">
-<select class="form-control"  placeholder="tri" name="tri" id="tri" >
-<option>Choisir :</option>
-<option>CIN</option>
-</select>
-<button class="btn btn-primary">Trier</button>
+
 
 <button class="btn btn-primary">Rechercher</button>
 <button onclick="window.print()" class="btn btn-primary">Print</button>
@@ -214,28 +210,28 @@ $liste=$clientC->recupNumTel($_POST["Search"]);
 	
      
 </form>	
-                    <h1 class="h3 mb-3">Afficher liste Client </h1>
+<h1 class="h3 mb-3">Afficher liste Client </h1>
 
-                    <div class="row">
-                        <div class="col-12 col-xl-15">
-                            <div class="card">
-                                
-                            <table class="table table-bordered">
-        <tr>
-                                            <th style="width:10%;">CIN</th>
-                                            <th style="width:10%;">Sexe</th>
-											<th style="width:10%">Nom</th>
-                                            <th style="width:10%">Prenom</th>
-                                            <th style="width:12.5%">NumTel</th>
-                                            <th style="width:15%">Email</th>
-                                            <th style="width:12.5%">Adresse</th>
-                        <th class="d-none d-md-table-cell" style="width:12.5%">Date de naissance</th>
-                        <th>Actions</th>
+<div class="row">
+	<div class="col-12 col-xl-15">
+		<div class="card">
+			
+		<table class="table table-bordered">
+<tr>
+<th style="width:10%;">CIN</th>
+						<th style="width:10%;">Sexe</th>
+						<th style="width:10%">Nom</th>
+						<th style="width:10%">Prenom</th>
+						<th style="width:10%">NumTel</th>
+						<th style="width:10%">Email</th>
+						<th style="width:10%">Adresse</th>
+	<th class="d-none d-md-table-cell" style="width:10%">Date de naissance</th>
+						<th style="width:10%">Mot de Passe</th>
+						<th style="width:10%">Actions</th>
 
 </tr>
 
 <?PHP
-
 foreach($liste as $clientC){
 ?>
 <tr>
@@ -247,6 +243,7 @@ foreach($liste as $clientC){
 <td><?PHP echo $clientC['Email']; ?></td>
 <td><?PHP echo $clientC['ADR']; ?></td>
 <td><?PHP echo $clientC['DNS']; ?></td>
+<td><?PHP echo $clientC['MDP']; ?></td>
 <td class="table-action">
 <a href="ajouterclient.php"><i class="align-middle" data-feather="user-plus"></i></a>
 <a href="modifierclient.php?CIN=<?= $clientC['CIN'] ?>"><i class="align-middle" data-feather="edit-2"></i></a>							

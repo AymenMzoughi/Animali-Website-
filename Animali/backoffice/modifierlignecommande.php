@@ -250,7 +250,7 @@
 
                                                  <div class="form-group">
                                                 <div class="col col-md-3"><label class=" form-control-label">idcmd</label></div>
-												<select name="idcmd" id="idcmd">
+												<select class="form-control"  placeholder="idcmd"  id="idcmd" name="idcmd">
 						<option value="">Faites votre choix </option>
 						
 						<?php while($row=mysqli_fetch_array($list)):?>

@@ -1,26 +1,35 @@
 <?php
 include_once '../Entities/Reclamation.php';
 include_once '../Controller/ReclamationC.php';
+
+session_start();
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+  echo "<script type='text/javascript'>document.location.replace('signin.php');</script>";
+   }
 $reclamation = null;
   $reclamationC = new reclamationC();
-$list=$reclamationC->afficherprenomclient();
+  
 if (
 isset($_POST["sujet"]) &&
 isset($_POST["probleme"]) &&
 isset($_POST["date"])&&
 isset($_POST["idclient"])
  ) 
-  {
+  {echo $_POST["idclient"];
   if(!empty($_POST["sujet"]) &&
   !empty($_POST["probleme"]) 
   &&!empty($_POST["date"])
   &&!empty($_POST["idclient"]))
   {
 
+
 $reclamation= new reclamation($_POST['probleme'],$_POST['date'],"non traitee",$_POST['sujet'],$_POST['idclient']);
-$reclamationC->ajouterrelcamation($reclamation);
-
-
+$message=$reclamationC->ajouterrelcamation($reclamation);
+echo $message;
+echo "<script type='text/javascript'>document.location.replace('compte.php');</script>";
 }}
  
 ?>
@@ -305,7 +314,7 @@ $reclamationC->ajouterrelcamation($reclamation);
             <li> <a href="#"> <i class="fab fa-youtube"></i> </a> </li>
           </ul>
           <ul class="andro_header-top-links">
-            <li class="menu-item"><a href="login.html"> My Account </a></li>
+            <li class="menu-item"><a href="compte.php"> My Account </a></li>
             <li class="menu-item menu-item-has-children">
               <a href="#"> <span class="andro_current-currency-text">Currency</span> (USD) </a>
               <ul class="sub-menu sub-menu-left">
@@ -519,7 +528,7 @@ $reclamationC->ajouterrelcamation($reclamation);
           <h2> Ajouter une reclamation </h2>
           <div id="erreur">
 </div>
-          <form method="post" >
+          <form method="post"  >
 
             <div class="form-group">
             <label> Sujet <span class="text-danger">*</span></label>
@@ -542,16 +551,7 @@ $reclamationC->ajouterrelcamation($reclamation);
             </div>
             <div class="form-group">
             <label>  Nom  du  client <span class="text-danger">*</span></label>
-            <select class="form-control"  placeholder="idclient"  id="idclient" name="idclient" >
-            <?php
-            foreach( $list as $usr)
-            {
-            ?>
-             <option value="<?= $usr['id'] ?>"><?= $usr['prenom'] ?> <?= $usr['nom'] ?><option>
-              <?php 
-            }
-              ?>
-                </select> 
+            <input type="text" class="form-control"  placeholder="idclient"  id="idclient" name="idclient" value="<?php echo $_SESSION['id']; ?>" idclient >
             </div>
             <button type="submit" class="andro_btn-custom primary" onclick="test()==true;"> Ajouter </button> 
           </form>
