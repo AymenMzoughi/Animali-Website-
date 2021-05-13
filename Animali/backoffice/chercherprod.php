@@ -1,8 +1,5 @@
 <?php
     require_once '../Controller/produitC.php';
-
-    $produitC =  new produitC();
-    $listeprod = $produitC->afficherProduit();
     session_start();
     // On teste si la variable de session existe et contient une valeur
     if(empty($_SESSION['e']))
@@ -10,6 +7,9 @@
         // Si inexistante ou nulle, on redirige vers le formulaire de login
         echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
        }
+    $produitC =  new produitC();
+    $listeprod = $produitC->afficherProduit();
+   
 ?>
 
 
