@@ -89,12 +89,11 @@
         }
 
         public function modifiercommande($commande, $idcommande) {
-            $sql="UPDATE commande SET date_commande=:date_commande,produits=:produits, quantite=:quantite, id_client=:id_client
-            WHERE idcommande=:idcommande";
+            $sql="UPDATE commande SET date_commande=:date_commande ,produits=:produits, quantite=:quantite, id_client=:id_client
+            WHERE idcommande=:idcommande ;";
             $db = config::getConnexion();
             try {
                 $req=$db->prepare($sql);
-                $idcommande = $commande->getidcommande();
                 $date_commande = $commande->getdate_commande();
                 $produits = $commande->getproduits();
                 $quantite = $commande->getquantite();

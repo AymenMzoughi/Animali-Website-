@@ -11,10 +11,13 @@ if (isset($_POST["login"]) &&
         !empty($_POST["password"]))
     {   $message=$userC->connexionUser($_POST["login"],$_POST["password"]);
 		$images=$userC->afficherimage($_POST["login"]);
+	
+		
 		foreach($images as $image){
           $iusr= $image["image"];
+		  $irole= $image["role"];
 		  $_SESSION['i']=$iusr;
-		 
+		  $_SESSION['r']=$irole;
 		}
 		$_SESSION['e'] = $_POST["login"];
 	

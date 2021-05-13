@@ -31,7 +31,7 @@ echo $nprobleme3;
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, web ui kit, dashboard template, admin template">
 
-	<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<title>Tables | AdminKit Demo</title>
 
@@ -91,7 +91,7 @@ echo $nprobleme3;
             </a>
 						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
 							<li class="sidebar-item active"><a class="sidebar-link" href="AfficherReclamation.php">Reclamations </a></li>
-							<li class="sidebar-item  active "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
+							<li class="sidebar-item   "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="Afficheravis.php">Avis </a></li>
 							
 						</ul>

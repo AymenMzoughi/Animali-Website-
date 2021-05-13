@@ -48,6 +48,18 @@
                 die('Erreur: '.$e->getMessage());
             }	
 		}
+		function afficherrole($login){
+			
+			$sql="SELECT * From utilisateur  WHERE role = '$login' ";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }	
+		}
 
 		function supprimerUtilisateur($id){
 			$sql="DELETE FROM utilisateur WHERE id= :id";

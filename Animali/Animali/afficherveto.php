@@ -1,62 +1,20 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-include_once '../Entities/Avis.php';
-include_once '../Controller/AvisC.php';
-require_once "PHPMailer/PHPMailer.php";
-require_once "PHPMailer/SMTP.php";
-require_once "PHPMailer/Exception.php";
-if (
-isset($_POST["nom"]) &&
-isset($_POST["prenom"]) &&
-isset($_POST["note"])
-&&isset($_POST["message"])&&
-isset($_POST["email"])) 
-  { 
-  if(!empty($_POST["nom"]) &&
-  !empty($_POST["prenom"]) &&
-  !empty($_POST["email"])&&
-  !empty($_POST["note"])
-  &&!empty($_POST["message"])&&($_POST["note"]!="Select")) 
-  {$avis = null;
-  $avisC = new AvisC();
-$avis= new Avis($_POST['message'],$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['note']);
-$avisC->ajouteravis($avis);
-$nom=$_POST["nom"];
-$prenom=$_POST["prenom"];
-$mail=new PHPMailer();
-$mail->IsSMTP();
-$mail -> Host="smtp.gmail.com";
-$mail ->SMTPAuth=true;
-$mail ->Username="animalitn2021@gmail.com";
-$mail ->Password='animali123';
-$mail ->Port=465;
-$mail ->SMTPSecure='ssl';
-$mail->isHTML(true);
-$mail ->setFrom('animalitn2021@gmail.com','Animali.tn');
-$mail->addAddress($_POST["email"]);
-$mail->Subject = " A propos votre Avis sur notre site Animali.tn ";
-$mail->Body = "Bonjour Madame/Monsieur " .$prenom." ".$nom."  Animali a bien  reçu votre avis pour le ". date("Y/m/d"). "  merci pour votre fidélité et votre confiance . ";
-if($mail->send())
-	{
-	   echo " oui";	}
-	else
-	{
-		echo $mail->ErrorInfo;
-	}
-  }}
+    require_once '../Controller/veterinaireC.php';
 
- 
+    $veterinaireC =  new veterinaireC();
+	$listeveto = $veterinaireC->afficherVeterinaire();
+	
 ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 
-<!-- Mirrored from slidesigma.com/themes/html/petitudio/home-v3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Apr 2021 14:03:34 GMT -->
+<!-- Mirrored from slidesigma.com/themes/html/petitudio/blog-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Apr 2021 14:04:30 GMT -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Petitdio - Pet Shop HTML Template</title>
+  <title>Animali - Pet Shop HTML Template</title>
 
   <!-- Vendor Stylesheets -->
   <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
@@ -65,7 +23,7 @@ if($mail->send())
   <link rel="stylesheet" href="assets/css/plugins/slick.css">
   <link rel="stylesheet" href="assets/css/plugins/slick-theme.css">
   <link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css">
-  <script src="assets/js/formulaire1.js"></script>
+
   <!-- Icon Fonts -->
   <link rel="stylesheet" href="assets/fonts/flaticon/flaticon.css">
   <link rel="stylesheet" href="assets/fonts/font-awesome/css/all.min.css">
@@ -86,6 +44,11 @@ if($mail->send())
       <div class="dot2"></div>
     </div>
   </div>
+  <!-- Prealoader End -->
+
+  
+
+  <!-- Quick View Modal Start -->
   <div class="modal fade andro_quick-view-modal" id="quickViewModal" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -236,7 +199,24 @@ if($mail->send())
       </div>
       <!-- Popular Categories End -->
 
-  
+      <!-- Popular Tags Start -->
+      <div class="sidebar-widget">
+        <h5 class="widget-title">Popular Tags</h5>
+        <div class="tagcloud">
+          <a href="#">Health</a>
+          <a href="#">Canned Food</a>
+          <a href="#">Biscuits</a>
+          <a href="#">Organic</a>
+          <a href="#">Fish Food</a>
+          <a href="#">Bird</a>
+          <a href="#">Fiber</a>
+          <a href="#">Capsules </a>
+          <a href="#">Parrot</a>
+          <a href="#">Dog</a>
+          <a href="#">Cat Food </a>
+        </div>
+      </div>
+      <!-- Popular Tags End -->
 
     </div>
   </aside>
@@ -256,17 +236,13 @@ if($mail->send())
         </ul>
       </li>
       <li class="menu-item menu-item-has-children">
-        <a href="#">Blog</a>
+        <a href="#">Veterinaire</a>
         <ul class="sub-menu">
           <li class="menu-item menu-item-has-children">
-            <a href="blog-grid.html">Blog Archive</a>
-            <ul class="sub-menu">
-              <li class="menu-item"> <a href="blog-grid.html">Grid View</a> </li>
-              <li class="menu-item"> <a href="blog-list.html">List View</a> </li>
-              <li class="menu-item"> <a href="blog-masonry.html">Masonry View</a> </li>
-            </ul>
+            <a href="blog-list.html">conseils_vet</a>
+            
           </li>
-          <li class="menu-item"> <a href="post-single.html">Blog Single</a> </li>
+          <li class="menu-item"> <a href="post-single.html">contact_vet</a> </li>
         </ul>
       </li>
       <li class="menu-item menu-item-has-children">
@@ -298,33 +274,33 @@ if($mail->send())
   <div class="andro_aside-overlay aside-trigger-left"></div>
 
   <!-- Header Start -->
-  <header class="andro_header header-2 can-sticky">
+  <header class="andro_header header-1">
 
-   <!-- Topheader Start -->
-<div class="andro_header-top">
-  <div class="container">
-    <div class="andro_header-top-inner">
-      <ul class="andro_header-top-sm andro_sm">
-        <li> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
-        <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
-        <li> <a href="#"> <i class="fab fa-linkedin-in"></i> </a> </li>
-        <li> <a href="#"> <i class="fab fa-youtube"></i> </a> </li>
-      </ul>
-      <ul class="andro_header-top-links">
-        <li class="menu-item"><a href="compte.php"> My Account </a></li>
-        <li class="menu-item menu-item-has-children">
-          <a href="#"> <span class="andro_current-currency-text">Currency</span> (USD) </a>
-          <ul class="sub-menu sub-menu-left">
-            <li> <a href="#">United States Dollar (USD)</a> </li>
-            <li> <a href="#">Kuwait Dinar (KWD)</a> </li>
-            <li> <a href="#">Pound Sterling (GBP)</a> </li>
+    <!-- Topheader Start -->
+    <div class="andro_header-top">
+      <div class="container">
+        <div class="andro_header-top-inner">
+          <ul class="andro_header-top-sm andro_sm">
+            <li> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
+            <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
+            <li> <a href="#"> <i class="fab fa-linkedin-in"></i> </a> </li>
+            <li> <a href="#"> <i class="fab fa-youtube"></i> </a> </li>
           </ul>
-        </li>
-      </ul>
+          <ul class="andro_header-top-links">
+            <li class="menu-item"><a href="compte.php"> My Account </a></li>
+            <li class="menu-item menu-item-has-children">
+              <a href="#"> <span class="andro_current-currency-text">Currency</span> (USD) </a>
+              <ul class="sub-menu sub-menu-left">
+                <li> <a href="#">United States Dollar (USD)</a> </li>
+                <li> <a href="#">Kuwait Dinar (KWD)</a> </li>
+                <li> <a href="#">Pound Sterling (GBP)</a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<!-- Topheader End -->
+    <!-- Topheader End -->
 
     <!-- Middle Header Start -->
     <div class="andro_header-middle">
@@ -332,6 +308,95 @@ if($mail->send())
         <nav class="navbar">
           <!-- Logo -->
           <a class="navbar-brand" href="index-2.html"> <img src="assets/img/logo.png" alt="logo"> </a>
+
+          <!-- Search Form -->
+          <div class="andro_search-adv">
+            <form method="post">
+              <div class="andro_search-adv-cats">
+                <span>All Categories</span>
+
+                <div class="sub-menu">
+                  <div class="andro_dropdown-scroll">
+                    <label>
+                      <input type="checkbox" name="category1" value="food">
+                      Canned Food
+                      <i class="fas fa-check"></i>
+                    </label>
+                    <label>
+                      <input type="checkbox" name="category2" value="home-care">
+                      Cat Food 
+                      <i class="fas fa-check"></i>
+                    </label>
+                    <label>
+                      <input type="checkbox" name="category3" value="keto">
+                      Beef Tomato
+                      <i class="fas fa-check"></i>
+                    </label>
+                    <label>
+                      <input type="checkbox" name="category4" value="baskets">
+                      Dental Chews
+                      <i class="fas fa-check"></i>
+                    </label>
+                    <label>
+                      <input type="checkbox" name="category5" value="supplements">
+                      Capsules 
+                      <i class="fas fa-check"></i>
+                    </label>
+                    <label>
+                      <input type="checkbox" name="category6" value="baby-kids">
+                      Chicken Cutlets 
+                      <i class="fas fa-check"></i>
+                    </label>
+                    <label>
+                      <input type="checkbox" name="category7" value="serum">
+                      Petwhisper Meet
+                      <i class="fas fa-check"></i>
+                    </label>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="andro_search-adv-input">
+                <input type="text" class="form-control" placeholder="Look for Food Flower , Cat Food  " name="search" value="">
+                <button type="submit" name="button"><i class="fa fa-search"></i></button>
+              </div>
+            </form>
+          </div>
+
+          <div class="andro_header-controls">
+
+            <ul class="andro_header-controls-inner">
+              <li class="andro_header-favorites"> <a href="wishlist.html" title="Your Wishlist"> <i class="flaticon-like"></i> </a> </li>
+              <li class="andro_header-cart">
+                <a href="cart.html" title="Your Cart">
+                  <i class="flaticon-shopping-basket"></i>
+                  <div class="andro_header-cart-content">
+                    <span>9 Items</span>
+                    <span>249.99$</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+
+            <!-- Toggler -->
+            <div class="aside-toggler aside-trigger-left">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- Middle Header End -->
+
+    <!-- Bottom Header Start -->
+    <div class="andro_header-bottom">
+      <div class="container">
+
+        <div class="andro_header-bottom-inner">
 
           <!-- Menu -->
           <ul class="navbar-nav">
@@ -344,17 +409,13 @@ if($mail->send())
               </ul>
             </li>
             <li class="menu-item menu-item-has-children">
-              <a href="#">Blog</a>
+              <a href="#">Veterinaire</a>
               <ul class="sub-menu">
                 <li class="menu-item menu-item-has-children">
-                  <a href="blog-grid.html">Blog Archive</a>
-                  <ul class="sub-menu">
-                    <li class="menu-item"> <a href="blog-grid.html">Grid View</a> </li>
-                    <li class="menu-item"> <a href="blog-list.html">List View</a> </li>
-                    <li class="menu-item"> <a href="blog-masonry.html">Masonry View</a> </li>
-                  </ul>
+                  <a href="blog-list.html">conseils_vet</a>
+                  
                 </li>
-                <li class="menu-item"> <a href="post-single.html">Blog Single</a> </li>
+                <li class="menu-item"> <a href="post-single.html">contact_vet</a> </li>
               </ul>
             </li>
             <li class="menu-item menu-item-has-children">
@@ -412,95 +473,6 @@ if($mail->send())
             <li class="menu-item"> <a href="contact-us.html">Contact Us</a> </li>
           </ul>
 
-          <div class="andro_header-controls">
-
-            <ul class="andro_header-controls-inner">
-              <li class="andro_header-favorites"> <a href="wishlist.html" title="Your Wishlist"> <i class="flaticon-like"></i> </a> </li>
-              <li class="andro_header-cart">
-                <a href="cart.html" title="Your Cart">
-                  <i class="flaticon-shopping-basket"></i>
-                  <div class="andro_header-cart-content">
-                    <span>9 Items</span>
-                    <span>249.99$</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-
-            <!-- Toggler -->
-            <div class="aside-toggler aside-trigger-left">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-
-          </div>
-        </nav>
-      </div>
-    </div>
-    <!-- Middle Header End -->
-
-    <!-- Bottom Header Start -->
-    <div class="andro_header-bottom">
-      <div class="container">
-
-        <div class="andro_header-bottom-inner">
-
-          <!-- Search Form -->
-          <div class="andro_search-adv">
-            <form method="post">
-              <div class="andro_search-adv-cats">
-                <span>All Categories</span>
-
-                <div class="sub-menu">
-                  <div class="andro_dropdown-scroll">
-                    <label>
-                      <input type="checkbox" name="category1" value="food">
-                      Canned Food
-                      <i class="fas fa-check"></i>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="category2" value="home-care">
-                      Cat Food 
-                      <i class="fas fa-check"></i>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="category3" value="keto">
-                      Beef Tomato
-                      <i class="fas fa-check"></i>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="category4" value="baskets">
-                      Dental Chews
-                      <i class="fas fa-check"></i>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="category5" value="supplements">
-                      Capsules 
-                      <i class="fas fa-check"></i>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="category6" value="baby-kids">
-                      Chicken Cutlets 
-                      <i class="fas fa-check"></i>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="category7" value="serum">
-                      Petwhisper Meet
-                      <i class="fas fa-check"></i>
-                    </label>
-                  </div>
-
-                </div>
-
-              </div>
-              <div class="andro_search-adv-input">
-                <input type="text" class="form-control" placeholder="Look for Food Flower , Cat Food  " name="search" value="">
-                <button type="submit" name="button"><i class="fa fa-search"></i></button>
-              </div>
-            </form>
-          </div>
-
           <!-- Side navigation toggle -->
           <div class="aside-toggler aside-trigger-right desktop-toggler">
             <span></span>
@@ -517,169 +489,99 @@ if($mail->send())
   </header>
   <!-- Header End -->
 
-  <!-- Banner Start -->
-  <div class="andro_banner banner-2">
-    <div class="andro_banner-slider">
-      <div class="andro_banner-slider-inner" style="background-image: url('assets/img/banner/1.jpg');">
-        <div class="container">
-          <div class="andro_banner-slider-text">
-            <img src="assets/img/products/8.png" class="img-1" alt="product">
-            <p>Use code <strong class="custom-primary">PETFOOD2233</strong> during checkout</p>
-            <h1 style="background-image: url('assets/img/cta/3.jpg') "> Organic Cat Food   </h1>
-            <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula.</p>
-            <a href="shop-v1.html" class="andro_btn-custom">Shop Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="andro_banner-slider-inner" style="background-image: url('assets/img/banner/2.jpg');">
-        <div class="container">
-          <div class="andro_banner-slider-text">
-            <img src="assets/img/products/14.png" class="img-1" alt="product">
-            <p>Use code <strong class="custom-primary">PETFOOD2233</strong> during checkout</p>
-            <h1 style="background-image: url('assets/img/cta/2.jpg') "> Organic Exotic Food Flower  </h1>
-            <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula.</p>
-            <a href="shop-v1.html" class="andro_btn-custom">Shop Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Banner End -->
-
-  
-
-
-          
-
-          
-
-          </div>
-        </div>
-        <!-- Sidebar End -->
-
-      </div>
-
-    </div>
-  </div>
-  <!-- Featured Products End -->
-  <!-- FAQ & Contact Form Start -->
-  <div class="section pt-0">
+  <!-- Subheader Start -->
+  <div class="andro_subheader pattern-bg primary-bg">
     <div class="container">
-      <div class="row">
-
-        <div class="col-lg-5 mb-lg-30">
-
-          <div class="section-title">
-            <h4 class="title">FAQ</h4>
-          </div>
-
-          <div class="accordion with-gap" id="generalFAQExample">
-            <div class="card">
-              <div class="card-header" data-toggle="collapse" role="button" data-target="#generalOne" aria-expanded="true" aria-controls="generalOne">
-                What is Petitdio?
-              </div>
-
-              <div id="generalOne" class="collapse show" data-parent="#generalFAQExample">
-                <div class="card-body">
-                  Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Proin eget tortor risus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" data-toggle="collapse" role="button" data-target="#generalTwo" aria-expanded="false" aria-controls="generalTwo">
-                Getting Started with Petitdio
-              </div>
-
-              <div id="generalTwo" class="collapse" data-parent="#generalFAQExample">
-                <div class="card-body">
-                  Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Proin eget tortor risus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" data-toggle="collapse" role="button" data-target="#generalThree" aria-expanded="false" aria-controls="generalThree">
-                Do i have the latest version?
-              </div>
-
-              <div id="generalThree" class="collapse" data-parent="#generalFAQExample">
-                <div class="card-body">
-                  Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Proin eget tortor risus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" data-toggle="collapse" role="button" data-target="#generalFour" aria-expanded="false" aria-controls="generalFour">
-                How many times can I use Petitdio?
-              </div>
-
-              <div id="generalFour" class="collapse" data-parent="#generalFAQExample">
-                <div class="card-body">
-                  Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Proin eget tortor risus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" data-toggle="collapse" role="button" data-target="#generalFive" aria-expanded="false" aria-controls="generalFive">
-                How to migrate my website?
-              </div>
-
-              <div id="generalFive" class="collapse" data-parent="#generalFAQExample">
-                <div class="card-body">
-                  Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Proin eget tortor risus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="col-lg-7">
-
-          <div class="section-title">
-            <h4 class="title">  Ajouter un Avis </h4>
-          </div>
-
-          <form method="post" >
-            <div class="row">
-              <div class="form-group col-lg-6">
-                <input type="text" placeholder="Prenom" class="form-control" name="prenom" id="prenom">
-              </div>
-              <div class="form-group col-lg-6">
-                <input type="text" placeholder="Nom" class="form-control" name="nom" id="nom" >
-              </div>
-              <div class="form-group col-lg-6">
-                <input type="email" placeholder="Email" class="form-control" name="email" id="email" >
-              </div>
-              <div class="form-group col-lg-12">
-                <textarea name="message" class="form-control" placeholder="Type your message"  id="message" rows="8"></textarea>
-              </div>
-              <div class="form-group col-lg-12">
-              <select class="form-control"  placeholder="rate" name="note" id="note" >
-                <option>  Select  </option>
-                  <option>1 Star</option>
-                  <option>2 Stars</option>
-                  <option>3 Stars</option>
-                  <option>4Stars</option>
-                  </select>
-                </div>
-            </div>
-            <button type="submit" class="andro_btn-custom primary" name="button" onclick="test1()==true;">Send Message</button>
-          </form>
-
-        </div>
-
+      <div class="andro_subheader-inner">
+        <h1>contact_veto</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Veterinaire</a></li>
+            <li class="breadcrumb-item active" aria-current="page">contact_vet</li>
+          </ol>
+        </nav>
       </div>
     </div>
   </div>
+  <!-- Subheader End -->
+
+  <!-- Blog Posts Start -->
+  <div class="section">
+    <div class="container">
+
+    <main class="content">
+				<div class="container-fluid p-0">
+
+					<h1 class="h3 mb-3">Afficher liste veterinaire </h1>
+
+					<div class="row">
+						<div class="col-12 col-xl-6">
+							<div class="card">
+								
+			
+
+			<?PHP
+				foreach($listeveto as $veterinaireC){
+			?>
+			
+        <article class="andro_post andro_post-list">
+        <div class="andro_post-thumb">
+          <a href="post-single.html">
+            <img src="assets/img/blog/14.jpg" alt="post">
+          </a>
+        </div>
+        <div class="andro_post-body">
+          <div class="andro_post-categories">
+           
+          </div>
+          <div class="andro_post-desc">
+            <h5>  Cabinet Dr  <?PHP echo $veterinaireC['prenom']; ?>  </h5>
+            <span> <span class="fw-600">Adresse : </span> <a href="post-single.html" class="andro_post-date"><?PHP echo $veterinaireC['adresse']; ?>
+            </a> </span>
+            <p>Dr: <?PHP echo $veterinaireC['nom']; ?> <?PHP echo $veterinaireC['prenom']; ?></p>
+            <p> </p>
+          </div>
+         
+        </div>
+      <hr>
+      
+      </article>
+					
+					
+					
+					
+		
+			<?PHP
+				}
+			?>
+	
+							</div>
+						</div>
+
+						
+
+						
+						
+
+			</main>
+    
+
+
+    </div>
+  </div>
+  <!-- Blog Posts End -->
+
+
+
  
-
-
   <!-- Footer Start -->
-  <footer class="andro_footer andro_footer-dark">
+  <footer class="andro_footer">
     <!-- Top Footer -->
     <div class="container">
       <div class="andro_footer-top">
         <div class="andro_footer-logo">
-          <img src="assets/img/logo-light.png" alt="logo">
+          <img src="assets/img/logo.png" alt="logo">
         </div>
         <div class="andro_footer-buttons">
           <a href="#"> <img src="assets/img/android.png" alt="download it on the app store"></a>
@@ -715,20 +617,15 @@ if($mail->send())
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 footer-widget">
             <h5 class="widget-title">Others</h5>
             <ul>
-              <li> <a href="checkout.html">Checkout</a> </li>
-              <li> <a href="cart.html">Cart</a> </li>
-              <li> <a href="product-single.html">Product</a> </li>
-              <li> <a href="shop-v1.html">Shop</a> </li>
-              <li> <a href="legal.html">Legal</a> </li>
+              <li> <a href="checkout.php">Checkout</a> </li>
+              <li> <a href="panier.php">Bag</a> </li>
+              <li> <a href="afficherprod.php">Product</a> </li>
             </ul>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 footer-widget">
             <h5 class="widget-title">Social Media</h5>
             <ul class="social-media">
               <li> <a href="#" class="facebook"> <i class="fab fa-facebook-f"></i> </a> </li>
-              <li> <a href="#" class="pinterest"> <i class="fab fa-pinterest-p"></i> </a> </li>
-              <li> <a href="#" class="google"> <i class="fab fa-google"></i> </a> </li>
-              <li> <a href="#" class="twitter"> <i class="fab fa-twitter"></i> </a> </li>
             </ul>
             <div class="andro_footer-offer">
               <p>Signup and get exclusive offers and coupon codes</p>
@@ -780,5 +677,5 @@ if($mail->send())
 </body>
 
 
-<!-- Mirrored from slidesigma.com/themes/html/petitudio/home-v3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Apr 2021 14:04:01 GMT -->
+<!-- Mirrored from slidesigma.com/themes/html/petitudio/blog-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Apr 2021 14:04:30 GMT -->
 </html>

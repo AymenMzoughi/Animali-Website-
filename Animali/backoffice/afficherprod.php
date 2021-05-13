@@ -67,7 +67,7 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherclients.php">
+						<a class="sidebar-link" href="afficherclient.php">
               <i class="align-middle"  data-feather="users"></i> <span class="align-middle">Gestion des clients </span>
             </a>
 					</li>

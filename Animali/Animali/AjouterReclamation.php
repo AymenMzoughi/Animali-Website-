@@ -551,7 +551,8 @@ echo "<script type='text/javascript'>document.location.replace('compte.php');</s
             </div>
             <div class="form-group">
             <label>  Nom  du  client <span class="text-danger">*</span></label>
-            <input type="text" class="form-control"  placeholder="idclient"  id="idclient" name="idclient" value="<?php echo $_SESSION['id']; ?>" idclient >
+            <input type="text" class="form-control"  placeholder="idclient"  id="idclient" name="idclient" value="<?php echo $_SESSION['id']; ?>"  disabed >
+            <input type="hidden"  id="idclient" name="idclient"  value="<?php echo $_SESSION['id']; ?>" >
             </div>
             <button type="submit" class="andro_btn-custom primary" onclick="test()==true;"> Ajouter </button> 
           </form>

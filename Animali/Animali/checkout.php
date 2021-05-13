@@ -12,16 +12,17 @@
 
  $error = "";
  
-
+     $idclient=$_SESSION['id'];
     $LignecommandeC =  new LignecommandeC();
     $servername="localhost";
 $username="root";
 $password="";
 $bdd="animali";
 $con=mysqli_connect($servername,$username,$password,$bdd);
-$idcmd="SELECT * FROM commande";
+$idcmd="SELECT * FROM commande where id_client='$idclient'";
+$idprod="SELECT * FROM produits";
 $list=mysqli_query($con,$idcmd);
-
+$list1=mysqli_query($con,$idprod);
     
     if(
       
@@ -55,7 +56,8 @@ $list=mysqli_query($con,$idcmd);
                 $_POST['idcmd']
             );
             $LignecommandeC->ajouterlignecommande($lignecommande);
-            header('Location: afficherlignecommande.php');
+            $LignecommandeC->supprimercommande($_POST['idcmd']);
+            header('Location: compte.php');
         }
         else
             $error = "Missing information";
@@ -657,7 +659,14 @@ $list=mysqli_query($con,$idcmd);
               </div>
               <div class="form-group">
                 <label>id_produit</label>
-                <input type="id_produit" class="form-control" name="id_produit" placeholder="id_produit" id="id_produit" value="">
+                <select type="id_produit" class="form-control" name="id_produit" placeholder="id_produit" id="id_produit" >
+						<option value="">Faites votre choix </option>
+						
+						<?php while($row=mysqli_fetch_array($list1)):?>
+					
+						<option value="<?php echo $row[0];?>" > <?php echo $row[2];?>   </option>";
+						<?php endwhile; ?>
+						</select>
               </div>
               <div class="form-group">
                 <label>id cmd</label>

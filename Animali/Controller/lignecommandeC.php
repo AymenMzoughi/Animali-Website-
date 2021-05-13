@@ -131,11 +131,10 @@
 
         public function modifierlignecommande($commande, $idcommande) {
             $sql="UPDATE lignecommande SET prix=:prix, quantite=:quantite, tauxTVA=:tauxTVA, etat=:etat, id_produit=:id_produit , idcmd=:idcmd
-            WHERE idcommande=:idcommande";
+            WHERE idcommande=:idcommande ;";
             $db = config::getConnexion();
             try {
                 $req=$db->prepare($sql);
-                $idcommande = $commande->getidcommande();
                 $prix = $commande->getprix();
                 $quantite=$commande->getquantite();
                 $tauxTVA = $commande->gettauxTVA();
@@ -144,7 +143,6 @@
                 $idcmd = $commande->getidcmd();
 
                 $req->bindValue(':idcommande', $idcommande);
-
                 $req->bindValue(':prix', $prix);
                 $req->bindValue(':quantite', $quantite);
                 $req->bindValue(':tauxTVA', $tauxTVA);
@@ -154,12 +152,24 @@
 
                 $req->execute(); 
         } catch (PDOException $e) {
-            $e->getMessage();
+           
+            echo  $e->getMessage();
         }
         }
 
         public function supprimerlignecommande($idcommande) {
             $sql="DELETE FROM lignecommande WHERE idcommande = :idcommande";
+            $db = config::getConnexion();
+			$req=$db->prepare($sql);
+			$req->bindValue(':idcommande',$idcommande);
+			try{
+				$req->execute();
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+        }}
+        public function supprimercommande($idcommande) {
+            $sql="DELETE FROM commande WHERE idcommande = :idcommande";
             $db = config::getConnexion();
 			$req=$db->prepare($sql);
 			$req->bindValue(':idcommande',$idcommande);

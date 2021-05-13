@@ -27,7 +27,7 @@ $listeUsers=$reclamationC->afficherReclamation();
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, web ui kit, dashboard template, admin template">
 
-	<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<title>Tables | AdminKit Demo</title>
 
@@ -54,7 +54,7 @@ $listeUsers=$reclamationC->afficherReclamation();
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Admins.php">
+						<a class="sidebar-link" href="ajouteradmine.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
             </a>
 					</li>
@@ -166,48 +166,49 @@ $listeUsers=$reclamationC->afficherReclamation();
 				</div>
 </nav>
 
-			<main class="content">							
+			
+<main class="content">							
 		
-				<div class="container-fluid p-0">
-				<div class="card-body text-center">
-									<div class="mb-3">		
-	<table>
-	<form method="POST" action="chercherreclamation.php">
-	<select class="form-control"  placeholder="sujet" name="choix" id="choix" >
-            <option>Select</option>
-              <option>id </option>
-              <option>etat</option>
-              <option> id client</option>
-              </select>
-    <input type="text"  name="Search" name="Search" class="form-control" placeholder="Search">
-	
-     <input type="submit" class="btn btn-outline-primary" ></i>
+		<div class="container-fluid p-0">
+		<div class="card-body text-center">
+							<div class="mb-3">		
+<table>
+<form method="POST" action="chercherreclamation.php">
+<select class="form-control"  placeholder="sujet" name="choix" id="choix" >
+   
+	  <option>id </option>
+	  <option>etat</option>
+	  <option> id client</option>
+	  </select>
+<input type="text"  name="Search" name="Search" class="form-control" placeholder="Search">
+
+<input type="submit" class="btn btn-outline-primary" ></i>
 </form>	
 </table>
 </div>
 </div>
-							
-					<h1 class="h3 mb-3"> Gestion des reclamations </h1>
-                     
-					<div class="row">
-						<div class="col-12 col-xl-6">
-							<div class="card">
-								<table class="table">
-									<thead>
-										<tr>
-											<th style="width:25%;"> Id relamation</th>
-											<th style="width:25%"> probleme</th>
-											<th class="d-none d-md-table-cell" style="width:25%">Date </th>
-											<th style="width:25%"> etat</th>
-											<th style="width:25%"> sujet </th>
-											<th style="width:70%"> idclient </th>
-											<th style="width:70%"> Supprimer </th>
-											<th > Modifier </th>
-										
-										</tr>
-									</thead>
-									<tbody>
-									<?PHP
+					
+			<h1 class="h3 mb-3"> Gestion des reclamations </h1>
+			 
+			<div class="row">
+				<div class="col-12 col-xl-6">
+					<div class="card">
+						<table class="table">
+							<thead>
+								<tr>
+									<th style="width:25%;"> Id relamation</th>
+									<th style="width:25%"> probleme</th>
+									<th class="d-none d-md-table-cell" style="width:25%">Date </th>
+									<th style="width:25%"> etat</th>
+									<th style="width:25%"> sujet </th>
+									<th style="width:70%"> idclient </th>
+									<th style="width:70%"> Action </th>
+									
+								
+								</tr>
+							</thead>
+							<tbody>
+							<?PHP
 foreach($listeUsers as $user){
 ?>
 <tr>
@@ -220,12 +221,14 @@ foreach($listeUsers as $user){
 <td>
 <form>
 <div >
-<a type="button" class="btn btn-outline-primary" href = "supprimerReclamation.php?id=<?= $user['id'] ?>">Supprimer</a>
+
+
+<a href= "supprimerReclamation.php?id=<?= $user['id'] ?>"><i class="align-middle" data-feather="trash"></i></a>
 </div>	
 </td>
 <td>
 <div >
-<a type="button" class="btn btn-outline-primary" href = "modifierreclamation.php?id=<?= $user['id'] ?>">Modifier</a>
+<a href= "modifierreclamation.php?id=<?= $user['id'] ?>"><i class="align-middle" data-feather="edit-2"></i></a>
 </div>	
 <form>
 </td>
@@ -233,9 +236,9 @@ foreach($listeUsers as $user){
 
 <?PHP
 }
-                    ?>
-							</tbody>
-							</table>
+			?>
+					</tbody>
+					</table>
 </div>
 </main>
 			

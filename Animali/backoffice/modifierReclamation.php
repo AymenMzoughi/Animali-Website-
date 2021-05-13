@@ -12,9 +12,12 @@ if(empty($_SESSION['e']))
     // Si inexistante ou nulle, on redirige vers le formulaire de login
 	echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
    }
+   $reclamationC=new reclamationC();
+   $list=$reclamationC->afficherprenomclient();
     if (isset($_GET['id'])){
-        $reclamationC=new reclamationC();
+       
          $result=$reclamationC-> recupererReclamation($_GET['id']);
+		
        foreach($result as $row)
 	   {
 		   $id=$row['id'];
@@ -38,7 +41,7 @@ if(empty($_SESSION['e']))
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, web ui kit, dashboard template, admin template">
 
-	<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<title>Tables | AdminKit Demo</title>
 
@@ -214,9 +217,17 @@ if(empty($_SESSION['e']))
 											<input type="text" class="form-control" id="etat" value="<?PHP echo $etat ?>" name="etat">
 				
 					<div class="form-group">
-					<label class="form-label"> id client </label>
-					      
-									<input type="text" class="form-control" id="idclient" value="<?PHP echo $idclient ?>" name="idclient">
+					<label>  Nom  du  client <span class="text-danger">*</span></label>
+            <select class="form-control"  placeholder="idclient"  id="idclient" name="idclient" >
+            <?php
+            foreach( $list as $usr)
+            {
+            ?>
+             <option value="<?= $usr['CIN'] ?>"><?= $usr['Prenom'] ?> <?= $usr['Nom'] ?><option>
+              <?php 
+            }
+              ?>
+                </select> 
 										</div>
 										<div class="mb-3">
 										<input type="submit"  class="btn btn-outline-secondary" name="modifier" value="modifier" > 
