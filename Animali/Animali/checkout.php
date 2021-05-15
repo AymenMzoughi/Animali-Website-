@@ -20,9 +20,9 @@ $password="";
 $bdd="animali";
 $con=mysqli_connect($servername,$username,$password,$bdd);
 $idcmd="SELECT * FROM commande where id_client='$idclient' ";
-$idprod="SELECT * FROM produits ";
-$list=mysqli_query($con,$idcmd);
-$list1=mysqli_query($con,$idprod);
+$idprod="SELECT * FROM commande where id_client='$idclient' ";
+$list=mysqli_query($con,$idprod);
+$list1=mysqli_query($con,$idcmd);
     
     if(
       
@@ -90,6 +90,34 @@ $list1=mysqli_query($con,$idprod);
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+
+  <script language="javascript">
+  function verif()
+  {
+    if (f.prix.value == "" )
+   {alert ("veillez remplir votre champs de prix !");
+   return false;
+   }
+   else if(f.quantite.value =="" )
+   {alert ("veillez remplir votre champs de quantite !");
+   return false;
+   }else if(f.tauxTVA.value =="" )
+   {alert ("veillez remplir votre champs de tauxTVA !");
+   return false;
+   }else if(f.etat.value == "" )
+   {alert ("veillez remplir votre champs d etat !");
+   return false;
+   }else if(f.id_produit.value =="" )
+   {alert ("veillez remplir votre champs de id produit !");
+   return false;
+   }else if(f.idcmd.value =="" )
+   {alert ("veillez remplir votre champs de id cmd !");
+   return false;
+   }
+   return true;
+
+  }
+  </script>
   
 </head>
 
@@ -320,61 +348,43 @@ $list1=mysqli_query($con,$idprod);
         <div class="row">
           <div class="col-xl-7">
 
-            <!-- Login -->
-            <div class="andro_notice">
-              <p>Are you a returning customer? <a href="#">Click here to login</a> </p>
-            </div>
-            <div class="andro_notice-content">
-              <div class="row">
-                <div class="col-xl-6 form-group">
-                  <label>Email Address</label>
-                  <input type="text" class="form-control" name="login-email" placeholder="Email Address" value="">
-                </div>
-                <div class="col-xl-6 form-group">
-                  <label>Password</label>
-                  <input type="password" class="form-control" name="login-pass" placeholder="Password" value="">
-                </div>
-                <div class="col-12 form-group">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="rememberMe">
-                    <label class="custom-control-label" for="rememberMe">Remember Me</label>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <button type="submit" class="andro_btn-custom shadow-none btn-sm" name="button">Login</button>
-                </div>
-              </div>
-            </div>
+           
 
            <form class="form"  id="form" >
             <div idcommande = "error">
             <?php echo $error; ?>
            </div>
             <div class="form-group">
-              <label>idcommande</label>
+              <label>Id commande</label>
               <input type="number" class="form-control" name="idcommande" placeholder="idcommande" id="idcommande" disabled>
             </div>
             <div class="form-group">
-              <label>prix</label>
+              <label>Prix</label>
               <input type="text" class="form-control" name="prix" placeholder="prix" id="prix"  value="">
             </div>
             
               <div class="form-group">
-                <label>quantite</label>
+                <label>Quantite</label>
                 <input type="number" class="form-control" name="quantite" placeholder="quantite" id="quantite" value="">
               </div>
               <div class="form-group">
-                <label>tauxTVA</label>
-                <input type="number" class="form-control" name="tauxTVA" placeholder="tauxTVA" id="tauxTVA" value="">
+              <label for="text-input" class=" form-control-label">TauxTVA</label>
+                                                <div class="col-15 col-md-15"><select class="form-control"  placeholder="tauxTVA" name="tauxTVA" id="tauxTVA" >
+                                                        <option>tauxTVA :</option>
+                                                        <option>20 %</option>
+                                                    </select></div>
               </div>
               <div class="form-group">
-                <label>etat</label>
-                <input type="text" class="form-control" name="etat" placeholder="etat" id="etat" value="">
+                <label for="text-input" class=" form-control-label">Etat</label>
+                                                <div class="col-15 col-md-15"><select class="form-control"  placeholder="etat" name="etat" id="etat" >
+                                                        <option>Etat :</option>
+                                                        <option>En cours de livraison</option>
+                                                    </select></div>
               </div>
               <div class="form-group">
-                <label>id_produit</label>
+                <label>Id produit</label>
                 <select type="id_produit" class="form-control" name="id_produit" placeholder="id_produit" id="id_produit" >
-						<option value="">Faites votre choix </option>
+						<option value="">id produit : </option>
 						
 						<?php while($row=mysqli_fetch_array($list)):?>
 					
@@ -383,11 +393,11 @@ $list1=mysqli_query($con,$idprod);
 						</select>
               </div>
               <div class="form-group">
-                <label>id cmd</label>
+                <label>Id cmd</label>
                 <select class="form-control"  placeholder="idcmd"  id="idcmd" name="idcmd">
-						<option value="">Faites votre choix </option>
+						<option value="">id cmd : </option>
 						
-						<?php while($row=mysqli_fetch_array($list)):?>
+						<?php while($row=mysqli_fetch_array($list1)):?>
 					
 						<option value="<?php echo $row[0];?>" > <?php echo $row[0];?></option>";
 						<?php endwhile; ?>

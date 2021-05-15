@@ -188,7 +188,7 @@
 </table>
 <h1 class="h3 mb-3"> Gestion des lignes de commande </h1>
 <div class="row">
-	<div class="col-15 col-xl-10">
+	<div class="col-30 col-xl-10">
 		<div class="card">
 			<table class="table">
 				<thead>
@@ -198,8 +198,8 @@
 						<th style="width:25%"> quantite</th>
 						<th style="width:25%"> tauxTVA </th>
 						<th style="width:70%"> etat </th>
-						<th style="width:70%"> id_produit </th>
-						<th style="width:70%"> id_cmd </th>
+						<th style="width:70%"> id produit </th>
+						<th style="width:70%"> id cmd </th>
 						<th style="width:70%"> Supprimer </th>
 						<th style="width:70%"> Modifier </th>
 					

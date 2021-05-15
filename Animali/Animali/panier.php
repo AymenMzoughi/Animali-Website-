@@ -286,16 +286,16 @@
 
                     <div class="row">
                         <div class="col-12 col-xl-6">
-                            <div class="card">
+                            
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             
-						<th style="width:40%;"> id commande</th>
-						<th style="width:25%"> date_commande</th>
-						<th style="width:25%"> id produit </th>
-						<th style="width:25%"> quantite</th>
-						<th style="width:70%"> id_client </th>
+						<th style="width: 25%"> id commande</th>
+						<th style="width:70%"> date commande</th>
+						<th style="width:70%"> id produit </th>
+						<th style="width:70%"> quantite</th>
+						<th style="width:70%"> id client </th>
 						<th style="width:70%"> Supprimer </th>
 						<th style="width:70%"> Modifier </th>
             <th style="width:70%"> Trier </th>
@@ -338,9 +338,12 @@ foreach($Listecommandes as $user){
 <?PHP
 }
 ?>
+
+
+
                                     </tbody>
                                 </table>
-                            </div>
+                            
                         </div>
 
 
@@ -350,6 +353,19 @@ foreach($Listecommandes as $user){
       
 
     </div>
+
+    
+<form>
+<div >
+<br>
+<hr>
+<center>
+<a type="button" class="btn btn-outline-primary" href = "checkout.php">checkout</a>
+</center>
+<br>
+<hr>
+</div>  
+</form>
   </div>
   <!-- Cart End -->
 

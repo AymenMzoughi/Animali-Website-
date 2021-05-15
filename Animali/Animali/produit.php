@@ -77,6 +77,27 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
   
+  <script language="javascript">
+  function verif()
+  {
+    if (f.date_commande.value == "" )
+   {alert ("veillez remplir votre champs de date_commande !");
+   return false;
+   }
+   else if(f.produits.value =="" )
+   {alert ("veillez remplir votre champs de nom produit !");
+   return false;
+   }else if(f.quantite.value =="" )
+   {alert ("veillez remplir votre champs de quantite !");
+   return false;
+   }else if(f.id_client.value == "" )
+   {alert ("veillez remplir votre champs d id_client !");
+   return false;
+   }
+   return true;
+
+  }
+  </script>
 </head>
 
 <body>
@@ -308,16 +329,11 @@
 
           <!-- Pagination Start -->
           <div class="andro_single-pagination">
-            <div class="andro_single-pagination-item andro_single-pagination-prev">
+            <div class="">
 
                 
-                
-                <i class="fas fa-chevron-left"></i>
-              </a>
             </div>
             
-               
-              </a>
             </div>
           </div>
           <!-- Pagination End -->
@@ -327,25 +343,7 @@
 
           <div class="andro_product-single-content">
 
-            <div class="andro_product-single-controls andro_post-share">
-              <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="andro_add-to-favorite"> <i class="flaticon-like"></i> </a>
-              <ul class="andro_sm">
-                <li> <a href="#" data-toggle="tooltip" title="Share on Facebook"> <i class="fab fa-facebook-f"></i> </a> </li>
-                <li> <a href="#" data-toggle="tooltip" title="Share on Twitter"> <i class="fab fa-twitter"></i> </a> </li>
-                <li> <a href="#" data-toggle="tooltip" title="Share on Linkedin"> <i class="fab fa-linkedin-in"></i> </a> </li>
-              </ul>
-            </div>
-
-            <div class="andro_rating-wrapper">
-              <div class="andro_rating">
-                <i class="fa fa-star active"></i>
-                <i class="fa fa-star active"></i>
-                <i class="fa fa-star active"></i>
-                <i class="fa fa-star active"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <span>4 Stars</span>
-            </div>
+           
 
             <h3> Pet Food Meat </h3>
 
@@ -356,26 +354,28 @@
             <?php echo $error; ?>
            </div>
             <div class="form-group">
-              <label>id commande</label>
+              <label>Id commande</label>
               <input type="number" class="form-control" name="idcommande" placeholder="idcommande" disabled>
             </div>
             <div class="form-group">
-              <label>date commande</label>
+              <label>Date commande</label>
               <input type="date" class="form-control" name="date_commande" placeholder="date_commande" value="">
             </div>
             <div class="form-group">
-                <label> id produit</label>
+                <label> Id produit</label>
                 <input type="text" class="form-control" name="produits" placeholder="produits" value="<?php echo  $_GET["ref"]; ?>" >
+               
               </div>
 
               <div class="form-group">
-                <label>quantite</label>
+                <label>Quantite</label>
                 <input type="number" class="form-control" name="quantite" placeholder="quantite" value="">
               </div>
               
               <div class="form-group">
-                <label>id_client</label>
-                <input type="number" class="form-control" name="id_client"  value="<?php echo $_SESSION['id'];?>" >
+                <label>Id client</label>
+                <input type="number" class="form-control" name="id_client"  value="<?php echo $_SESSION['id'];?>"  >
+                
               </div>
               <td>
 <div >
