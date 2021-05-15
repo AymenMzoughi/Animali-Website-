@@ -5,19 +5,24 @@
         private $nomprod;
         private $descprod;
         private $idcat;
+        private $image;
 
-        public function __construct($ref, $prix, $nomprod, $descprod,$idcat){
+        public function __construct($ref, $prix, $nomprod, $descprod,$idcat,$image){
             
             $this->ref = $ref;
             $this->prix = $prix;
             $this->nomprod = $nomprod;
             $this->descprod = $descprod;
             $this->idcat = $idcat;
+            $this->image = $image;
         }
 
 
         public function getref (){
             return $this->ref ;
+        }
+        public function getimage (){
+            return $this->image ;
         }
 
         public function getprix () {

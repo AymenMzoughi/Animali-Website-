@@ -207,6 +207,12 @@ if(empty($_SESSION['e']))
 												<textarea class="form-control" id="descprod" name="descprod" placeholder="Textarea" rows="3"></textarea>
 											</div>
 										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-sm-2 text-sm-right">image</label>
+											<div class="col-sm-10">
+												<textarea class="form-control" id="image" name="image" placeholder="Textarea" rows="3"></textarea>
+											</div>
+										</div>
 
 										 <div class="form-group">
                                           <label for="idcat">ID categorie</label>
@@ -251,6 +257,7 @@ if(empty($_SESSION['e']))
                 <th>nomproduit</th>
                 <th>description</th>
                 <th>idcategorie</th>
+				<th>image</th>
                 <th>supprimer</th>
                 <th>modifier</th>
             </tr>
@@ -264,6 +271,7 @@ if(empty($_SESSION['e']))
                     <td><?PHP echo $produitC['nomprod']; ?></td>
                     <td><?PHP echo $produitC['descprod']; ?></td>
                     <td><?PHP echo $produitC['idcat']; ?></td>
+					<td><?PHP echo $produitC['image']; ?></td>
                     <td>
                         <form method="POST" action="supprimerprod.php">
                         <input type="submit" name="supprimer" value="supprimer">

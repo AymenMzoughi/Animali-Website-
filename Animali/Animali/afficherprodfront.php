@@ -523,7 +523,11 @@
             <div class="col-md-3 col-sm-4 masonry-item">
               <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
                 
-              
+                 <div class="andro_product-body">
+                  <div class="andro_product-title"> <img src="<?php echo $produitC['image']; ?>"> </div>
+      
+                    
+                  </div>
                 <div class="andro_product-body">
                   <div class="andro_product-title"> <a href="product-single.html">reference: <?php echo $produitC['ref']; ?></a> </div>
                   <div class="andro_rating-wrapper">
@@ -542,7 +546,7 @@
                     
                   </div>
                   <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
+                    <a href="produit.php?ref=<?= $produitC['ref'] ?>" class="andro_btn-custom primary">Add To Cart</a>
                    
                   </div>
                 </div>

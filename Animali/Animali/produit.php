@@ -2,6 +2,7 @@
 
  include "../Entities/commande.php";
  include "../Controller/commandeC.php";
+
  session_start();
  // On teste si la variable de session existe et contient une valeur
  if(empty($_SESSION['e']))
@@ -499,20 +500,14 @@
 
       <div class="row">
         <div class="col-md-5">
-          <div class="andro_product-single-thumb">
-            <img src="assets/img/products/9.png" alt="product">
-          </div>
+          
 
           <!-- Pagination Start -->
           <div class="andro_single-pagination">
             <div class="andro_single-pagination-item andro_single-pagination-prev">
 
-                <div class="andro_single-pagination-thumb">
-                  <img src="assets/img/products/9.png" alt="product">
-                </div>
-                <div class="andro_single-pagination-content">
-                  <h6>Pet Food Meat</h6>
-                </div>
+                
+                
                 <i class="fas fa-chevron-left"></i>
               </a>
             </div>
@@ -565,8 +560,8 @@
               <input type="date" class="form-control" name="date_commande" placeholder="date_commande" value="">
             </div>
             <div class="form-group">
-                <label>nom produit</label>
-                <input type="text" class="form-control" name="produits" placeholder="produits" value="">
+                <label> id produit</label>
+                <input type="text" class="form-control" name="produits" placeholder="produits" value="<?php echo  $_GET["ref"]; ?>">
               </div>
 
               <div class="form-group">

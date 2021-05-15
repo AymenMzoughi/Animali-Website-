@@ -194,6 +194,7 @@
                 <th>nomproduit</th>
                 <th>description</th>
                 <th>idcategorie</th>
+				<th>image</th>
                 <th>supprimer</th>
                 <th>modifier</th>
                 <th>trier</th>
@@ -212,7 +213,7 @@ foreach($listeprod as $produitC){
                     <td><?PHP echo $produitC['nomprod']; ?></td>
                     <td><?PHP echo $produitC['descprod']; ?></td>
                     <td><?PHP echo $produitC['idcat']; ?></td>
-                    
+                    <td><?PHP echo $produitC['image']; ?></td>
                     <td>
                         <form method="POST" action="supprimerprod.php">
                         <input type="submit" name="supprimer" value="supprimer">

@@ -17,7 +17,9 @@ if(empty($_SESSION['e']))
 		   $prix=$row['prix'];
 		   $nomprod=$row['nomprod'];
 		   $descprod=$row['descprod'];
-           $descprod=$row['idcat'];
+           $idcat=$row['idcat'];
+           $image=$row['image'];
+
 
 		   
     
@@ -217,6 +219,10 @@ if(empty($_SESSION['e']))
                                                      <div class="col-12 col-md-200"><input type="text" id="descprod" name="descprod"  class="form-control" value="<?PHP echo $descprod; ?>"></div>
                                                      <div class="col-12 col-md-200"></div>
                                                     </div> 
+                                                    <div class="col col-md-3"><label class=" form-control-label">image</label></div>
+                                                     <div class="col-12 col-md-200"><input type="text" id="image" name="image"  class="form-control" value="<?PHP echo $image; ?>"></div>
+                                                     <div class="col-12 col-md-200"></div>
+                                                    </div> 
                                                     <div class="form-group">
                                                         <label for="idcat">ID de categorie</label>
                                                             <br>
@@ -248,7 +254,7 @@ if(empty($_SESSION['e']))
                 }
             }
                 if(isset($_POST['modifier'])){
-                    $produit = new produit($_POST['ref_ini'], $_POST['prix'], $_POST['nomprod'], $_POST['descprod'],$_POST['idcat']);
+                    $produit = new produit($_POST['ref_ini'], $_POST['prix'], $_POST['nomprod'], $_POST['descprod'],$_POST['idcat'],$_POST['image']);
                     $produitC->modifierProduit($produit,$_POST['ref_ini']);
                     ?> 
                    

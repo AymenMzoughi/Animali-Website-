@@ -30,7 +30,7 @@ require_once '../Entities/produit.php';
         }
 		  public function ajouterProduit($produit){
 								
-			$sql="INSERT INTO produits (ref, prix, nomprod, descprod, idcat) VALUES (:ref, :prix, :nomprod, :descprod, :idcat);";
+			$sql="INSERT INTO produits (ref, prix, nomprod, descprod, idcat,image) VALUES (:ref, :prix, :nomprod, :descprod, :idcat,:image);";
 				$connexion=config::getConnexion();
 				$rep=$connexion->prepare($sql);
 				$rep->bindValue(":ref",$produit->getref());
@@ -38,7 +38,7 @@ require_once '../Entities/produit.php';
 				$rep->bindValue(":nomprod",$produit->getnomprod());
 				$rep->bindValue(":descprod",$produit->getdescprod());
                 $rep->bindValue(":idcat",$produit->getidcat());
-				
+                $rep->bindValue(":image",$produit->getimage());
 				$rep->execute();
 
 				
@@ -61,7 +61,7 @@ require_once '../Entities/produit.php';
         function modifierProduit($produit,$ref) {
 
 
-                 $sql="UPDATE `produits` SET `prix`=:prix, `nomprod` =:nomprod, `descprod` =:descprod, `idcat`=:idcat WHERE `ref`=:ref";
+                 $sql="UPDATE `produits` SET `prix`=:prix, `nomprod` =:nomprod, `descprod` =:descprod, `idcat`=:idcat ,`image`=:image WHERE `ref`=:ref";
        			$connexion=config::getConnexion();
                    try{
 				$rep=$connexion->prepare($sql);
@@ -70,7 +70,7 @@ require_once '../Entities/produit.php';
 				$rep->bindValue(":nomprod",$produit->getnomprod());
 				$rep->bindValue(":descprod",$produit->getdescprod());
                 $rep->bindValue(":idcat",$produit->getidcat());
-
+                $rep->bindValue(":image",$produit->getimage());
 				
 				$s=$rep->execute();
                    }
