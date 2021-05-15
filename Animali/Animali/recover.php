@@ -1,19 +1,66 @@
 <?php
-    require_once '../Controller/conseilC.php';
+use PHPMailer\PHPMailer\PHPMailer;
+include_once '../Entities/client.php';
+include_once '../Controller/clientC.php';
+require_once "PHPMailer/PHPMailer.php";
+require_once "PHPMailer/SMTP.php";
+require_once "PHPMailer/Exception.php";
 
-    $conseilC =  new conseilC();
-	$listecons = $conseilC->afficherconseil();
-	
+
+if (
+isset($_POST["CIN"]) &&
+isset($_POST["Email"])) 
+  { 
+  if(!empty($_POST["CIN"]) &&
+  !empty($_POST["Email"]))
+  {
+    $clientC=new clientC();
+    $password=$clientC->recupMDP($_POST["CIN"]);
+    foreach($password as $PWD){
+        $ipwd= $PWD["MDP"];
+        $inom= $PWD["Nom"];
+
+    }
+
+$mail=new PHPMailer();
+$mail->IsSMTP();
+$mail -> Host="smtp.gmail.com";
+$mail ->SMTPAuth=true;
+$mail ->Username="animalitn2021@gmail.com";
+$mail ->Password='animali123';
+$mail ->Port=465;
+$mail ->SMTPSecure='ssl';
+$mail->isHTML(true);
+$mail ->setFrom('animalitn2021@gmail.com','Animali.tn');
+$mail->addAddress($_POST["Email"]);
+$mail->Subject = " A propos votre Avis sur notre site Animali.tn ";
+$mail->Body = "Bonjour Madame/Monsieur ".$inom.", votre mot de passe est ".$ipwd." ! ";
+if($mail->send())
+	{
+	   }
+	else
+	{
+		echo $mail->ErrorInfo;
+	}
+  }}
+
+  header('Location: signin.php');
 ?>
+
+
+
+
 <!DOCTYPE html>
+
+
 <html lang="en" dir="ltr">
 
 
-<!-- Mirrored from slidesigma.com/themes/html/petitudio/blog-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Apr 2021 14:04:30 GMT -->
+<!-- Mirrored from slidesigma.com/themes/html/petitudio/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Apr 2021 14:05:20 GMT -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animali - Pet Shop HTML Template</title>
+  <title>Petitdio - Pet Shop HTML Template</title>
 
   <!-- Vendor Stylesheets -->
   <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
@@ -45,7 +92,37 @@
   </div>
   <!-- Prealoader End -->
 
- 
+  <!-- Newsletter Modal Start -->
+  <div class="modal fade" id="androNewsletterPopup" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog andro_newsletter-popup-modal modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="assets/img/ig/3.jpg" alt="newsletter">
+          <div class="close-btn close newsletter-popup-trigger" data-dismiss="modal">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="modal-body">
+
+          <div class="andro_newsletter-popup-text-wrapper">
+            <h3>Join Our Newsletter</h3>
+            <p>Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui posuere.</p>
+          </div>
+
+          <form method="post" class="text-center">
+            <div class="form-group">
+              <input type="email" placeholder="Email Address" class="form-control" name="newsletter-email" value="">
+            </div>
+            <button type="submit" class="andro_btn-custom" name="button">Subscribe</button>
+            <span class="newsletter-popup-trigger" data-dismiss="modal">No Thanks</span>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Newsletter Modal End -->
 
   <!-- Quick View Modal Start -->
   <div class="modal fade andro_quick-view-modal" id="quickViewModal" role="dialog" aria-hidden="true">
@@ -235,13 +312,17 @@
         </ul>
       </li>
       <li class="menu-item menu-item-has-children">
-        <a href="#">Veterinaire</a>
+        <a href="#">Blog</a>
         <ul class="sub-menu">
           <li class="menu-item menu-item-has-children">
-            <a href="blog-list.html">conseils_vet</a>
-            
+            <a href="blog-grid.html">Blog Archive</a>
+            <ul class="sub-menu">
+              <li class="menu-item"> <a href="blog-grid.html">Grid View</a> </li>
+              <li class="menu-item"> <a href="blog-list.html">List View</a> </li>
+              <li class="menu-item"> <a href="blog-masonry.html">Masonry View</a> </li>
+            </ul>
           </li>
-          <li class="menu-item"> <a href="post-single.html">contact_vet</a> </li>
+          <li class="menu-item"> <a href="post-single.html">Blog Single</a> </li>
         </ul>
       </li>
       <li class="menu-item menu-item-has-children">
@@ -275,34 +356,31 @@
   <!-- Header Start -->
   <header class="andro_header header-1">
 
-      <!-- Header Start -->
-  <header class="andro_header header-1">
-
-<!-- Topheader Start -->
-<div class="andro_header-top">
-  <div class="container">
-    <div class="andro_header-top-inner">
-      <ul class="andro_header-top-sm andro_sm">
-        <li> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
-        <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
-        <li> <a href="#"> <i class="fab fa-linkedin-in"></i> </a> </li>
-        <li> <a href="#"> <i class="fab fa-youtube"></i> </a> </li>
-      </ul>
-      <ul class="andro_header-top-links">
-        <li class="menu-item"><a href="compte.php"> My Account </a></li>
-        <li class="menu-item menu-item-has-children">
-          <a href="#"> <span class="andro_current-currency-text">Currency</span> (USD) </a>
-          <ul class="sub-menu sub-menu-left">
-            <li> <a href="#">United States Dollar (USD)</a> </li>
-            <li> <a href="#">Kuwait Dinar (KWD)</a> </li>
-            <li> <a href="#">Pound Sterling (GBP)</a> </li>
+    <!-- Topheader Start -->
+    <div class="andro_header-top">
+      <div class="container">
+        <div class="andro_header-top-inner">
+          <ul class="andro_header-top-sm andro_sm">
+            <li> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
+            <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
+            <li> <a href="#"> <i class="fab fa-linkedin-in"></i> </a> </li>
+            <li> <a href="#"> <i class="fab fa-youtube"></i> </a> </li>
           </ul>
-        </li>
-      </ul>
+          <ul class="andro_header-top-links">
+            <li class="menu-item"><a href="login.html"> My Account </a></li>
+            <li class="menu-item menu-item-has-children">
+              <a href="#"> <span class="andro_current-currency-text">Currency</span> (USD) </a>
+              <ul class="sub-menu sub-menu-left">
+                <li> <a href="#">United States Dollar (USD)</a> </li>
+                <li> <a href="#">Kuwait Dinar (KWD)</a> </li>
+                <li> <a href="#">Pound Sterling (GBP)</a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<!-- Topheader End -->
+    <!-- Topheader End -->
 
     <!-- Middle Header Start -->
     <div class="andro_header-middle">
@@ -369,14 +447,10 @@
           <div class="andro_header-controls">
 
             <ul class="andro_header-controls-inner">
-              <li class="andro_header-favorites"> <a href="wishlist.html" title="Your Wishlist"> <i class="flaticon-like"></i> </a> </li>
+        
               <li class="andro_header-cart">
-                <a href="cart.html" title="Your Cart">
+                <a href="panier.php" title="bag">
                   <i class="flaticon-shopping-basket"></i>
-                  <div class="andro_header-cart-content">
-                    <span>9 Items</span>
-                    <span>249.99$</span>
-                  </div>
                 </a>
               </li>
             </ul>
@@ -411,13 +485,17 @@
               </ul>
             </li>
             <li class="menu-item menu-item-has-children">
-              <a href="#">Veterinaire</a>
+              <a href="#">Blog</a>
               <ul class="sub-menu">
                 <li class="menu-item menu-item-has-children">
-                  <a href="blog-list.html">conseils_vet</a>
-                  
+                  <a href="blog-grid.html">Blog Archive</a>
+                  <ul class="sub-menu">
+                    <li class="menu-item"> <a href="blog-grid.html">Grid View</a> </li>
+                    <li class="menu-item"> <a href="blog-list.html">List View</a> </li>
+                    <li class="menu-item"> <a href="blog-masonry.html">Masonry View</a> </li>
+                  </ul>
                 </li>
-                <li class="menu-item"> <a href="post-single.html">contact_vet</a> </li>
+                <li class="menu-item"> <a href="post-single.html">Blog Single</a> </li>
               </ul>
             </li>
             <li class="menu-item menu-item-has-children">
@@ -491,67 +569,49 @@
   </header>
   <!-- Header End -->
 
-  <!-- Subheader Start -->
-  <div class="andro_subheader pattern-bg primary-bg">
+  <div class="section">
+    <div class="imgs-wrapper">
+      <img src="assets/img/products/1.png" alt="veg" class="d-none d-lg-block">
+      <img src="assets/img/products/14.png" alt="veg" class="d-none d-lg-block">
+    </div>
     <div class="container">
-      <div class="andro_subheader-inner">
-        <h1>conseils </h1>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Veterinaire</a></li>
-            <li class="breadcrumb-item active" aria-current="page">contact_vet</li>
-          </ol>
-        </nav>
+      <div class="andro_auth-wrapper">
+
+        <div class="andro_auth-description bg-cover bg-center dark-overlay dark-overlay-2" style="background-image: url('assets/img/auth.jpg')">
+          <div class="andro_auth-description-inner">
+            <i class="flaticon-pawprint-1"></i>
+            <h2>Welcome Back!</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+        </div>
+        <div class="andro_auth-form">
+
+          <h2>Password Recovery</h2>
+
+          <form method="post">
+
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="CIN" name="CIN" name="CIN" value="">
+            </div>
+            
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Email" name="Email" name="Email" value="">
+            </div>
+
+            <button type="submit" class="andro_btn-custom primary">Send Mail</button>
+
+            <div class="andro_auth-seperator">
+             
+            </div>
+
+           <a href="register.php">Create One</a> 
+
+          </form>
+        </div>
+
       </div>
     </div>
   </div>
-  <!-- Subheader End -->
-
-  <!-- Blog Posts Start -->
-  <div class="section">
-    <div class="container">
-
-    <div class="col-lg-4 col-md-6">
-          <article class="andro_post">
-            <div class="andro_post-thumb">
-            </div>
-            <div class="andro_post-body">
-              <div class="andro_post-desc">
-               
-			<?PHP
-				foreach($listecons as $conseilC){
-			?>
-
-    
-          <div class="andro_post-desc">
-         <img src="assets\img\ig\20.jpg" width="250" height="100">
-            <h5>Description </h5> 
-             <p> <?PHP echo $conseilC['description']; ?> </p>
-     
-             </div>
-      
-      
-			<?PHP
-				}
-			?>
-             
-          </article>
-        </div>
-
-	
-						
-
-						
-						
-
-			</main>
-
-
-
-    </div>
-  </div>
-  <!-- Blog Posts End -->
 
   <!-- Footer Start -->
   <footer class="andro_footer">
@@ -598,12 +658,14 @@
               <li> <a href="checkout.php">Checkout</a> </li>
               <li> <a href="panier.php">Bag</a> </li>
               <li> <a href="afficherprod.php">Product</a> </li>
+              
             </ul>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 footer-widget">
             <h5 class="widget-title">Social Media</h5>
             <ul class="social-media">
               <li> <a href="#" class="facebook"> <i class="fab fa-facebook-f"></i> </a> </li>
+              
             </ul>
             <div class="andro_footer-offer">
               <p>Signup and get exclusive offers and coupon codes</p>
@@ -655,5 +717,5 @@
 </body>
 
 
-<!-- Mirrored from slidesigma.com/themes/html/petitudio/blog-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Apr 2021 14:04:30 GMT -->
+<!-- Mirrored from slidesigma.com/themes/html/petitudio/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Apr 2021 14:05:54 GMT -->
 </html>

@@ -164,7 +164,17 @@ function recupMail($CIN){
 	}
 }	
 	
-
+function recupMDP($CIN){
+	$sql="SELECT * from Client where CIN=$CIN";
+	$db =config::getConnexion();
+	try{
+	$liste=$db->query($sql);
+	return $liste;
+	}
+	catch (Exception $e){
+		die('Erreur: '.$e->getMessage());
+	}
+}
 	
 }
 ?> 
