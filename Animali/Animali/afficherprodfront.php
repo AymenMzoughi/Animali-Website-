@@ -1,8 +1,10 @@
 <?php
     require_once '../Controller/produitC.php';
+    
 
     $produitC =  new produitC();
     $listeprod = $produitC->afficherProduit();
+    
     
 ?>
 
@@ -14,7 +16,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Petitdio - Pet Shop HTML Template</title>
+  <title>Petitdio - Pet Shop </title>
 
   <!-- Vendor Stylesheets -->
   <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
@@ -34,7 +36,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
 
 </head>
-
 <body>
 
   <!-- Prealoder start -->
@@ -313,6 +314,7 @@
           <a class="navbar-brand" href="index-2.html"> <img src="assets/img/animaliLogo.png" alt="logo"> </a>
 
           <!-- Search Form -->
+         
           <div class="andro_search-adv">
             <form method="post">
               <div class="andro_search-adv-cats">
@@ -322,39 +324,20 @@
                   <div class="andro_dropdown-scroll">
                     <label>
                       <input type="checkbox" name="category1" value="food">
-                      Canned Food
+                      
                       <i class="fas fa-check"></i>
                     </label>
                     <label>
                       <input type="checkbox" name="category2" value="home-care">
-                      Cat Food 
+                      
                       <i class="fas fa-check"></i>
                     </label>
                     <label>
                       <input type="checkbox" name="category3" value="keto">
-                      Beef Tomato
+                      
                       <i class="fas fa-check"></i>
                     </label>
-                    <label>
-                      <input type="checkbox" name="category4" value="baskets">
-                      Dental Chews
-                      <i class="fas fa-check"></i>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="category5" value="supplements">
-                      Capsules 
-                      <i class="fas fa-check"></i>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="category6" value="baby-kids">
-                      Chicken Cutlets 
-                      <i class="fas fa-check"></i>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="category7" value="serum">
-                      Petwhisper Meet
-                      <i class="fas fa-check"></i>
-                    </label>
+                    
                   </div>
 
                 </div>
@@ -531,446 +514,45 @@
             </form>
           </div>
           <!-- Product Count & Orderby End -->
-          <div class="container-fluid p-0">
-
-<h1 class="h3 mb-3">Afficher liste produits </h1>
-
-<div class="row">
-    <div class="col-12 col-xl-6">
-        <div class="card">
-            
-        <table border=1 align = 'center'>
-<tr>
-<th>ref</th>
-<th>prix</th>
-<th>nomproduit</th>
-<th>description</th>
-<th>idcategorie</th>
-<th>supprimer</th>
-<th>modifier</th>
-<th>trier</th>
-
-</tr>
-
-<?PHP
-foreach($listeprod as $produitC){
-?>
-<tr>
-<td><?PHP echo $produitC['ref']; ?></td>
-<td><?PHP echo $produitC['prix']; ?></td>
-<td><?PHP echo $produitC['nomprod']; ?></td>
-<td><?PHP echo $produitC['descprod']; ?></td>
-<td><?PHP echo $produitC['idcat']; ?></td>
-
-<td>
-    <form method="POST" action="supprimerprod.php">
-    <input type="submit" name="supprimer" value="supprimer">
-    <input type="hidden" value=<?PHP echo $produitC['ref']; ?> name="ref">
-    </form>
-</td>
-<td>
-    <a href="modifierprod.php?ref=<?PHP echo $produitC['ref']; ?>"> Modifier </a>
-</td>
-<td>
-    <a href="trierprod.php?id=<?PHP echo $produitC['ref']; ?>"> trier </a>
-</td>
-</tr>
-<?PHP
-}
-?>
-</table>
-        </div>
-    </div>
 
           <div class="row masonry">
-
+          <?PHP
+                foreach($listeprod as $produitC){
+            ?>
             <!-- Product Start -->
             <div class="col-md-3 col-sm-4 masonry-item">
               <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-badge andro_badge-featured">
-                  <i class="fa fa-star"></i>
-                  <span>Featured</span>
-                </div>
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/7.png" alt="product"></a>
+                
+              
+                <div class="andro_product-body">
+                  <div class="andro_product-title"> <a href="product-single.html">reference: <?php echo $produitC['ref']; ?></a> </div>
+                  <div class="andro_rating-wrapper">
+                    
+                  </div>
                 </div>
                 <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html">Parrot Food</a> </h6>
+                  <div class="andro_product-title"> <a href="product-single.html">nom produit: <?php echo $produitC['nomprod']; ?></a> </div>
                   <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
+                    
                   </div>
                 </div>
                 <div class="andro_product-footer">
                   <div class="andro_product-price">
-                    <span>19$</span>
-                    <span>29$</span>
+                    <span><?php echo $produitC['prix']; ?>.dt</span>
+                    
                   </div>
                   <div class="andro_product-buttons">
                     <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
+                   
                   </div>
                 </div>
               </div>
             </div>
             <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/8.png" alt="product"></a>
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html"> Pet Food Meat </a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>8$</span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/9.png" alt="product"></a>
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html"> Pet Food Meat </a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>6$</span>
-                    <span></span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/10.png" alt="product"></a>
-                </div>
-                <div class="andro_product-badge andro_badge-sale">
-                  20% Off
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html">Chicken Cutlets</a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>19$</span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-badge andro_badge-featured">
-                  <i class="fa fa-star"></i>
-                  <span>Featured</span>
-                </div>
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/11.png" alt="product"></a>
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html">Snack Food</a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>13$</span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/12.png" alt="product"></a>
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html">Chicken Cutlets</a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>19$</span>
-                    <span>29$</span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/2.png" alt="product"></a>
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html">Chicken Meal </a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>19$</span>
-                    <span>29$</span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/4.png" alt="product"></a>
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html"> Brown rice </a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>29$</span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/5.png" alt="product"></a>
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html"> Petwhisper Meets 30:0 </a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>29$</span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/6.png" alt="product"></a>
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html">Canned Food</a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>29$</span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/14.png" alt="product"></a>
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html">Chicken Cutlets</a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>29$</span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
-            <!-- Product Start -->
-            <div class="col-md-3 col-sm-4 masonry-item">
-              <div class="andro_product andro_product-minimal andro_product-has-controls andro_product-has-buttons">
-                <div class="andro_product-thumb">
-                  <a href="product-single.html"><img src="assets/img/products/15.png" alt="product"></a>
-                </div>
-                <div class="andro_product-body">
-                  <h6 class="andro_product-title"> <a href="product-single.html"> Red Meat  </a> </h6>
-                  <div class="andro_rating-wrapper">
-                    <div class="andro_rating">
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star active"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="andro_product-footer">
-                  <div class="andro_product-price">
-                    <span>13$</span>
-                  </div>
-                  <div class="andro_product-buttons">
-                    <a href="#" class="andro_btn-custom primary">Add To Cart</a>
-                    <a href="#" data-toggle="modal" data-target="#quickViewModal" class="andro_btn-custom light">Quick View</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product End -->
-
+            
+            <?php 
+          
+             } ?>
           </div>
 
           <!-- Pagination Start -->
@@ -999,7 +581,7 @@ foreach($listeprod as $produitC){
               </form>
             </div>
             <!-- Search End -->
-
+            
             <!-- Filter: Categories Start -->
             <div class="sidebar-widget">
               <h5 class="widget-title"> Category </h5>
@@ -1045,79 +627,6 @@ foreach($listeprod as $produitC){
             </div>
             <!-- Filter: Categories End -->
 
-            <!-- Filter: Condition Start -->
-            <div class="sidebar-widget">
-              <h5 class="widget-title"> Condition </h5>
-              <ul class="sidebar-widget-list">
-                <li>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck7">
-                    <label class="custom-control-label" for="customCheck7">Daily Deal</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck8">
-                    <label class="custom-control-label" for="customCheck8">On Sale</label>
-                  </div>
-                </li>
-              </ul>
-
-            </div>
-            <!-- Filter: Condition End -->
-
-            <!-- Filter: State Start -->
-            <div class="sidebar-widget">
-              <h5 class="widget-title"> Brand </h5>
-              <ul class="sidebar-widget-list">
-                <li>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck9">
-                    <label class="custom-control-label" for="customCheck9">Bird Life</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck10">
-                    <label class="custom-control-label" for="customCheck10">Whole THC-Dominants</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck11">
-                    <label class="custom-control-label" for="customCheck11">Shrubbery co.</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck12">
-                    <label class="custom-control-label" for="customCheck12">Better Life</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck13">
-                    <label class="custom-control-label" for="customCheck13">Organica</label>
-                  </div>
-                </li>
-              </ul>
-
-            </div>
-            <!-- Filter: State End -->
-
-            <!-- Filter: Freshness Start -->
-            <div class="sidebar-widget">
-              <h5 class="widget-title"> Freshness </h5>
-              <input type="text" class="js-range-slider" name="freshness_range" value="" data-type="double" data-min="0" data-max="10" data-from="4" data-to="6" data-grid="true" data-postfix=" days" />
-            </div>
-            <!-- Filter: Freshness End -->
-
-            <!-- Filter: Price Start -->
-            <div class="sidebar-widget">
-              <h5 class="widget-title"> Price </h5>
-              <input type="text" class="js-range-slider" name="freshness_range" value="" data-type="double" data-min="0" data-max="500" data-from="10" data-to="100" data-grid="true" data-postfix=" $" />
-            </div>
-            <!-- Filter: Price End -->
 
           </div>
         </div>
@@ -1129,58 +638,14 @@ foreach($listeprod as $produitC){
   </div>
   <!-- Products End -->
 
-  <!-- Instagram Start -->
-  <div class="row no-gutters">
-    <div class="col-lg-4 secondary-bg pattern-bg">
-      <div class="andro_instagram">
-        <h3 class="text-white">Follow Us On Instagram</h3>
-        <a href="#" class="andro_btn-custom light">Follow Us</a>
-      </div>
-    </div>
-    <div class="col-lg-8">
-      <div class="row no-gutters">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-6 p-0">
-          <a href="#" class="andro_ig-item">
-            <img src="assets/img/ig/1.jpg" alt="ig">
-          </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-6 p-0">
-          <a href="#" class="andro_ig-item">
-            <img src="assets/img/ig/2.jpg" alt="ig">
-          </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-6 p-0">
-          <a href="#" class="andro_ig-item">
-            <img src="assets/img/ig/3.jpg" alt="ig">
-          </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-6 p-0">
-          <a href="#" class="andro_ig-item">
-            <img src="assets/img/ig/4.jpg" alt="ig">
-          </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-6 p-0">
-          <a href="#" class="andro_ig-item">
-            <img src="assets/img/ig/5.jpg" alt="ig">
-          </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-6 p-0">
-          <a href="#" class="andro_ig-item">
-            <img src="assets/img/ig/6.jpg" alt="ig">
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Instagram End -->
-
+   
   <!-- Footer Start -->
   <footer class="andro_footer">
     <!-- Top Footer -->
     <div class="container">
       <div class="andro_footer-top">
         <div class="andro_footer-logo">
-          <img src="assets/img/animaliLogo.png" alt="logo">
+          <img src="assets/img/logo.png" alt="logo">
         </div>
         <div class="andro_footer-buttons">
           <a href="#"> <img src="assets/img/android.png" alt="download it on the app store"></a>
@@ -1216,20 +681,15 @@ foreach($listeprod as $produitC){
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 footer-widget">
             <h5 class="widget-title">Others</h5>
             <ul>
-              <li> <a href="checkout.html">Checkout</a> </li>
-              <li> <a href="cart.html">Cart</a> </li>
-              <li> <a href="product-single.html">Product</a> </li>
-              <li> <a href="shop-v1.html">Shop</a> </li>
-              <li> <a href="legal.html">Legal</a> </li>
+              <li> <a href="checkout.php">Checkout</a> </li>
+              <li> <a href="panier.php">Bag</a> </li>
+              <li> <a href="afficherprod.php">Product</a> </li>
             </ul>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 footer-widget">
             <h5 class="widget-title">Social Media</h5>
             <ul class="social-media">
               <li> <a href="#" class="facebook"> <i class="fab fa-facebook-f"></i> </a> </li>
-              <li> <a href="#" class="pinterest"> <i class="fab fa-pinterest-p"></i> </a> </li>
-              <li> <a href="#" class="google"> <i class="fab fa-google"></i> </a> </li>
-              <li> <a href="#" class="twitter"> <i class="fab fa-twitter"></i> </a> </li>
             </ul>
             <div class="andro_footer-offer">
               <p>Signup and get exclusive offers and coupon codes</p>

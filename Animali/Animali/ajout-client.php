@@ -10,7 +10,7 @@ $client1=new client($_POST['CIN'],$_POST['Sexe'],$_POST['Nom'],$_POST['Prenom'],
 $userC->ajouterclient($client1);
  
     // On teste si la variable de session existe et contient une valeur
-	header('Location: register.php');
+	header('Location: signin.php');
 }
 }
 
