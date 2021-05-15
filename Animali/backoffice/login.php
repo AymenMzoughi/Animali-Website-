@@ -79,7 +79,7 @@ if (isset($_POST["login"]) &&
 														</div>
 														<div class="form-group">
 															<label for="inputUsername">Password</label>
-															<textarea rows="2" class="form-control" id="password" name="password"  id="password" placeholder="password" ></textarea>
+															<input  type="password" class="form-control" id="password" name="password"  id="password" placeholder="password" >
 														</div>
 													</div>
 													

@@ -28,7 +28,6 @@ isset($_POST["idclient"])
 
 $reclamation= new reclamation($_POST['probleme'],$_POST['date'],"non traitee",$_POST['sujet'],$_POST['idclient']);
 $message=$reclamationC->ajouterrelcamation($reclamation);
-echo $message;
 echo "<script type='text/javascript'>document.location.replace('compte.php');</script>";
 }}
  

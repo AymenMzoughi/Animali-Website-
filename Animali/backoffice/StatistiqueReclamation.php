@@ -16,9 +16,6 @@ $probleme3="N est pas le produit souhaite";
 $nprobleme3=$reclamationC->calculerReclamation($probleme3);
 $probleme4="Autre";
 $nprobleme4=$reclamationC->calculerReclamation($probleme4);
-echo $nprobleme1; 
-echo $nprobleme2; 
-echo $nprobleme3; 
 ?>
 
 <!DOCTYPE html>
@@ -90,8 +87,8 @@ echo $nprobleme3;
               <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
 						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
-							<li class="sidebar-item active"><a class="sidebar-link" href="AfficherReclamation.php">Reclamations </a></li>
-							<li class="sidebar-item   "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
+							<li class="sidebar-item "><a class="sidebar-link" href="AfficherReclamation.php">Reclamations </a></li>
+							<li class="sidebar-item active  "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="Afficheravis.php">Avis </a></li>
 							
 						</ul>
