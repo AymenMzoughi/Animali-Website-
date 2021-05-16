@@ -14,6 +14,19 @@
         }		
         } 
 
+        function recuperer($idcommande){
+            $sql="SELECT * from commande where idcommande=$idcommande";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }	
+        }
+
+
 
         function calculecommande(){
             $sql="SELECT * FROM lignecommande ";

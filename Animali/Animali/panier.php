@@ -294,11 +294,12 @@
 						<th style="width: 25%"> id commande</th>
 						<th style="width:70%"> date commande</th>
 						<th style="width:70%"> id produit </th>
-						<th style="width:70%"> quantite</th>
+						<th style="width:70%"> prix</th>
 						<th style="width:70%"> id client </th>
 						<th style="width:70%"> Supprimer </th>
 						<th style="width:70%"> Modifier </th>
             <th style="width:70%"> Trier </th>
+            <th style="width:70%"> Checkout </th>
                                         
                                         </tr>
                                     </thead>
@@ -310,7 +311,7 @@ foreach($Listecommandes as $user){
 <td><?PHP echo $user['idcommande']; ?></td>
 <td><?PHP echo $user['date_commande']; ?></td>
 <td><?PHP echo $user['produits']; ?></td>
-<td><?PHP echo $user['quantite']; ?></td>
+<td><?PHP echo $user['prix']; ?></td>
 <td><?PHP echo $user['id_client']; ?></td>
 <td>
 <form>
@@ -330,6 +331,14 @@ foreach($Listecommandes as $user){
 <form>
 <div >
 <a type="button" class="btn btn-outline-primary" href = "trilignecommande.php?idcommande=<?= $user['idcommande'] ?>">Trier</a>
+</div>  
+</td>
+
+
+<td>
+<form>
+<div >
+<a type="button" class="btn btn-outline-primary" href = "checkout.php?idcommande=<?= $user['idcommande'] ?>">Checkout</a>
 </div>  
 </td>
 
@@ -355,17 +364,7 @@ foreach($Listecommandes as $user){
     </div>
 
     
-<form>
-<div >
-<br>
-<hr>
-<center>
-<a type="button" class="btn btn-outline-primary" href = "checkout.php">checkout</a>
-</center>
-<br>
-<hr>
-</div>  
-</form>
+>
   </div>
   <!-- Cart End -->
 

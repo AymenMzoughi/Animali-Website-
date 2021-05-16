@@ -11,6 +11,20 @@
     }
 
  $error = "";
+
+
+
+ if (isset($_GET['idcommande'])){
+  $LignecommandeC =  new LignecommandeC();
+
+  $result =  $LignecommandeC->recuperer($_GET['idcommande']);
+ foreach($result as $row)
+{
+ $prix=$row['prix'];
+ $id_produit=$row['produits'];
+
+
+}}
  
      $idclient=$_SESSION['id'];
     $LignecommandeC =  new LignecommandeC();
@@ -360,7 +374,8 @@ $list1=mysqli_query($con,$idcmd);
             </div>
             <div class="form-group">
               <label>Prix</label>
-              <input type="text" class="form-control" name="prix" placeholder="prix" id="prix"  value="">
+              <input type="text" class="form-control" name="prix" placeholder="prix" id="prix"  value="<?php echo  $prix; ?>" >
+
             </div>
             
               <div class="form-group">
@@ -383,40 +398,27 @@ $list1=mysqli_query($con,$idcmd);
               </div>
               <div class="form-group">
                 <label>Id produit</label>
-                <select type="id_produit" class="form-control" name="id_produit" placeholder="id_produit" id="id_produit" >
-						<option value="">id produit : </option>
-						
-						<?php while($row=mysqli_fetch_array($list)):?>
-					
-						<option value="<?php echo $row[2];?>" > <?php echo $row[2];?>   </option>";
-						<?php endwhile; ?>
-						</select>
+                <input type="number" class="form-control" name="id_produit" placeholder="id_produit" id="id_produit" value="<?php echo  $id_produit; ?>" >
               </div>
               <div class="form-group">
                 <label>Id cmd</label>
-                <select class="form-control"  placeholder="idcmd"  id="idcmd" name="idcmd">
-						<option value="">id cmd : </option>
-						
-						<?php while($row=mysqli_fetch_array($list1)):?>
-					
-						<option value="<?php echo $row[0];?>" > <?php echo $row[0];?></option>";
-						<?php endwhile; ?>
-					
-					
-						</select>
+                <input type="number" class="form-control" name="idcmd" placeholder="idcmd" id="idcmd" value="<?php echo  $_GET["idcommande"]; ?>">
+              </div>
             </div>
-             </form>
-              <td>
-<div >
+            </div>
+
+
+            <div >
 <hr>
 <button onclick="return verif();" type="submit" class="andro_btn-custom shadow-none btn-sm" name="button" >Confirmer votre commande</a>
 </div>  
+             </form>
+              <td>
+             
+
 
 </td>
 <br>
-                    <td>
-                        <input type="reset" class="andro_btn-custom shadow-none btn-sm" value="Annuler" >
-                    </td>
                 </tr>
                 
           </div>

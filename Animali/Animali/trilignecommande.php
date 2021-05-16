@@ -276,7 +276,7 @@ if(empty($_SESSION['c']))
 </div>
 </div>
 
-					<h1 class="h3 mb-3">Liste des commandes triee par quantite : </h1>
+					<h1 class="h3 mb-3">Liste des commandes triee par prix : </h1>
 
 					<div class="row">
 						<div class="col-12 col-xl-6">
@@ -290,7 +290,7 @@ if(empty($_SESSION['c']))
                                die("probleme de connexion".mysqli_connect_error());
                 
                                      }
-                                 $sql="SELECT idcommande, date_commande, produits, quantite, id_client FROM commande ORDER BY quantite";
+                                 $sql="SELECT idcommande, date_commande, produits, prix, id_client FROM commande ORDER BY prix";
                                   $result=mysqli_query($con,$sql);
                                  if(mysqli_num_rows($result)>0)
                                   {
@@ -298,7 +298,7 @@ if(empty($_SESSION['c']))
                                     {
                                         
                                echo "--id Commande  : " .$row["idcommande"]. "<br/>"; 
-                              echo "date commande : " .$row["date_commande"]. " | nom produit : ".$row["produits"]. " | quantite : ".$row["quantite"]. " | id client : ".$row["id_client"].  "<br/>";
+                              echo "date commande : " .$row["date_commande"]. " | nom produit : ".$row["produits"]. " | prix : ".$row["prix"]. " | id client : ".$row["id_client"].  "<br/>";
                               
                             
                         }

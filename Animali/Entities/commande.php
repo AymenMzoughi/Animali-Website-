@@ -3,14 +3,14 @@
         private $idcommande ;
         private $date_commande;
         private $produits;
-        private $quantite ;
+        private $prix ;
         private $id_client ;
 
-        public function __construct($date_commande, $produits,$quantite,$id_client){
+        public function __construct($date_commande, $produits,$prix,$id_client){
 
             $this->date_commande = $date_commande;
             $this->produits = $produits;
-            $this->quantite=$quantite;
+            $this->prix=$prix;
             $this->id_client=$id_client;
   
         }
@@ -30,8 +30,8 @@
             return $this->produits ;
         }
 
-        public function getquantite(){
-            return $this->quantite ;
+        public function getprix(){
+            return $this->prix ;
         }
 
         public function getid_client(){

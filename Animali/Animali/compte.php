@@ -292,10 +292,7 @@ if(empty($_SESSION['c']))
 <a type="button" class="andro_btn-custom shadow-none btn-sm"  href="panier.php" name="button"  >Ma liste des commandes</a>
 </div>
 
-<div >
-<br>
-<a type="button" class="andro_btn-custom shadow-none btn-sm"  href="checkout.php" name="button"  >Confirmer mes commandes</a>
-</div>
+
 
 <div >
 </center>

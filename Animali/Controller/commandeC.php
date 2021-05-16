@@ -37,6 +37,18 @@
                 die('Erreur: '.$e->getMessage());
             }	
         }
+
+        function recupererprix($ref){
+            $sql="SELECT * from produits where ref=$ref";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }	
+        }
         function recuperercommande1($id_client){
             $sql="SELECT * from commande where id_client=$id_client";
             $db = config::getConnexion();
@@ -70,8 +82,8 @@
 
         public function ajoutercommande($commande) {
             
-                $sql="INSERT INTO commande (idcommande, date_commande,produits, quantite , id_client) 
-                VALUES (:idcommande, :date_commande, :produits, :quantite, :id_client)" ;
+                $sql="INSERT INTO commande (idcommande, date_commande,produits, prix , id_client) 
+                VALUES (:idcommande, :date_commande, :produits, :prix, :id_client)" ;
               $db = config::getConnexion();
               try {
                $query = $db->prepare($sql);
@@ -80,7 +92,7 @@
                     'idcommande' => $commande->getidcommande(),
                     'date_commande' => $commande->getdate_commande(),
                     'produits' => $commande->getproduits(),
-                    'quantite' => $commande->getquantite(),
+                    'prix' => $commande->getprix(),
                     'id_client' => $commande->getid_client()
                 ]);
             } catch (PDOException $e) {
@@ -89,20 +101,20 @@
         }
 
         public function modifiercommande($commande, $idcommande) {
-            $sql="UPDATE commande SET date_commande=:date_commande ,produits=:produits, quantite=:quantite, id_client=:id_client
+            $sql="UPDATE commande SET date_commande=:date_commande ,produits=:produits, prix=:prix, id_client=:id_client
             WHERE idcommande=:idcommande ;";
             $db = config::getConnexion();
             try {
                 $req=$db->prepare($sql);
                 $date_commande = $commande->getdate_commande();
                 $produits = $commande->getproduits();
-                $quantite = $commande->getquantite();
+                $qprix = $commande->getprix();
                 $id_client = $commande->getid_client();
 
                 $req->bindValue(':idcommande', $idcommande);
                 $req->bindValue(':date_commande', $date_commande);
                 $req->bindValue(':produits', $produits);
-                $req->bindValue(':quantite', $quantite);
+                $req->bindValue(':prix', $prix);
                 $req->bindValue(':id_client', $id_client);
 
                 $s=$req->execute();}

@@ -13,7 +13,16 @@
  $error = "";
     $commandeC =  new commandeC();
     
-
+    if (isset($_GET['ref'])){
+      $commandeC =  new commandeC();
+ 
+      $result =  $commandeC->recupererprix($_GET['ref']);
+     foreach($result as $row)
+   {
+     $prix=$row['prix'];
+   
+   
+   }}
    
 
 
@@ -21,7 +30,7 @@
       
         isset($_POST["date_commande"]) &&
         isset($_POST["produits"]) &&
-        isset($_POST["quantite"]) &&
+        isset($_POST["prix"]) &&
         isset($_POST["id_client"])
        )
     
@@ -30,7 +39,7 @@
             
             !empty($_POST["date_commande"])&&
             !empty($_POST["produits"])&&
-            !empty($_POST["quantite"])&&
+            !empty($_POST["prix"])&&
             !empty($_POST["id_client"])
         ) 
         
@@ -39,7 +48,7 @@
                
                 $_POST['date_commande'],
                 $_POST['produits'],
-                $_POST['quantite'],
+                $_POST['prix'],
                 $_POST['id_client']
             );
             $commandeC->ajoutercommande($Commande);
@@ -87,8 +96,8 @@
    else if(f.produits.value =="" )
    {alert ("veillez remplir votre champs de nom produit !");
    return false;
-   }else if(f.quantite.value =="" )
-   {alert ("veillez remplir votre champs de quantite !");
+   }else if(f.prix.value =="" )
+   {alert ("veillez remplir votre champs de prix !");
    return false;
    }else if(f.id_client.value == "" )
    {alert ("veillez remplir votre champs d id_client !");
@@ -368,8 +377,8 @@
               </div>
 
               <div class="form-group">
-                <label>Quantite</label>
-                <input type="number" class="form-control" name="quantite" placeholder="quantite" value="">
+                <label>Prix</label>
+                <input type="text" class="form-control" name="prix" placeholder="prix" value="<?php echo  $prix ; ?>" >
               </div>
               
               <div class="form-group">

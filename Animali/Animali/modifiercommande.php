@@ -19,7 +19,7 @@
      $id=$row['idcommande'];
      $date=$row['date_commande'];
      $produits=$row['produits'];
-     $quantite=$row['quantite'];
+     $prix=$row['prix'];
      $idc=$row['id_client'];
    
    
@@ -323,8 +323,8 @@
 
                                                  </div>
                                                  <div class="form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">Quantite</label></div>
-                                                     <div class="col-12 col-md-9"><input type="number" id="quantite" name="quantite"   value="<?PHP echo $quantite; ?>"class="form-control"><small class="form-text text-muted"></small></div>
+                                                <div class="col col-md-3"><label class=" form-control-label">Prix</label></div>
+                                                     <div class="col-12 col-md-9"><input type="text" id="prix" name="prix"   value="<?PHP echo $prix; ?>"class="form-control"><small class="form-text text-muted"></small></div>
                                                      <div class="col-12 col-md-9">
 
 

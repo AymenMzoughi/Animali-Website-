@@ -302,8 +302,8 @@
                     
                   </div>
                   <div class="andro_product-buttons">
-                    <a href="produit.php?ref=<?= $produitC['ref'] ?>" class="andro_btn-custom primary">Add To Cart</a>
-                   
+                    <a href="produit.php?ref=<?= $produitC['ref'] ?> " class="andro_btn-custom primary"> Add To Cart</a> 
+                  
                   </div>
                 </div>
               </div>
