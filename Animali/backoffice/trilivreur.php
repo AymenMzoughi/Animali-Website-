@@ -1,26 +1,21 @@
 <?php
-     include '../Controller/livreurC.php';
-     session_start();
-     // On teste si la variable de session existe et contient une valeur
-     if(empty($_SESSION['e']))
-     {
-         // Si inexistante ou nulle, on redirige vers le formulaire de login
-         echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
-        }
-     $livreurC =  new livreurC();
-     $listeliv = $livreurC->afficherlivreur();
- 
- /*$descprod1="alimentation";
- $descprod2="hygiene";
- $descprod3="accessoire";
+session_start();
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
+   }
+$servername="localhost";
+$username="root";
+$password="";
+$bdd="Animali";
+$con=mysqli_connect($servername,$username,$password,$bdd);
 
- $ndescprod1=$produitC->calculerProduit($descprod1);   
- $ndescprod2=$produitC->calculerProduit($descprod2);
- $ndescprod3=$produitC->calculerProduit($descprod3);*/
 
 ?>
-    
-    <!DOCTYPE html>
+     
+     <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -91,8 +86,8 @@
 						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
 							<li class="sidebar-item "><a class="sidebar-link" href=""> afficher livraisons </a></li>
 							<li class="sidebar-item  "><a class="sidebar-link" href="ajouterlivreur.php"> Ajouter livreur </a></li>
-							<li class="sidebar-item active "><a class="sidebar-link" href="Affich-livreur.php">Afficher livreurs </a></li>
-							
+							<li class="sidebar-item  "><a class="sidebar-link" href="Affich-livreur.php">Afficher livreurs </a></li>
+                            <li class="sidebar-item active "><a class="sidebar-link" href="trilivreur.php"> Trier les livreurs </a></li>
 						</ul>
 					</li>
                     <li class="sidebar-item">
@@ -171,79 +166,60 @@
 			</nav>
 	
 
-		
-
             <main class="content">
                 <div class="container-fluid p-0">
-                <div class="text-center">
-                         
-                    <h1 class="h3 mb-3">Afficher liste livreur </h1>
+
+                    <h1 class="h3 mb-3">Liste des livreur par ID </h1>
 
                     <div class="row">
-                        <div class="col-12 col-xl-15">
+                        <div class="col-12 col-xl-6">
                             <div class="card">
                                 
-                            <table class="table table-bordered">
-        <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Daten</th>
-                <th>CIN</th>
-                <th>Adresse</th>
-                <th>Email</th>
-                <th>Supprimer</th>
-                <th>Modifier-Trier</th>
+            
 
+                                  <?PHP
+                             if(!$con)
+                             {
+                               die("probleme de connexion".mysqli_connect_error());
+                
+                                     }
+                                 $sql="SELECT * FROM livreur ORDER BY ID";
+                                  $result=mysqli_query($con,$sql);
+                                 if(mysqli_num_rows($result)>0)
+                                  {
+                                    while($row=mysqli_fetch_assoc($result))
+                                    {
+                                        
+                              echo "ID : " .$row["ID"].   "<br/>Nom : ".$row["Nom"]. "<br/>Prenom : ".$row["Prenom"]. "<br/>Daten : ".$row["Daten"]. "<br/>id CIN : ".$row["CIN"].  "<br/>id Adresse : ".$row["Adresse"].  "<br/>id Email : ".$row["Email"]. "<br/><br/><br/><br/><br/>";
+                                      
+                            
+                        }
+                                  }
+                               else {echo "0 resultats";}
+                                 mysqli_close($con);
+                             ?>
+            
+         
+                            </div>
+                        </div>
+                        </div>
+                        </div>
                         
 
-</tr>
+                        
+                        
 
-<?PHP
+            </main>
 
-foreach($listeliv as $livreurC){
-?>
-<tr>
-                    <td><?PHP echo $livreurC['ID']; ?></td>
-                    <td><?PHP echo $livreurC['Nom']; ?></td>
-                    <td><?PHP echo $livreurC['Prenom']; ?></td>
-                    <td><?PHP echo $livreurC['Daten']; ?></td>
-                    <td><?PHP echo $livreurC['CIN']; ?></td>
-                    <td><?PHP echo $livreurC['Adresse']; ?></td>
-                    <td><?PHP echo $livreurC['Email']; ?></td>
-                    
-                    <td>
-                        <form method="POST" action="supprimerlivreur.php">
-                        <input type="submit" name="supprimer" value="supprimer">
-                        <input type="hidden" value=<?PHP echo $livreurC['ID']; ?> name="ID">
-                        </form>
-                    </td>
-                    <td>
-                        <a href="modifierliv.php?ref=<?PHP echo $livreurC['ID']; ?>"> Modifier </a>
-                    </td>
-                    <td>
-                        <a href="trilivreur.php?id=<?PHP echo $livreurC['ID']; ?>"> trier </a>
-                    </td>
-                </tr>
 
-<?PHP
-}
-?>
-</table>
-        </div>
-    </div>
+
 
     
-  
-                        
-</main>
+            
+    
 
-
-</div>
-</div>
-
-<script src="js/vendor.js"></script>
-<script src="js/app.js"></script>
+    <script src="js/vendor.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 

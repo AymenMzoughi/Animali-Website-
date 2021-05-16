@@ -1,25 +1,17 @@
 <?php
-     include '../Controller/livreurC.php';
-     session_start();
-     // On teste si la variable de session existe et contient une valeur
-     if(empty($_SESSION['e']))
-     {
-         // Si inexistante ou nulle, on redirige vers le formulaire de login
-         echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
-        }
-     $livreurC =  new livreurC();
-     $listeliv = $livreurC->afficherlivreur();
- 
- /*$descprod1="alimentation";
- $descprod2="hygiene";
- $descprod3="accessoire";
-
- $ndescprod1=$produitC->calculerProduit($descprod1);   
- $ndescprod2=$produitC->calculerProduit($descprod2);
- $ndescprod3=$produitC->calculerProduit($descprod3);*/
-
-?>
+    require_once '../Controller/livreurC.php';
+    session_start();
+    // On teste si la variable de session existe et contient une valeur
+    if(empty($_SESSION['e']))
+    {
+        // Si inexistante ou nulle, on redirige vers le formulaire de login
+        echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
+       }
+	$livreurC =  new livreurC();
+	$listeliv = $livreurC->afficherlivreur();
+	
     
+?>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +22,7 @@
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, web ui kit, dashboard template, admin template">
 
-	<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<title>Tables | AdminKit Demo</title>
 
@@ -90,14 +82,14 @@
             </a>
 						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
 							<li class="sidebar-item "><a class="sidebar-link" href=""> afficher livraisons </a></li>
-							<li class="sidebar-item  "><a class="sidebar-link" href="ajouterlivreur.php"> Ajouter livreur </a></li>
-							<li class="sidebar-item active "><a class="sidebar-link" href="Affich-livreur.php">Afficher livreurs </a></li>
+							<li class="sidebar-item active  "><a class="sidebar-link" href="ajouterlivreur.php"> Ajouter livreur </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href="Affich-livreur.php">Afficher livreurs </a></li>
 							
 						</ul>
 					</li>
                     <li class="sidebar-item">
 						<a class="sidebar-link" href="AfficherReclamation.php">
-              <i class="align-middle" data-feather="AfficherReclamation.php"></i> <span class="align-middle"> Gestion des SAV </span>
+              <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
 					</li>
 
@@ -169,81 +161,85 @@
 					</ul>
 				</div>
 			</nav>
-	
 
-		
 
             <main class="content">
+            
                 <div class="container-fluid p-0">
-                <div class="text-center">
-                         
-                    <h1 class="h3 mb-3">Afficher liste livreur </h1>
+
+                    <h1 class="h3 mb-3">Ajouter un livreur </h1>
 
                     <div class="row">
-                        <div class="col-12 col-xl-15">
-                            <div class="card">
+                        
                                 
-                            <table class="table table-bordered">
-        <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Daten</th>
-                <th>CIN</th>
-                <th>Adresse</th>
-                <th>Email</th>
-                <th>Supprimer</th>
-                <th>Modifier-Trier</th>
-
-                        
-
-</tr>
-
-<?PHP
-
-foreach($listeliv as $livreurC){
-?>
-<tr>
-                    <td><?PHP echo $livreurC['ID']; ?></td>
-                    <td><?PHP echo $livreurC['Nom']; ?></td>
-                    <td><?PHP echo $livreurC['Prenom']; ?></td>
-                    <td><?PHP echo $livreurC['Daten']; ?></td>
-                    <td><?PHP echo $livreurC['CIN']; ?></td>
-                    <td><?PHP echo $livreurC['Adresse']; ?></td>
-                    <td><?PHP echo $livreurC['Email']; ?></td>
-                    
-                    <td>
-                        <form method="POST" action="supprimerlivreur.php">
-                        <input type="submit" name="supprimer" value="supprimer">
-                        <input type="hidden" value=<?PHP echo $livreurC['ID']; ?> name="ID">
-                        </form>
-                    </td>
-                    <td>
-                        <a href="modifierliv.php?ref=<?PHP echo $livreurC['ID']; ?>"> Modifier </a>
-                    </td>
-                    <td>
-                        <a href="trilivreur.php?id=<?PHP echo $livreurC['ID']; ?>"> trier </a>
-                    </td>
-                </tr>
-
-<?PHP
-}
-?>
-</table>
-        </div>
-    </div>
-
-    
-  
-                        
-</main>
+                           <div class="col-12 col-xl-6">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title">Horizontal form</h5>
+									<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
+								</div>
+								<div class="card-body">
+									<form  method="POST" action="ajout-livreur.php"   id="ajouterlivreur" name="ajouterlivreur">
+										<div class="form-group row">
+											<label class="col-form-label col-sm-2 text-sm-right">ID</label>
+											<div class="col-sm-10">
+												<input type="text" id="ID" name="ID" class="form-control" placeholder="text">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-sm-2 text-sm-right">Nom</label>
+											<div class="col-sm-10">
+												<input type="text" id="Nom" name="Nom" class="form-control" placeholder="text">
+                                                
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-sm-2 text-sm-right">Prenom</label>
+											<div class="col-sm-10">
+												<input type="text" id="Prenom" name="Prenom"class="form-control" placeholder="text">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-sm-2 text-sm-right">Date De Naissance</label>
+											<div class="col-sm-10">
+												<input class="form-control" id="Daten" name="Daten" placeholder="text" type="date" rows="3"></input>
+											</div>
+										</div>
+                                        <div class="form-group row">
+											<label class="col-form-label col-sm-2 text-sm-right">CIN</label>
+											<div class="col-sm-10">
+												<input class="form-control" id="CIN" name="CIN" placeholder="text" rows="3"></input>
+											</div>
+										</div>
+                                        <div class="form-group row">
+											<label class="col-form-label col-sm-2 text-sm-right">Adresse</label>
+											<div class="col-sm-10">
+												<textarea class="form-control" id="Adresse" name="Adresse" placeholder="Textarea" rows="3"></textarea>
+											</div>
+										</div>
+                                        <div class="form-group row">
+											<label class="col-form-label col-sm-2 text-sm-right">Email</label>
+											<div class="col-sm-10">
+												<input class="form-control" id="Email" name="Email" placeholder="text" rows="3"></input>
+											</div>
+										</div>
 
 
-</div>
-</div>
+										<div class="form-group row">
+											<div class="col-sm-10 ml-sm-auto">
+												<button type="submit" class="btn btn-primary">Ajouter</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 
-<script src="js/vendor.js"></script>
-<script src="js/app.js"></script>
+      
+    </main>
+
+    <script src="js/vendor.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 
