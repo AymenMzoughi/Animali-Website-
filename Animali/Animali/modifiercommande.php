@@ -324,7 +324,8 @@
                                                  </div>
                                                  <div class="form-group">
                                                 <div class="col col-md-3"><label class=" form-control-label">Prix</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="prix" name="prix"   value="<?PHP echo $prix; ?>"class="form-control"><small class="form-text text-muted"></small></div>
+                                                     <div class="col-12 col-md-9"><input type="text" id="prix" name="prix"   value="<?PHP echo $prix; ?>"class="form-control" disabled><small class="form-text text-muted"></small></div>
+                                                     <input type="hidden"  name="prix" id="prix"  value="<?PHP echo $prix; ?>" >
                                                      <div class="col-12 col-md-9">
 
 

@@ -108,7 +108,7 @@
                 $req=$db->prepare($sql);
                 $date_commande = $commande->getdate_commande();
                 $produits = $commande->getproduits();
-                $qprix = $commande->getprix();
+                $prix = $commande->getprix();
                 $id_client = $commande->getid_client();
 
                 $req->bindValue(':idcommande', $idcommande);

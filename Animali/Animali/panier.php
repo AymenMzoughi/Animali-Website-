@@ -298,7 +298,6 @@
 						<th style="width:70%"> id client </th>
 						<th style="width:70%"> Supprimer </th>
 						<th style="width:70%"> Modifier </th>
-            <th style="width:70%"> Trier </th>
             <th style="width:70%"> Checkout </th>
                                         
                                         </tr>
@@ -326,13 +325,6 @@ foreach($Listecommandes as $user){
 </form>
 </td>
 
-
-<td>
-<form>
-<div >
-<a type="button" class="btn btn-outline-primary" href = "trilignecommande.php?idcommande=<?= $user['idcommande'] ?>">Trier</a>
-</div>  
-</td>
 
 
 <td>

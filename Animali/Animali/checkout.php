@@ -385,14 +385,14 @@ $list1=mysqli_query($con,$idcmd);
               <div class="form-group">
               <label for="text-input" class=" form-control-label">TauxTVA</label>
                                                 <div class="col-15 col-md-15"><select class="form-control"  placeholder="tauxTVA" name="tauxTVA" id="tauxTVA" >
-                                                        <option>tauxTVA :</option>
+                                                        
                                                         <option>20 %</option>
                                                     </select></div>
               </div>
               <div class="form-group">
                 <label for="text-input" class=" form-control-label">Etat</label>
                                                 <div class="col-15 col-md-15"><select class="form-control"  placeholder="etat" name="etat" id="etat" >
-                                                        <option>Etat :</option>
+                                                       
                                                         <option>En cours de livraison</option>
                                                     </select></div>
               </div>

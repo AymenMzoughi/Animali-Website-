@@ -236,8 +236,10 @@
 
                                                  <div class="form-group">
                                                 <div class="col col-md-3"><label class=" form-control-label">tauxTVA</label></div>
-                                                     <div class="col-12 col-md-9"><input type="number" id="tauxTVA" name="tauxTVA"  class="form-control" value="<?PHP echo $tauxTVA; ?>"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
+                                                     <div class="col-12 col-md-9"><input type="text" id="tauxTVA" name="tauxTVA"  class="form-control" value="<?PHP echo $tauxTVA; ?>"><small class="form-text text-muted"></small></div>
+													 <input type="hidden"  name="idcommande" id="idcommande"  value="<?PHP echo $id; ?>" >
+
+													 <div class="col-12 col-md-9">
 
 
                                                  </div>
@@ -253,23 +255,20 @@
                                                  <div class="form-group">
                                                 <div class="col col-md-3"><label class=" form-control-label">id_produit</label></div>
                                                      <div class="col-12 col-md-9"><input type="number" id="id_produit" name="id_produit"  class="form-control" value="<?PHP echo $idproduit;?>" ><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
+													 <div class="col-12 col-md-9">
 
 
                                                  </div>
 
+                                                   
                                                  <div class="form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">idcmd</label></div>
-												<select class="form-control"  placeholder="idcmd"  id="idcmd" name="idcmd" value="<?PHP ?>">
-						<option value="">Faites votre choix </option>
-						
-						<?php while($row=mysqli_fetch_array($list)):?>
-					
-						<option value="<?php echo $row[0];?>" > <?php echo $row[0];?></option>";
-						<?php endwhile; ?>
-					
-					
-						</select>
+                                                <div class="col col-md-3"><label class=" form-control-label">id cmd</label></div>
+                                                     <div class="col-12 col-md-9"><input type="number" id="idcmd" name="idcmd"  class="form-control" value="<?PHP echo $idcmd;?>" ><small class="form-text text-muted"></small></div>
+                                                     
+													 <div class="col-12 col-md-9">
+
+
+                                                 </div>
 
                                                    
 
