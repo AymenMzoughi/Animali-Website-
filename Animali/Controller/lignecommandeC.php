@@ -102,6 +102,19 @@
                 die('Erreur: '.$e->getMessage());
             }	
         }
+
+        function rechercheridclient($id_client){
+            $sql="SELECT * From lignecommande WHERE id_client = '$id_client' ";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }	
+        }
+   
    
 
         

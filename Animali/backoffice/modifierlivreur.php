@@ -1,21 +1,37 @@
+<?php
+//use PHPMailer\PHPMailer\PHPMailer;
+    require_once '../Controller/livreurC.php';
+    require_once '../Entities/livreur.php';
+	//require_once "PHPMailer/PHPMailer.php";
+//require_once "PHPMailer/SMTP.php";
+//require_once "PHPMailer/Exception.php";
 
-
-<?PHP
-include "../Controller/ReclamationC.php";
-include "../Controller/produitC.php";
-include "../Controller/lignecommandeC.php";
-include "../Controller/veterinaireC.php";
 session_start();
 // On teste si la variable de session existe et contient une valeur
 if(empty($_SESSION['e']))
 {
     // Si inexistante ou nulle, on redirige vers le formulaire de login
-	echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
+    echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
    }
-//first commit in master
-$reclamationC=new ReclamationC();
-$listeUsers=$reclamationC->afficherReclamation();
+   $livreurC=new livreurC();
+   $list=$livreurC->afficherlivreur();
+    if (isset($_GET['ID'])){
+       
+         $result=$livreurC-> recupererlivreur($_GET['ID']);
+		
+       foreach($result as $row)
+	   {
+		   $ID=$row['ID'];
+		   $Nom=$row['Nom'];
+		   $Prenom=$row['Prenom'];
+		   $Daten=$row['Daten'];
+		   $CIN=$row['CIN'];
+		   $Adresse=$row['Adresse'];
+		   $Email=$row['Email'];
+		
+	
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,13 +70,13 @@ $listeUsers=$reclamationC->afficherReclamation();
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="ajouteradmine.php">
+						<a class="sidebar-link" href="Admins.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="afficherclient.php">
+						<a class="sidebar-link" href="Afficherclients.php">
               <i class="align-middle"  data-feather="users"></i> <span class="align-middle">Gestion des clients </span>
             </a>
 					</li>
@@ -86,14 +102,14 @@ $listeUsers=$reclamationC->afficherReclamation();
               <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
 						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
-							<li class="sidebar-item active"><a class="sidebar-link" href="AfficherReclamation.php">Reclamations </a></li>
+							<li class="sidebar-item active"><a class="sidebar-link" href="modifierReclamation.php"> cherhcher Reclamations </a></li>
 							<li class="sidebar-item  "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="Afficheravis.php">Avis </a></li>
 							
 						</ul>
 					</li>
                     <li class="sidebar-item">
-						<a class="sidebar-link" href="Affich-livreur.php">
+						<a class="sidebar-link" href="Afficherlivraison.php">
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle"> Gestion des livraisons </span>
             </a>
 					</li>
@@ -156,7 +172,7 @@ $listeUsers=$reclamationC->afficherReclamation();
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-                <img src="<?php echo$_SESSION['i'];?>" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> <span class="text-dark"><?php echo$_SESSION['e'];?></span>
+            <img src="<?php echo$_SESSION['i'];?>" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> <span class="text-dark"><?php echo$_SESSION['e'];?></span>
               </a>
 							<div class="dropdown-menu dropdown-menu-right">
 								<a class="dropdown-item" href="deconnexion.php">Log out</a>
@@ -164,92 +180,92 @@ $listeUsers=$reclamationC->afficherReclamation();
 						</li>
 					</ul>
 				</div>
-</nav>
-
-			
-<main class="content">							
-		
-		<div class="container-fluid p-0">
-		<div class="card-body text-center">
-							<div class="mb-3">		
-<table>
-<form method="POST" action="chercherreclamation.php">
-<select class="form-control"  placeholder="sujet" name="choix" id="choix" >
-   
-	  <option>id </option>
-	  <option>etat</option>
-	  <option> id client</option>
-	  </select>
-<input type="text"  name="Search" name="Search" class="form-control" placeholder="Search">
-
-<input type="submit" class="btn btn-outline-primary" ></i>
-</form>	
-</table>
-</div>
-</div>
-					
-			<h1 class="h3 mb-3"> Gestion des reclamations </h1>
-			 
-			<div class="row">
-				<div class="col-12 col-xl-6">
-					<div class="card">
-						<table class="table">
-							<thead>
-								<tr>
-									<th style="width:25%;"> Id relamation</th>
-									<th style="width:25%"> probleme</th>
-									<th class="d-none d-md-table-cell" style="width:25%">Date </th>
-									<th style="width:25%"> etat</th>
-									<th style="width:25%"> sujet </th>
-									<th style="width:70%"> idclient </th>
-									<th style="width:70%"> Action </th>
+			</nav>
+	
+			<main class="content">
+		 <a href="AfficherReclamation.php" >Retour à la liste</a> 
+			<form method="POST">
+				<div class="container-fluid p-0">
+				<div class="mb-3">
 									
+									</div>
+					<h1 class="h3 mb-3">Modifier un livreur </h1>
+                    
+					<div class="row">
+						<div class="col-12 col-xl-6">
+							<div class="card">
 								
-								</tr>
-							</thead>
-							<tbody>
-							<?PHP
-foreach($listeUsers as $user){
-?>
-<tr>
-<td><?PHP echo $user['id']; ?></td>
-<td><?PHP echo $user['probleme']; ?></td>
-<td><?PHP echo $user['date']; ?></td>
-<td><?PHP echo $user['etat']; ?></td>
-<td><?PHP echo $user['sujet']; ?></td>
-<td><?PHP echo $user['idclient']; ?></td>
-<td>
-<form>
-<div >
+								<div class="card-body">
+									<form>
+										<div class="form-group">
+											<label class="form-label"> ID Livreur</label>
+											<input type="text"  name="ID" id="ID" class="form-control"  value="<?PHP echo $ID ?>" disabled  >
+										</div>
+										<div class="form-group">
+											<label class="form-label w-100"> Nom </label>
+											<input type="text" class="form-control" id="Nom" value="<?PHP echo $Nom ?>" name="Nom">
+											
+										</div>
+										<div class="form-group">
+											<label class="form-label">Prenom </label>
+											<input type="text" class="form-control"  id="Prenom"value="<?PHP echo $Prenom ?>" name="Prenom">
+										</div>
+                                        <div class="form-group">
+											<label class="form-label"> Date De Naissance  </label>
+											<input type="date" class="form-control" id="Daten" value="<?PHP echo $Daten ?>" name="Daten">
+										</div>
+										<div class="form-group">
+											<label class="form-label"> CIN  </label>
+											<input type="text" class="form-control" id="CIN" value="<?PHP echo $CIN ?>" name="CIN">
+										</div>
+											<div class="form-group col-md-4">
+											<label for="inputState">Adresse </label>
+											<input type="text" class="form-control" id="Adresse" value="<?PHP echo $Adresse ?>" name="Adresse">
+										</div>
+											<div class="form-group col-md-4">
+											<label for="inputState">Email </label>
+											<input type="text" class="form-control" id="Email" value="<?PHP echo $Email ?>" name="Email">
+										</div>
+					
+										<div class="mb-3">
+										<input type="submit"  class="btn btn-outline-secondary" name="modifier" value="modifier" > 
+										<input type="hidden"   name="id_ini" value="<?PHP echo $_GET['ID'];?>">
+										</div>
 
+									
+										<?php
+									}}
+	if(isset($_POST['modifier']) && !empty($_POST["Nom"]) &&
+	!empty($_POST["Prenom"]) 
+	&&!empty($_POST["Daten"])
+	&&!empty($_POST["CIN"])
+	&&!empty($_POST["Adresse"])
+	&&!empty($_POST["Email"])){
+		$livreur = new livreur($_POST['id_ini'], $_POST['Nom'], $_POST['Prenom'], $_POST['Daten'], $_POST['CIN'], $_POST['Adresse'], $_POST['Email']);
+		$livreurC->modifierlivreur($livreur,$_POST['id_ini']);
+		
+		
 
-<a href= "supprimerReclamation.php?id=<?= $user['id'] ?>"><i class="align-middle" data-feather="trash"></i></a>
-</div>	
-</td>
-<td>
-<div >
-<a href= "modifierreclamation.php?id=<?= $user['id'] ?>"><i class="align-middle" data-feather="edit-2"></i></a>
-</div>	
-<form>
-</td>
-</tr>
+		?> 
+		<script>
+				document.location.replace("affich-livreur.php") ;
+			</script>
+	<?php		
+	}
+	?>   
+								</div>
+							</div>
+						</div>
+						
 
-<?PHP
-}
-			?>
-					</tbody>
-					</table>
-</div>
-</main>
+				</div>
+			</main>
+
 			
 
 	<script src="js/vendor.js"></script>
 	<script src="js/app.js"></script>
 
-
-	
-
 </body>
 
 </html>
-

@@ -30,7 +30,7 @@
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, web ui kit, dashboard template, admin template">
 
-	<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<title>Tables | AdminKit Demo</title>
 
@@ -174,6 +174,19 @@
 		
 
             <main class="content">
+			<table>
+	<form method="POST" action="chercherlivreur.php">
+	<select class="form-control"  placeholder="sujet" name="choix" id="choix" >
+            <option>Select</option>
+              <option>id</option>
+              <option>nom</option>
+              <option>prenom</option>
+              </select>
+    <input type="text"  name="Search" name="Search" class="form-control" placeholder="Search">
+	
+     <input type="submit" class="btn btn-outline-primary" ></i>
+</form>	
+</table>
                 <div class="container-fluid p-0">
                 <div class="text-center">
                          
@@ -193,7 +206,9 @@
                 <th>Adresse</th>
                 <th>Email</th>
                 <th>Supprimer</th>
-                <th>Modifier-Trier</th>
+                <th>Modifier </th>
+                <th>Trier </th>
+				
 
                         
 
@@ -219,17 +234,25 @@ foreach($listeliv as $livreurC){
                         </form>
                     </td>
                     <td>
-                        <a href="modifierliv.php?ref=<?PHP echo $livreurC['ID']; ?>"> Modifier </a>
+                        <a href="modifierlivreur.php?ID=<?PHP echo $livreurC['ID']; ?>"> Modifier </a>
                     </td>
                     <td>
                         <a href="trilivreur.php?id=<?PHP echo $livreurC['ID']; ?>"> trier </a>
                     </td>
+
+					
                 </tr>
 
 <?PHP
 }
 ?>
 </table>
+
+<form name="f1"  method="POST" action="pdf1.php" onSubmit="return verif()" >
+        <center>
+        <td><button type="submit" name="Imprimer" value="Imprimer" class="btn btn-danger">Imprimer</button></td>
+      </center>
+    </form>
         </div>
     </div>
 

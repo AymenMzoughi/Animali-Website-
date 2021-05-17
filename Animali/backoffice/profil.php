@@ -29,6 +29,10 @@ if(!empty($_SESSION['e']))
     {echo "<script type='text/javascript'>document.location.replace('afficherveto.php');</script>";
        
     }
+    if($_SESSION['r']=="livraison")
+    {echo "<script type='text/javascript'>document.location.replace('affiche-livreur.php');</script>";
+       
+    }
     
    }
    else

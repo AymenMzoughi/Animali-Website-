@@ -106,7 +106,7 @@ $listecartefid=$cartefidC->recupCIN($_POST["Search"]);
 						
 					</li>
                     <li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherlivraison.php">
+						<a class="sidebar-link" href="Affich-livreur.php">
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle"> Gestion des livraisons </span>
             </a>
 					</li>

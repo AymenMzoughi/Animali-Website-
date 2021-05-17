@@ -22,6 +22,11 @@ if($_POST["choix"]=='id cmd')
 $Liste=$lignecommandeC->rechercheridcmd($_POST["Search"]);
 }
 
+if($_POST["choix"]=='id client')
+{$lignecommandeC=new LignecommandeC();
+$Liste=$lignecommandeC->rechercheridclient($_POST["Search"]);
+}
+
 
 ?>
 
@@ -205,6 +210,7 @@ $Liste=$lignecommandeC->rechercheridcmd($_POST["Search"]);
 						<th style="width:70%"> etat </th>
 						<th style="width:70%"> id produit </th>
 						<th style="width:70%"> id cmd </th>
+						<th style="width:70%"> id client </th>
 						<th style="width:70%"> Supprimer </th>
 						<th style="width:70%"> Modifier </th>
 					
@@ -222,6 +228,7 @@ foreach( $Liste as $user){
 <td><?PHP echo $user['etat']; ?></td>
 <td><?PHP echo $user['id_produit']; ?></td>
 <td><?PHP echo $user['idcmd']; ?></td>
+<td><?PHP echo $user['id_client']; ?></td>
 
 <td>
 <form>

@@ -1,20 +1,29 @@
-<?php
-    require_once '../Controller/categorieC.php';
-    include "../Controller/produitC.php";
-    include "../Controller/lignecommandeC.php";
-    include "../Controller/veterinaireC.php";
-    session_start();
-    // On teste si la variable de session existe et contient une valeur
-    if(empty($_SESSION['e']))
-    {
-        // Si inexistante ou nulle, on redirige vers le formulaire de login
-        echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
-       }
-    $categorieC =  new categorieC();
-    $listecat = $categorieC->afficherCategorie();
-    
-?>
+<?PHP
+include "../Controller/livreurC.php";
+session_start();
+     // On teste si la variable de session existe et contient une valeur
+     if(empty($_SESSION['e']))
+     {
+         // Si inexistante ou nulle, on redirige vers le formulaire de login
+         echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
+        }
+if (isset($_POST["Search"]))
+{ 
+  if($_POST["choix"]=='id')
+{$avisC=new livreurC();
+$listeUsers=$avisC->recupererid($_POST["Search"]);
+}
+if($_POST["choix"]=='nom')
+{$AvisC=new livreurC();
+$listeUsers=$AvisC->recherchernom($_POST["Search"]);
+}
+if($_POST["choix"]=='prenom')
+{$AvisC=new livreurC();
+$listeUsers=$AvisC->rechercherprenom($_POST["Search"]);
+}
 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +61,7 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="ajouteradmine.php">
+						<a class="sidebar-link" href="Admins.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
             </a>
 					</li>
@@ -63,18 +72,10 @@
             </a>
 					</li>
 
-					<li class="sidebar-item active">
-						<a href="#ui" data-toggle="collapse" class="sidebar-link">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle"> Gestion des Produits </span>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="afficherprod.php">
+              <i class="align-middle" data-feather="box"></i> <span class="align-middle">Gestion des Produits </span>
             </a>
-						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
-							<li class="sidebar-item active"><a class="sidebar-link" href="affichercat.php">categories </a></li>
-							<li class="sidebar-item  "><a class="sidebar-link" href="afficherprod.php"> Produits  </a></li>
-                            <li class="sidebar-item   "><a class="sidebar-link" href="ajoutercat.php"> Ajouter categories </a></li>
-							<li class="sidebar-item   "><a class="sidebar-link" href="chercherprod.php">  chercher Produits  </a></li>
-							<li class="sidebar-item   "><a class="sidebar-link" href="ajouterprod.php"> Ajouter  Produit  </a></li>
-							
-						</ul>
 					</li>
                     <li class="sidebar-item">
 						<a class="sidebar-link" href="afficherlignecommande.php">
@@ -87,14 +88,19 @@
               <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestions des veterinaires </span>
             </a>
 					</li>
-                    <li class="sidebar-item">
-						<a class="sidebar-link" href="AfficherReclamation.php">
-              <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle"> Gestions des SAV </span>
+                    <li class="sidebar-item active">
+						<a href="#ui" data-toggle="collapse" class="sidebar-link">
+              <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
+						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
+							<li class="sidebar-item "><a class="sidebar-link" href="AfficherReclamation.php">Reclamations </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
+							<li class="sidebar-item active "><a class="sidebar-link" href="cherhceravis.php"> cherhcer Avis </a></li>
+							
+						</ul>
 					</li>
-                    
                     <li class="sidebar-item">
-						<a class="sidebar-link" href="Affich-livreur.php">
+						<a class="sidebar-link" href="affich-livreur.php">
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle"> Gestion des livraisons </span>
             </a>
 					</li>
@@ -106,9 +112,8 @@
 		</nav>
 
 		
-			</nav>
 
-            <div class="main">
+			<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle d-flex">
           <i class="hamburger align-self-center"></i>
@@ -169,59 +174,86 @@
 						</li>
 					</ul>
 				</div>
-                </nav>
-                <main class="content">
-                <div class="container-fluid p-0">
-
-                    <h1 class="h3 mb-3">Afficher liste categories </h1>
-
-                    <div class="row">
-                        <div class="col-12 col-xl-15">
-                            <div class="card">
-                                
-                            <table border=1 align = 'left'>
-                            <tr>
-                <th>ID categorie</th>
-                <th>nom categorie</th>
-                <th>supprimer</th>
-                <th>modifier</th>
-            </tr>
-
-            <?PHP
-                foreach($listecat as $categorieC){
-            ?>
-                <tr>
-                    <td><?PHP echo $categorieC['idcat']; ?></td>
-                    <td><?PHP echo $categorieC['nomcat']; ?></td>
+			</nav>
+	
+			<main class="content">							
+			<div class="container-fluid p-0"> 
+				<a href="affich-livreur.php" >Retour à la liste</a></button>
+				<div class="container-fluid p-0">
+				<div class="card-body text-center">
+									<div class="mb-3">		
+	
+</div>
+</div>
+</div>
+					<h1 class="h3 mb-3"> Gestion des livreurs  </h1>
+                     
+					<div class="row">
+						<div class="col-12 col-xl-6">
+							<div class="card">
+								<table class="table">
+									<thead>
+										<tr>
+                                       
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Daten</th>
+                <th>CIN</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Supprimer</th>
+                <th>Modifier </th>
+                <th>Trier </th>
+										
+										</tr>
+									</thead>
+									<tbody>
+									<?PHP
+foreach($listeUsers as$livreurC){
+?>
+<tr>
+<td><?PHP echo $livreurC['ID']; ?></td>
+                    <td><?PHP echo $livreurC['Nom']; ?></td>
+                    <td><?PHP echo $livreurC['Prenom']; ?></td>
+                    <td><?PHP echo $livreurC['Daten']; ?></td>
+                    <td><?PHP echo $livreurC['CIN']; ?></td>
+                    <td><?PHP echo $livreurC['Adresse']; ?></td>
+                    <td><?PHP echo $livreurC['Email']; ?></td>
+                    
                     <td>
-                        <form method="POST" action="supprimercat.php">
+                        <form method="POST" action="supprimerlivreur.php">
                         <input type="submit" name="supprimer" value="supprimer">
-                        <input type="hidden" value=<?PHP echo $categorieC['idcat']; ?> name="idcat">
+                        <input type="hidden" value=<?PHP echo $livreurC['ID']; ?> name="ID">
                         </form>
                     </td>
                     <td>
-                        <a href="modifiercat.php?idcat=<?PHP echo $categorieC['idcat']; ?>"> Modifier </a>
+                        <a href="modifierlivreur.php?ID=<?PHP echo $livreurC['ID']; ?>"> Modifier </a>
                     </td>
-                        
-                        </form>
-                </tr>
-            <?PHP
-                }
-            ?>
-        </table>
-                            </div>
-                        </div>
-            </main>
+                    <td>
+                        <a href="trilivreur.php?id=<?PHP echo $livreurC['ID']; ?>"> trier </a>
+                    </td>
 
-            
-        </div>
-    </div>
+</tr>
 
-      
+<?PHP
+}}
+                    ?>
+							</tbody>
+							</table>
+</div>
+						</div>
 
-    <script src="js/vendor.js"></script>
-    <script src="js/app.js"></script>
+						</div>
+						</div>
+					
+			</main>
+			
+
+	<script src="js/vendor.js"></script>
+	<script src="js/app.js"></script>
 
 </body>
 
 </html>
+

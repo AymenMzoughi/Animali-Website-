@@ -49,30 +49,29 @@ require_once '../Entities/livreur.php';
 			die('Erreur: '.$e->getMessage());
 		}
 	}
-        function modifierproduit($livreur,$id) {
+    function modifierlivreur($livreur,$id) {
 
 
-                 $sql="UPDATE `livreur` SET `nom`=:nom, `prenom` =:prenom, `Daten` =:Daten, `cin`=:cin, `adresse`=:adresse,  WHERE `id`=:id";
-       			$connexion=config::getConnexion();
-                   try{
-				$rep=$connexion->prepare($sql);
-                $rep->bindValue(":id",$produit->getid());
-				$rep->bindValue(":nom",$produit->getnom());
-				$rep->bindValue(":prenom",$produit->getprenom());
-				$rep->bindValue(":Daten",$produit->getage());
-                $rep->bindValue(":cin",$produit->getcin());
-                $rep->bindValue(":adresse",$produit->getadresse());
-                $rep->bindValue(":email",$produit->getemail());
+        $sql="UPDATE `livreur` SET `Nom`=:nom, `Prenom` =:prenom, `Daten` =:Daten, `CIN`=:cin, `Adresse`=:adresse, `Email`=:email WHERE `ID`=:id";
+       $connexion=config::getConnexion();
+          try{
+       $rep=$connexion->prepare($sql);
+       $rep->bindValue(":id",$id);
+       $rep->bindValue(":nom",$livreur->getnom());
+       $rep->bindValue(":prenom",$livreur->getprenom());
+       $rep->bindValue(":Daten",$livreur->getage());
+       $rep->bindValue(":cin",$livreur->getcin());
+       $rep->bindValue(":adresse",$livreur->getadresse());
+       $rep->bindValue(":email",$livreur->getemail());
 
-				
-				$s=$rep->execute();
-                   }
-                   catch (Exception $e){
-                    echo " Erreur ! ".$e->getMessage();
-                }
+       
+       $s=$rep->execute();
+          }
+          catch (Exception $e){
+           echo " Erreur ! ".$e->getMessage();
+       }}
 
-           
-        }
+
 		public function rechercherlivreur($id) {            
             $sql = "SELECT * from livreur where ID=:id "; 
             $db = config::getConnexion();
@@ -88,10 +87,43 @@ require_once '../Entities/livreur.php';
                 $e->getMessage();
             }
         }
+        function recupererid($ID){
+            $sql="SELECT * from livreur  where ID=$ID";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
+        function rechercherprenom($PRENOM){
+            $sql="SELECT * From livreur WHERE PRENOM = '$PRENOM' ";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }	
+        }
+        function recherchernom($NOM){
+            $sql="SELECT * From livreur WHERE NOM= '$NOM' ";
+            $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }	
+        }
 
 		function recupererlivreur($id){
 			$sql="SELECT * from livreur where ID=$id";
-			$db = getConnexion();
+			$db =config::getConnexion();
 			try{
 			$liste=$db->query($sql);
 			return $liste;

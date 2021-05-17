@@ -98,7 +98,7 @@
 					</li>
                     
                     <li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherlivraison.php">
+						<a class="sidebar-link" href="affich-livreur.php">
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle"> Gestion des livraisons </span>
             </a>
 					</li>
@@ -180,6 +180,7 @@
               <option>id commande</option>
               <option>id produit</option>
               <option>id cmd</option>
+			  <option>id client</option>
               </select>
     <input type="text"  name="Search" name="Search" class="form-control" placeholder="Search">
 	
