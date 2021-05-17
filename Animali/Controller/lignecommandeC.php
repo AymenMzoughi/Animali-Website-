@@ -109,8 +109,8 @@
         
         public function ajouterlignecommande($lignecommande) {
             
-            $sql="INSERT INTO lignecommande (idcommande, prix, quantite, tauxTVA, etat, id_produit , idcmd) 
-            VALUES (:idcommande, :prix, :quantite, :tauxTVA, :etat, :id_produit, :idcmd)";
+            $sql="INSERT INTO lignecommande (idcommande, prix, quantite, tauxTVA, etat, id_produit , idcmd,id_client) 
+            VALUES (:idcommande, :prix, :quantite, :tauxTVA, :etat, :id_produit, :idcmd, :id_client)";
             $db = config::getConnexion();
             try {
                 $req=$db->prepare($sql);
@@ -121,6 +121,7 @@
                 $etat = $lignecommande->getetat();
                 $id_produit = $lignecommande->getid_produit();
                 $idcmd = $lignecommande->getidcmd();
+                $id_client = $lignecommande->getid_client();
 
                 $req->bindValue(':idcommande', $idcommande);
                 $req->bindValue(':prix', $prix);
@@ -129,6 +130,7 @@
                 $req->bindValue(':etat', $etat);
                 $req->bindValue(':id_produit', $id_produit);
                 $req->bindValue(':idcmd', $idcmd);
+                $req->bindValue(':id_client', $id_client);
 
                 $req->execute(); 
         } catch (PDOException $e) {
@@ -143,7 +145,7 @@
 		
 
         public function modifierlignecommande($commande, $idcommande) {
-            $sql="UPDATE lignecommande SET prix=:prix, quantite=:quantite, tauxTVA=:tauxTVA, etat=:etat, id_produit=:id_produit , idcmd=:idcmd
+            $sql="UPDATE lignecommande SET prix=:prix, quantite=:quantite, tauxTVA=:tauxTVA, etat=:etat, id_produit=:id_produit , idcmd=:idcmd ,id_client=:id_client
             WHERE idcommande=:idcommande ;";
             $db = config::getConnexion();
             try {
@@ -154,6 +156,7 @@
                 $etat = $commande->getetat();
                 $id_produit= $commande->getid_produit();
                 $idcmd = $commande->getidcmd();
+                $id_client = $commande->getid_client();
 
                 $req->bindValue(':idcommande', $idcommande);
                 $req->bindValue(':prix', $prix);
@@ -162,6 +165,7 @@
                 $req->bindValue(':etat', $etat);
                 $req->bindValue(':id_produit', $id_produit);
                 $req->bindValue(':idcmd', $idcmd);
+                $req->bindValue(':id_client', $id_client);
 
                 $req->execute(); 
         } catch (PDOException $e) {

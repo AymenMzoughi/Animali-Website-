@@ -7,15 +7,18 @@
         private $etat;
         private  $id_produit ;
         private  $idcmd ;
+        private  $id_client ;
 
 
-        public function __construct($prix,$quantite,$tauxTVA, $etat,$id_produit,$idcmd){
+        public function __construct($prix,$quantite,$tauxTVA, $etat,$id_produit,$idcmd,$id_client){
             $this->prix=$prix;
             $this->quantite=$quantite;
             $this->tauxTVA=$tauxTVA;
             $this->etat = $etat;
             $this->id_produit=$id_produit;
             $this->idcmd=$idcmd;
+            
+            $this->id_client=$id_client;
   
         }
 
@@ -23,6 +26,11 @@
 
         public function getidcommande (){
             return $this->idcommande ;
+        }
+
+        
+        public function getid_client (){
+            return $this->id_client ;
         }
 
         public function getidcmd (){

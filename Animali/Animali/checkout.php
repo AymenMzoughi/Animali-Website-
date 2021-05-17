@@ -45,7 +45,8 @@ $list1=mysqli_query($con,$idcmd);
         isset($_POST["tauxTVA"]) &&
         isset($_POST["etat"]) &&
         isset($_POST["id_produit"])&&
-        isset($_POST["idcmd"])
+        isset($_POST["idcmd"])&&
+        isset($_POST["id_client"])
     )
     
     {
@@ -56,7 +57,8 @@ $list1=mysqli_query($con,$idcmd);
             !empty($_POST["tauxTVA"])&&
             !empty($_POST["etat"])&&
             !empty($_POST["id_produit"])&&
-            !empty($_POST["idcmd"])
+            !empty($_POST["idcmd"])&&
+            !empty($_POST["id_client"])
         ) 
         
         {
@@ -67,7 +69,8 @@ $list1=mysqli_query($con,$idcmd);
                 $_POST['tauxTVA'],
                 $_POST['etat'],
                 $_POST['id_produit'],
-                $_POST['idcmd']
+                $_POST['idcmd'],
+                $_POST['id_client']
             );
             $LignecommandeC->ajouterlignecommande($lignecommande);
             $LignecommandeC->supprimercommande($_POST['idcmd']);
@@ -126,6 +129,10 @@ $list1=mysqli_query($con,$idcmd);
    return false;
    }else if(f.idcmd.value =="" )
    {alert ("veillez remplir votre champs de id cmd !");
+   return false;
+   }
+   else if(f.id_client.value =="" )
+   {alert ("veillez remplir votre champs de id client !");
    return false;
    }
    return true;
@@ -403,6 +410,11 @@ $list1=mysqli_query($con,$idcmd);
               <div class="form-group">
                 <label>Id cmd</label>
                 <input type="number" class="form-control" name="idcmd" placeholder="idcmd" id="idcmd" value="<?php echo  $_GET["idcommande"]; ?>">
+              </div>
+
+              <div class="form-group">
+                <label>Id client</label>
+                <input type="number" class="form-control" name="id_client" placeholder="id_client" id="id_client" value="<?php echo $_SESSION['id']; ?>">
               </div>
             </div>
             </div>

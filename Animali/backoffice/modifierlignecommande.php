@@ -28,6 +28,7 @@
 		$etat=$row['etat'];
 		$idproduit=$row['id_produit'];
 		$idcmd=$row['idcmd'];
+		$id_client=$row['id_client'];
 	}
 	
 
@@ -264,6 +265,15 @@
                                                  <div class="form-group">
                                                 <div class="col col-md-3"><label class=" form-control-label">id cmd</label></div>
                                                      <div class="col-12 col-md-9"><input type="number" id="idcmd" name="idcmd"  class="form-control" value="<?PHP echo $idcmd;?>" ><small class="form-text text-muted"></small></div>
+                                                     
+													 <div class="col-12 col-md-9">
+
+
+                                                 </div>
+
+												 <div class="form-group">
+                                                <div class="col col-md-3"><label class=" form-control-label">id client</label></div>
+                                                     <div class="col-12 col-md-9"><input type="number" id="id_client" name="id_client"  class="form-control" value="<?PHP echo $id_client;?>" ><small class="form-text text-muted"></small></div>
                                                      
 													 <div class="col-12 col-md-9">
 
