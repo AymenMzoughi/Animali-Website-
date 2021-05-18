@@ -190,7 +190,7 @@ $con=mysqli_connect($servername,$username,$password,$bdd);
                               echo "nom : " .$row["nom"]. "<br/>";
 							  echo "prenom : ".$row["prenom"].  "<br/>";
 							  echo"adresse : ".$row["adresse"]. "<br/>";
-							  echo "id_veto : ".$row["id"]. "<br/>";
+							
 							  echo "<br/>";
                                       
                             

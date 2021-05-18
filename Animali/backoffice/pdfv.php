@@ -20,7 +20,7 @@
     		
     		$this->Cell(40,10,'idc',1,0,'C');
     		$this->Cell(40,10,'idv',1,0,'C');
-    		$this->Cell(40,10,'description',1,0,'C');
+    		$this->Cell(200,10,'description',1,0,'C');
     		$this->ln();
     	}
     	function viewsTable($db)
@@ -31,8 +31,8 @@
             {
     		    $this->Cell(40,10,$data->idc,1,0,'C');
     		    $this->Cell(40,10,$data->idv,1,0,'L');
-    		    $this->Cell(40,10,$data->description,1,0,'L');
-    		 
+    		    $this->Cell(200,10,$data->description,1,0,'L');
+    
     		    $this->ln();
             }
 

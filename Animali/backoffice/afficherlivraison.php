@@ -1,52 +1,21 @@
 <?php
-   require_once '../Controller/conseilC.php';
-   require_once '../Entities/conseil.php';
-   session_start();
-// On teste si la variable de session existe et contient une valeur
-if(empty($_SESSION['e']))
-{
-    // Si inexistante ou nulle, on redirige vers le formulaire de login
-	echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
-   }
-   $error = "";
-   $conseilC =  new conseilC();
-   $servername="localhost";
-$username="root";
-$password="";
-$bdd="animali";
-$con=mysqli_connect($servername,$username,$password,$bdd);
-$idvet="SELECT * FROM veterinaire";
-$listv=mysqli_query($con,$idvet);
-   if(
-       isset($_POST["idc"]) &&
-       isset($_POST["idv"]) &&
-       isset($_POST["description"])
-      
-   )
-   
-   {
-       if(  
-           !empty($_POST["idc"])&&
-           !empty($_POST["idv"])&&
-           !empty($_POST["description"])
-           
-       ) 
-       
-       {
-           $conseil = new conseil(
-               $_POST['idc'],
-               $_POST['idv'],
-               $_POST['description']
-              
-           );
-           $conseilC->updateconseil($conseil, $_GET['idc']);
-           header('Location:afficherconseil.php');
-       }
-       else
-           $error = "Missing information";
-   }
+     include '../Controller/livraisonC.php';
+     session_start();
+     // On teste si la variable de session existe et contient une valeur
+     if(empty($_SESSION['e']))
+     {
+         // Si inexistante ou nulle, on redirige vers le formulaire de login
+         echo "<script type='text/javascript'>document.location.replace('login.php');</script>";
+        }
+     $livraisonC =  new livraisonC();
+     $listelivraison = $livraisonC->afficherlivraisons();
+ 
+
 
 ?>
+    
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -56,7 +25,7 @@ $listv=mysqli_query($con,$idvet);
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, web ui kit, dashboard template, admin template">
 
-	<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<title>Tables | AdminKit Demo</title>
 
@@ -83,13 +52,13 @@ $listv=mysqli_query($con,$idvet);
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Admins.php">
+						<a class="sidebar-link" href="ajouteradmine.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherclients.php">
+						<a class="sidebar-link" href="afficherclient.php">
               <i class="align-middle"  data-feather="users"></i> <span class="align-middle">Gestion des clients </span>
             </a>
 					</li>
@@ -105,25 +74,25 @@ $listv=mysqli_query($con,$idvet);
             </a>
 					</li>
 
-					<li class="sidebar-item active">
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="afficherveto.php">
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestions des veterinaires </span>
+            </a>
+					</li>
+                    <li class="sidebar-item active">
 						<a href="#ui" data-toggle="collapse" class="sidebar-link">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle"> Gestion des veterinaires </span>
+              <i class="align-middle" data-feather="truck"></i> <span class="align-middle">  Gestion des livraisons  </span>
             </a>
 						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
-							<li class="sidebar-item "><a class="sidebar-link" href="afficherveto.php"> veterinaires </a></li>
-							<li class="sidebar-item  active  "><a class="sidebar-link" href="ajouterveto.modifierconseil.php"> modifier   conseils </a></li>
-							<li class="sidebar-item  "><a class="sidebar-link" href="ajouterconseil.php"> Ajouter  conseil </a></li>
-							
+							<li class="sidebar-item active "><a class="sidebar-link" href="afficherlivraison.php"> afficher livraisons </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href="ajouterlivreur.php"> Ajouter livreur </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href="Affich-livreur.php">Afficher livreurs </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href=""> afficher livraisons </a></li>
 						</ul>
 					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="AfficherReclamation.php">
-              <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle"> Gestion des SAV </span>
-            </a>
-					</li>
                     <li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherlivraison.php">
-              <i class="align-middle" data-feather="truck"></i> <span class="align-middle"> Gestion des livraisons </span>
+						<a class="sidebar-link" href="AfficherReclamation.php">
+              <i class="align-middle" data-feather="AfficherReclamation.php"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
 					</li>
 
@@ -196,50 +165,101 @@ $listv=mysqli_query($con,$idvet);
 				</div>
 			</nav>
 	
+            <main class="content">
+                <div class="container-fluid p-0">
+                <div class="text-center">
+                         
+                    <h1 class="h3 mb-3">Afficher liste des livraisons </h1>
 
-<div id="error">
-    <?php echo $error; ?>
+                    <div class="row">
+                        <div class="col-12 col-xl-15">
+                            <div class="card">
+                                
+                            <table class="table table-bordered">
+        <tr>
+                <th>idliv</th>
+                <th>idcmd</th>
+                <th>idcmd</th>
+                <th>adresse</th>
+                <th>date</th>
+               
+
+                        
+
+</tr>
+
+<?PHP
+
+foreach($listelivraison as $livraisonC){
+?>
+<tr>
+                    <td><?PHP echo $livraisonC['idliv']; ?></td>
+                    <td><?PHP echo $livraisonC['idcmd']; ?></td>
+                    <td><?PHP echo $livraisonC['etat']; ?></td>
+                    <td><?PHP echo $livraisonC['adresse']; ?></td>
+                    <td><?PHP echo $livraisonC['date']; ?></td>
+                   
+                    
+                    <td>
+                        <form method="POST" action="supprimerlivraison.php">
+                        <input type="submit" name="supprimer" value="supprimer">
+                        <input type="hidden" value=<?PHP echo $livraisonC['idliv']; ?> name="idliv">
+                        </form>
+                    </td>
+                    <td>
+                        <a href="modifierlivraison.php?ID=<?PHP echo $livraisonC['idliv']; ?>"> Modifier </a>
+                    </td>
+                   <!-- <td>
+                        <a href="trilivreur.php?ID=<?PHP echo $livreurC['ID']; ?>"> trier </a>
+                    </td> -->
+                </tr>
+
+<?PHP
+}
+?>
+</table>
+        </div>
+    </div>
+
+    
+  
+                        
+</main>
+
+
+</div>
 </div>
 
-<?php
-$conseils = $conseilC->getconseilById($_GET['id']);
-?>
-  <form action="" method="post">
-      <table border="1" align="center">
-          <tr>
-              <td><label for="idc">Id_conseil</label></td>
-              <td><label for="idv">Nom_veto</label></td>
-              <td><label for="description">description</label></td>
-            
-            
-          </tr>
-      <tr>
-      <td><input type="text" name="idc" id="idc" value="<?php echo $conseils['idc'];?>" ></td>
-      <td> 
-                   
-                        <select name="idv" id="idv">
-						<option value="">Faites votre choix </option>
+<script src="js/vendor.js"></script>
+<script src="js/app.js"></script>
+
+<!-- <script>
+		$(function() {
+			// Pie chart
+			new Chart(document.getElementById("chartjs-pie"), {
+				type: "pie",
+				data: {
+					labels: ["alimentation", "hygiene", "accessoire"],
+					datasets: [{
 						
-						<?php while($row=mysqli_fetch_array($listv)):?>
-					
-						<option value="<?php echo $row[0];?>" > <?php echo $row[1];?></option>";
-						<?php endwhile; ?>
-					
-					
-						</select></td>
-      <td><textarea name="description" id="description"  rows="5" cols="33"> <?php echo $conseils['description'];?></textarea></td>
-     
-    
-      
-      </tr>
-          <tr>
-      <input type="submit" value="envoyer">
-          </tr>
-      </table>
-  </form>
-
-  <script src="js/vendor.js"></script>
-	<script src="js/app.js"></script>
-
+						backgroundColor: [
+							window.theme.primary,
+							window.theme.warning,
+							window.theme.danger,
+							"#dee2e6"
+						],
+						borderColor: "transparent"
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					}
+				}
+			});
+		});
+	</script> !-->
 </body>
+
 </html>

@@ -57,8 +57,8 @@
 			public function modifierClient($client,$CIN)
     		{
       			
-       			$sql="UPDATE client SET Sexe`=:Sexe,Nom`=:Nom,`Prenom`=:Prenom,`NumTel`=:NumTel,`Email`=:Email,`ADR`=:ADR,`DNS`=:DNS, `MDP`=:MDP WHERE CIN=:CIN;";
-       			$connexion=getConnexion();
+       			$sql="UPDATE client SET Sexe=:Sexe,Nom=:Nom,Prenom=:Prenom,NumTel=:NumTel,Email=:Email,ADR=:ADR,DNS=:DNS, MDP=:MDP WHERE CIN=:CIN";
+       			$connexion=config::getConnexion();
 				$rep=$connexion->prepare($sql);
                 $rep->bindValue(":CIN",$CIN);
 				$rep->bindValue(":Sexe",$client->getSexe());

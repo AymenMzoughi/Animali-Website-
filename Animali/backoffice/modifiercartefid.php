@@ -1,6 +1,6 @@
 <?php
     require_once '../Controller/cartefidC.php';
-    require_once '../Entites/cartefid.php';
+    require_once '../Entities/cartefid.php';
 	session_start();
 // On teste si la variable de session existe et contient une valeur
 if(empty($_SESSION['e']))

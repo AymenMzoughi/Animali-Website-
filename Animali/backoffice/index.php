@@ -215,11 +215,7 @@ $nveto=$vetoC->calculeveto();
 							<div class="card flex-fill w-100">
 								
 								<div class="card-body d-flex">
-									<div class="align-self-center w-100">
-										<h1>1h </h1>
-
-										
-									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -455,44 +451,8 @@ $nveto=$vetoC->calculeveto();
 				backgroundColor: "transparent",
 				zoomOnScroll: false,
 				markers: [{
-						latLng: [31.230391, 121.473701],
-						name: "Shanghai"
-					},
-					{
-						latLng: [28.704060, 77.102493],
-						name: "Delhi"
-					},
-					{
-						latLng: [6.524379, 3.379206],
-						name: "Lagos"
-					},
-					{
-						latLng: [35.689487, 139.691711],
-						name: "Tokyo"
-					},
-					{
-						latLng: [23.129110, 113.264381],
-						name: "Guangzhou"
-					},
-					{
-						latLng: [40.7127837, -74.0059413],
-						name: "New York"
-					},
-					{
-						latLng: [34.052235, -118.243683],
-						name: "Los Angeles"
-					},
-					{
-						latLng: [41.878113, -87.629799],
-						name: "Chicago"
-					},
-					{
-						latLng: [51.507351, -0.127758],
-						name: "London"
-					},
-					{
-						latLng: [40.416775, -3.703790],
-						name: "Madrid"
+						latLng: [36.81266857010625,10.077912921874965],
+						name: "Tunisia"
 					}
 				]
 			});

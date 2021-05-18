@@ -66,13 +66,24 @@ if (isset($_POST["email"]) &&
   <script src="assets/js/formulaire.js"></script>
   <!-- Petitdio Style sheet -->
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://www.google.com/recaptcha/api.js"></script>
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
   
 </head>
 
 <body>
-  
+<?php
+$reCaptcha = new ReCaptcha($secret);
+if(isset($_POST["g-recaptcha-response"])) {
+    $resp = $reCaptcha->verifyResponse(
+        $_SERVER["REMOTE_ADDR"],
+        $_POST["g-recaptcha-response"]
+        );
+    if ($resp != null && $resp->success) {echo "OK";}
+    else {echo "CAPTCHA incorrect";}
+    }
+?>   
 <!-- Aside (Right Panel) -->
 <aside class="andro_aside andro_aside-right">
     <div class="sidebar">
@@ -300,12 +311,13 @@ if (isset($_POST["email"]) &&
             <div class="form-group">
               <input type="password" class="form-control" placeholder="Password"  name="mdp" id="mdp"  value="">
             </div>
-            <button type="submit" class="andro_btn-custom primary">Login</button>
-            <a href="recover.php">Forget password ?</a> 
-
             <div class="andro_auth-seperator">
             <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
             </div>
+            <button type="submit" class="andro_btn-custom primary">Login</button>
+           
+
+            
             <a href="recover.php">Forget password ?</a> 
            <a href="register.php">Create One</a> 
 

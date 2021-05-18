@@ -271,8 +271,7 @@
     
           <div class="andro_post-desc">
          <img src="assets\img\ig\20.jpg" width="250" height="100">
-            <h5>Description </h5> 
-             <p> <?PHP echo $conseilC['description']; ?> </p>
+            <h5>Description </h5> <p> <?PHP echo $conseilC['description']; ?> </p>
      
              </div>
       

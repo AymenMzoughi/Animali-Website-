@@ -274,6 +274,7 @@ if(empty ($errors))
                        <?= $errors["description"] ?>
 					</p>
                     <?php endif ?>
+					
 					<input type="text" name="description" id="description" maxlength="100"  value="<?= $_POST["description"] ?? '' ?>"></td>
                 </tr>
 
