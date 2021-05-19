@@ -380,7 +380,7 @@ $list1=mysqli_query($con,$idcmd);
               <input type="number" class="form-control" name="idcommande" placeholder="idcommande" id="idcommande" disabled>
             </div>
             <div class="form-group">
-              <label>Prix</label>
+              <label>Prix d'un produit</label>
               <input type="text" class="form-control" name="prix" placeholder="prix" id="prix"  value="<?php echo  $prix; ?>" >
 
             </div>
@@ -409,7 +409,8 @@ $list1=mysqli_query($con,$idcmd);
               </div>
               <div class="form-group">
                 <label>Id cmd</label>
-                <input type="number" class="form-control" name="idcmd" placeholder="idcmd" id="idcmd" value="<?php echo  $_GET["idcommande"]; ?>">
+                <input type="number" class="form-control" name="idcmd" placeholder="idcmd" id="idcmd" value="<?php echo  $_GET["idcommande"]; ?>" >
+                
               </div>
 
               <div class="form-group">
@@ -463,7 +464,8 @@ $list1=mysqli_query($con,$idcmd);
             <h5 class="widget-title">Information</h5>
             <ul>
               <li> <a href="index.html">Home</a> </li>
-              <a href="afficherveto.php">show veterinarians</a> 
+              <li> <a href="afficherveto.php">Show veterinarians</a>  </li>
+              <li> <a href="mailto:animalitn2021@gmail.com">Contact</a> </li>
             </ul>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 footer-widget">
@@ -486,6 +488,8 @@ $list1=mysqli_query($con,$idcmd);
             <h5 class="widget-title">Social Media</h5>
             <ul class="social-media">
               <li> <a href="#" class="facebook"> <i class="fab fa-facebook-f"></i> </a> </li>
+              <li> <a href="mailto:animalitn2021@gmail.com" class="google"> <i class="fab fa-google"></i> </a> </li>
+           
             </ul>
             <div class="andro_footer-offer">
               <p>Signup and get exclusive offers and coupon codes</p>

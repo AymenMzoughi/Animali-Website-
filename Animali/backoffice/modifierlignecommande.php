@@ -213,13 +213,13 @@
                             <div class="card-body card-block">
                                             
                                               <div class="form-group">
-                                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label" >id commande</label></div>
+                                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label" >Id commande</label></div>
                                                      <div class="col-12 col-md-9"><input type="number" name="idcommande" id="idcommande" class="form-control"  value="<?PHP echo $id; ?>" disabled ><small class="form-text text-muted"></small></div>
 													 <input type="hidden"  name="idcommande" id="idcommande"  value="<?PHP echo $id; ?>" >
 
                                                  </div>
                                              <div class="form-group">
-                                                     <div class="col col-md-3"><label class=" form-control-label">prix</label></div>
+                                                     <div class="col col-md-3"><label class=" form-control-label">Prix d'un produit</label></div>
                                                      <div class="col-12 col-md-9"><input type="text" id="prix" name="prix"  class="form-control" value="<?PHP echo $prix; ?>"><small class="form-text text-muted"></small></div>
                                                      <div class="col-12 col-md-9">
 
@@ -228,7 +228,7 @@
                                                  </div>    
 
                                                  <div class="form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">quantite</label></div>
+                                                <div class="col col-md-3"><label class=" form-control-label">Quantite</label></div>
                                                      <div class="col-12 col-md-9"><input type="number" id="quantite" name="quantite"  class="form-control" value="<?PHP echo $quantite; ?>" ><small class="form-text text-muted"></small></div>
                                                      <div class="col-12 col-md-9">
 
@@ -236,7 +236,7 @@
                                                  </div>
 
                                                  <div class="form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">tauxTVA</label></div>
+                                                <div class="col col-md-3"><label class=" form-control-label">TauxTVA</label></div>
                                                      <div class="col-12 col-md-9"><input type="text" id="tauxTVA" name="tauxTVA"  class="form-control" value="<?PHP echo $tauxTVA; ?>"><small class="form-text text-muted"></small></div>
 													 <input type="hidden"  name="idcommande" id="idcommande"  value="<?PHP echo $id; ?>" >
 
@@ -245,16 +245,18 @@
 
                                                  </div>
 
+												 <div class="form-group">
+                <label for="text-input" class=" form-control-label">Etat</label>
+                                                <div class="col-15 col-md-15"><select class="form-control"  placeholder="etat" name="etat" id="etat" >
+                                                       
+                                                        <option>En cours de livraison</option> 
+														 <option>livrée</option>
+                                                    </select></div>
+              </div>
+              </div>
+
                                                  <div class="form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">etat</label></div>
-                                                     <div class="col-12 col-md-9"><input type="text" id="etat" name="etat"  class="form-control" value="<?PHP echo $etat; ?>"><small class="form-text text-muted"></small></div>
-                                                     <div class="col-12 col-md-9">
-
-
-                                                 </div>
-
-                                                 <div class="form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">id_produit</label></div>
+                                                <div class="col col-md-3"><label class=" form-control-label">Id_produit</label></div>
                                                      <div class="col-12 col-md-9"><input type="number" id="id_produit" name="id_produit"  class="form-control" value="<?PHP echo $idproduit;?>" ><small class="form-text text-muted"></small></div>
 													 <div class="col-12 col-md-9">
 
@@ -263,18 +265,20 @@
 
                                                    
                                                  <div class="form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">id cmd</label></div>
-                                                     <div class="col-12 col-md-9"><input type="number" id="idcmd" name="idcmd"  class="form-control" value="<?PHP echo $idcmd;?>" ><small class="form-text text-muted"></small></div>
-                                                     
+                                                <div class="col col-md-3"><label class=" form-control-label">Id cmd</label></div>
+                                                     <div class="col-12 col-md-9"><input type="number" id="idcmd" name="idcmd"  class="form-control" value="<?PHP echo $idcmd;?>" disabled><small class="form-text text-muted"></small></div>
+													 <input type="hidden"  name="idcmd" id="idcmd"  value="<?PHP echo $idcmd; ?>" >
+                                                  
 													 <div class="col-12 col-md-9">
 
 
                                                  </div>
 
 												 <div class="form-group">
-                                                <div class="col col-md-3"><label class=" form-control-label">id client</label></div>
-                                                     <div class="col-12 col-md-9"><input type="number" id="id_client" name="id_client"  class="form-control" value="<?PHP echo $id_client;?>" ><small class="form-text text-muted"></small></div>
-                                                     
+                                                <div class="col col-md-3"><label class=" form-control-label">Id client</label></div>
+                                                     <div class="col-12 col-md-9"><input type="number" id="id_client" name="id_client"  class="form-control" value="<?PHP echo $id_client;?>" disabled><small class="form-text text-muted"></small></div>
+                                                     <input type="hidden"  name="id_client" id="id_client"  value="<?PHP echo $id_client; ?>" >
+                                                  
 													 <div class="col-12 col-md-9">
 
 

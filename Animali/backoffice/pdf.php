@@ -58,13 +58,14 @@
         <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">id_commande</th>
-      <th scope="col">prix </th>
-      <th scope="col">quantite</th>
-      <th scope="col">tauxTVA</th>
-      <th scope="col">etat</th>
-      <th scope="col">id_produit</th>
-      <th scope="col">idcmd</th>
+      <th scope="col">Id_commande </th>
+      <th scope="col">Prix d'un produit </th>
+      <th scope="col">Quantite</th>
+      <th scope="col">TauxTVA</th>
+      <th scope="col">Etat</th>
+      <th scope="col">Id_produit</th>
+      <th scope="col">Id cmd</th>
+      <th scope="col">Id client</th>
     </tr>
   </thead>
   <tbody>
@@ -77,6 +78,7 @@
                 <td><?PHP echo $produit['etat']; ?></td>
                 <td><?PHP echo $produit['id_produit']; ?></td>
                 <td><?PHP echo $produit['idcmd']; ?></td>
+                <td><?PHP echo $produit['id_client']; ?></td>
 
                 <td>
       
