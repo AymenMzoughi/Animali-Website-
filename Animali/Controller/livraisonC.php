@@ -30,19 +30,21 @@ function afficherlivraison ($livraison){
 	
 	function afficherlivraisons(){
 
-		$sql="select *  from  livraison ";
-		$db = config::getConnexion();
-		try{
-		$liste=$db->query($sql);
-		return $liste;
-		}
-		catch (Exception $e){
-			die('Erreur: '.$e->getMessage());
-		}	
+			try {
+                $pdo =config::getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM livraison'
+                );
+                $query->execute();
+                return $query->fetchAll();
+            } 
+			catch (PDOException $e) {
+                $e->getMessage();
+            }
 	}
 	function supprimerlivraison($idliv){
 		$sql="DELETE FROM livraison WHERE idliv= :idliv";
-		$db = getConnexion();
+		$db =config::getConnexion();
 		$req=$db->prepare($sql);
 		$req->bindValue(':idliv',$idliv);
 		try{
@@ -53,19 +55,18 @@ function afficherlivraison ($livraison){
 		}
 	}
 	function modifierlivraison($livraison,$idliv){
-		$sql="UPDATE livraison SET idliv=:idlivn, idcmd=:idcmd,etat=:etat,adresse=:adresse,date=:date, WHERE idliv=:idliv";
+		$sql="UPDATE livraison SET  idcmd=:idcmd,etat=:etat,adresse=:adresse,date=:date WHERE idliv=:idlivn";
 		
-		$db = config::getConnexion();
+		$db =config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
         $req=$db->prepare($sql);
-		$idlivn=$livraison->getlivid();
-        $idcmd=$livraison->getcmdid();
+        $idcmd=$livraison->getidcmd();
+        $etat=$livraison->getetat();
         $adresse=$livraison->getadresse();
         $date=$livraison->getdate();
-		$datas = array(':idlivn'=>$idlivn, ':idliv'=>$idliv, ':idcmd'=>$idcld,':etat'=>$etat,':adresse'=>$adresse,':date'=>$date);
-		$req->bindValue(':idlivn',$idlivn);
-		$req->bindValue(':idliv',$idliv);
+		
+		$req->bindValue(':idlivn',$idliv);
 		$req->bindValue(':idcmd',$idcmd);
 		$req->bindValue(':etat',$etat);
         $req->bindValue(':adresse',$adresse);
@@ -74,18 +75,18 @@ try{
 		
             $s=$req->execute();
 			
-           // header('Location: index.php');
+          
         }
         catch (Exception $e){
             echo " Erreur ! ".$e->getMessage();
-   echo " Les datas : " ;
-  print_r($datas);
+ 
+ 
         }
 		
 	}
 	function recupererlivraison($idliv){
 		$sql="SELECT * from livraison where idliv=$idliv";
-		$db = config::getConnexion();
+		$db =config::getConnexion();
 		try{
 		$liste=$db->query($sql);
 		return $liste;

@@ -12,6 +12,11 @@ $userC->ajouterclient($client1);
     // On teste si la variable de session existe et contient une valeur
 	header('Location: signin.php');
 }
+
+}
+else
+{
+    header('Location: register.php'); 
 }
 
 ?>

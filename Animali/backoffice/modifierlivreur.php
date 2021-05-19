@@ -1,10 +1,7 @@
 <?php
-//use PHPMailer\PHPMailer\PHPMailer;
     require_once '../Controller/livreurC.php';
     require_once '../Entities/livreur.php';
-	//require_once "PHPMailer/PHPMailer.php";
-//require_once "PHPMailer/SMTP.php";
-//require_once "PHPMailer/Exception.php";
+
 
 session_start();
 // On teste si la variable de session existe et contient une valeur
@@ -31,6 +28,7 @@ if(empty($_SESSION['e']))
 		
 	
 ?>
+
 
 
 <!DOCTYPE html>
@@ -70,13 +68,13 @@ if(empty($_SESSION['e']))
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Admins.php">
+						<a class="sidebar-link" href="ajouteradmine.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle"> Gestion Admins </span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherclients.php">
+						<a class="sidebar-link" href="afficherclient.php">
               <i class="align-middle"  data-feather="users"></i> <span class="align-middle">Gestion des clients </span>
             </a>
 					</li>
@@ -99,18 +97,18 @@ if(empty($_SESSION['e']))
 					</li>
                     <li class="sidebar-item active">
 						<a href="#ui" data-toggle="collapse" class="sidebar-link">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle"> Gestion des SAV </span>
+              <i class="align-middle" data-feather="truck"></i> <span class="align-middle">  Gestion des livraisons  </span>
             </a>
 						<ul id="ui" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
-							<li class="sidebar-item active"><a class="sidebar-link" href="modifierReclamation.php"> cherhcher Reclamations </a></li>
-							<li class="sidebar-item  "><a class="sidebar-link" href="StatistiqueReclamation.php"> Statistiques Reclamation </a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="Afficheravis.php">Avis </a></li>
-							
+							<li class="sidebar-item active "><a class="sidebar-link" href="afficherlivraison.php"> afficher livraisons </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href="ajouterlivreur.php"> Ajouter livreur </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href="Affich-livreur.php">Afficher livreurs </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href=""> afficher livraisons </a></li>
 						</ul>
 					</li>
                     <li class="sidebar-item">
-						<a class="sidebar-link" href="Afficherlivraison.php">
-              <i class="align-middle" data-feather="truck"></i> <span class="align-middle"> Gestion des livraisons </span>
+						<a class="sidebar-link" href="AfficherReclamation.php">
+              <i class="align-middle" data-feather="AfficherReclamation.php"></i> <span class="align-middle"> Gestion des SAV </span>
             </a>
 					</li>
 
@@ -119,68 +117,6 @@ if(empty($_SESSION['e']))
 				
 			</div>
 		</nav>
-		<div class="main">
-			<nav class="navbar navbar-expand navbar-light navbar-bg">
-				<a class="sidebar-toggle d-flex">
-          <i class="hamburger align-self-center"></i>
-        </a>
-
-				
-
-				<div class="navbar-collapse collapse">
-					<ul class="navbar-nav navbar-align">
-						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-toggle="dropdown">
-								
-						
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-toggle="dropdown">
-								
-							</a>
-							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="messagesDropdown">
-								<div class="dropdown-menu-header">
-									
-								</div>
-								<div class="list-group">
-									<a href="#" class="list-group-item">
-										<div class="row no-gutters align-items-center">
-											<div class="col-2">
-												<img src="img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
-											</div>
-											
-										</div>
-									</a>
-									
-									</a>
-									<a href="#" class="list-group-item">
-										<div class="row no-gutters align-items-center">
-											
-											
-										</div>
-									</a>
-									
-								</div>
-								<div class="dropdown-menu-footer">
-									
-								</div>
-							</div>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
-                <i class="align-middle" data-feather="settings"></i>
-              </a>
-
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-            <img src="<?php echo$_SESSION['i'];?>" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> <span class="text-dark"><?php echo$_SESSION['e'];?></span>
-              </a>
-							<div class="dropdown-menu dropdown-menu-right">
-								<a class="dropdown-item" href="deconnexion.php">Log out</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</nav>
 	
 			<main class="content">
 		 <a href="AfficherReclamation.php" >Retour à la liste</a> 

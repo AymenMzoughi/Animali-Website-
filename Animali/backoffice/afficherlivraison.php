@@ -87,7 +87,7 @@
 							<li class="sidebar-item active "><a class="sidebar-link" href="afficherlivraison.php"> afficher livraisons </a></li>
 							<li class="sidebar-item  "><a class="sidebar-link" href="ajouterlivreur.php"> Ajouter livreur </a></li>
 							<li class="sidebar-item  "><a class="sidebar-link" href="Affich-livreur.php">Afficher livreurs </a></li>
-							<li class="sidebar-item  "><a class="sidebar-link" href=""> afficher livraisons </a></li>
+							<li class="sidebar-item  "><a class="sidebar-link" href="ajout-livraison.php">  Ajouter livraison </a></li>
 						</ul>
 					</li>
                     <li class="sidebar-item">
@@ -179,7 +179,7 @@
         <tr>
                 <th>idliv</th>
                 <th>idcmd</th>
-                <th>idcmd</th>
+                <th>etat</th>
                 <th>adresse</th>
                 <th>date</th>
                
@@ -207,7 +207,7 @@ foreach($listelivraison as $livraisonC){
                         </form>
                     </td>
                     <td>
-                        <a href="modifierlivraison.php?ID=<?PHP echo $livraisonC['idliv']; ?>"> Modifier </a>
+                        <a href="modifierlivraison.php?idliv=<?PHP echo $livraisonC['idliv']; ?>"> Modifier </a>
                     </td>
                    <!-- <td>
                         <a href="trilivreur.php?ID=<?PHP echo $livreurC['ID']; ?>"> trier </a>

@@ -2,6 +2,7 @@
 
  include "../Entities/lignecommande.php";
  include "../Controller/lignecommandeC.php";
+
  session_start();
  // On teste si la variable de session existe et contient une valeur
  if(empty($_SESSION['c']))
@@ -74,6 +75,7 @@ $list1=mysqli_query($con,$idcmd);
             );
             $LignecommandeC->ajouterlignecommande($lignecommande);
             $LignecommandeC->supprimercommande($_POST['idcmd']);
+            $LignecommandeC->modifiercarte($_SESSION['id']);
             header('Location: compte.php');
         }
         else

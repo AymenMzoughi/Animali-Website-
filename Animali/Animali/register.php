@@ -17,7 +17,7 @@
   <!-- Icon Fonts -->
   <link rel="stylesheet" href="assets/fonts/flaticon/flaticon.css">
   <link rel="stylesheet" href="assets/fonts/font-awesome/css/all.min.css">
-  <script src="assets/js/formulaire.js"></script>
+  <script src="assets/js/formulaire3.js"></script>
   <!-- Petitdio Style sheet -->
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Favicon -->

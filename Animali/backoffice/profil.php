@@ -30,7 +30,7 @@ if(!empty($_SESSION['e']))
        
     }
     if($_SESSION['r']=="livraison")
-    {echo "<script type='text/javascript'>document.location.replace('affiche-livreur.php');</script>";
+    {echo "<script type='text/javascript'>document.location.replace('affich-livreur.php');</script>";
        
     }
     

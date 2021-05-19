@@ -151,6 +151,7 @@
         }
     }
        
+    
                         
        
 
@@ -179,6 +180,22 @@
                 $req->bindValue(':id_produit', $id_produit);
                 $req->bindValue(':idcmd', $idcmd);
                 $req->bindValue(':id_client', $id_client);
+
+                $req->execute(); 
+        } catch (PDOException $e) {
+           
+            echo  $e->getMessage();
+        }
+        }
+        public function modifiercarte($idclient) {
+            $sql="UPDATE cartefid SET NbP=NbP+100  where  CINC=:id_client  ";
+            $db = config::getConnexion();
+            try {
+                $req=$db->prepare($sql);
+               
+
+           
+                $req->bindValue(':id_client',$idclient);
 
                 $req->execute(); 
         } catch (PDOException $e) {
